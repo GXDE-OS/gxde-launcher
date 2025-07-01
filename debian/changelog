@@ -1,4 +1,4 @@
-gxde-launcher (5.0.31) UNRELEASED; urgency=medium
+gxde-launcher (5.0.32) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -7,8 +7,9 @@ gxde-launcher (5.0.31) UNRELEASED; urgency=medium
   * 修改 deepin-desktop-schemas 为 gxde-desktop-schemas
   * 修改 Conflicts 版本号
   * 移除依赖 lastore-daemon
+  * 调整：在未安装卸载器时禁用卸载菜单
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 15 Jun 2025 16:12:15 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Tue, 01 Jul 2025 10:54:55 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 

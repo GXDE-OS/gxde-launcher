@@ -94,6 +94,8 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
 
 
     uninstall = new QAction(tr("Uninstall"), menu);
+    // 存在卸载器才启用卸载项
+    uninstall->setEnabled(QFile::exists("/usr/bin/gxde-app-uninstaller"));
 
     menu->addAction(open);
     menu->addSeparator();
