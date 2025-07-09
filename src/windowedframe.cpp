@@ -30,6 +30,7 @@
 #endif
 
 #include <ddialog.h>
+#include <dapplication.h>
 
 #include <QApplication>
 #include <QHBoxLayout>
@@ -221,6 +222,10 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     onOpacityChanged(m_appearanceInter->opacity());
 
     m_switchBtn->updateStatus(All);
+
+    if (DApplication::isWayland()) {
+        setWindowFlag(Qt::FramelessWindowHint, true);
+    }
 }
 
 WindowedFrame::~WindowedFrame()
