@@ -22,6 +22,7 @@
 #include "miniframerightbar.h"
 #include "miniframebutton.h"
 #include "avatar.h"
+#include "src/global_util/util.h"
 
 #include <DDesktopServices>
 #include <QVBoxLayout>
@@ -37,10 +38,6 @@
 #include <QProcess>
 #endif
 DTK_USE_NAMESPACE
-
-#define CHROOTCHECKDESTINATION "com.gxde.daemon.system.info"
-#define CHROOTCHECKPATH "/com/gxde/daemon/system/info"
-#define CHROOTCHECKINTERFACE "com.gxde.daemon.system.info"
 
 MiniFrameRightBar::MiniFrameRightBar(QWidget *parent)
     : QWidget(parent)

@@ -1,4 +1,4 @@
-gxde-launcher (5.0.33) UNRELEASED; urgency=medium
+gxde-launcher (5.0.34) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -9,8 +9,9 @@ gxde-launcher (5.0.33) UNRELEASED; urgency=medium
   * 移除依赖 lastore-daemon
   * 调整：在未安装卸载器时禁用卸载菜单
   * 修复 treeland 下无法隐藏标题栏的问题
+  * 启动器全屏页面增加关机功能
 
- -- gfdgd_xi <3025613752@qq.com>  Wed, 09 Jul 2025 12:15:16 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 17 Aug 2025 16:10:56 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 

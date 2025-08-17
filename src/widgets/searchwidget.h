@@ -47,6 +47,8 @@ public:
 
     DImageButton *m_toggleCategoryBtn;
     DImageButton *m_toggleModeBtn;
+    DImageButton *m_togglePowerBtn;
+    DImageButton *m_toggleSettingBtn;
     SearchLineEdit* m_searchEdit;
 
 public slots:

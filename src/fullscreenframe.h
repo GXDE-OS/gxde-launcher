@@ -220,6 +220,8 @@ private:
     QVBoxLayout *m_mainLayout;
     FocusIndex m_nextFocusIndex;
     FocusIndex m_currentFocusIndex;
+
+    DImageButton *m_togglePowerBtn;
 };
 
 #endif // MAINFRAME_H

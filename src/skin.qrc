@@ -187,5 +187,11 @@
         <file>skin/icons/input_clear_dark_normal.svg</file>
         <file>skin/icons/input_clear_dark_hover.svg</file>
         <file>skin/icons/input_clear_dark_press.svg</file>
+        <file>skin/icons/settings_normal_24px.svg</file>
+        <file>skin/icons/settings_hover_24px.svg</file>
+        <file>skin/icons/settings_hover_24px@2x.svg</file>
+        <file>skin/icons/settings_normal_24px@2x.svg</file>
+        <file>skin/icons/settings_press_24px.svg</file>
+        <file>skin/icons/settings_press_24px@2x.svg</file>
     </qresource>
 </RCC>

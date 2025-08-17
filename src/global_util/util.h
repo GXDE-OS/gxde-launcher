@@ -26,6 +26,10 @@
 
 #include <QtCore>
 
+#define CHROOTCHECKDESTINATION "com.gxde.daemon.system.info"
+#define CHROOTCHECKPATH "/com/gxde/daemon/system/info"
+#define CHROOTCHECKINTERFACE "com.gxde.daemon.system.info"
+
 QString getQssFromFile(QString filename);
 QString joinPath(const QString& path, const QString& fileName);
 QString getThumbnailsPath();
