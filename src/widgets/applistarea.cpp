@@ -41,6 +41,8 @@ AppListArea::AppListArea(QWidget *parent)
 #endif
 
     addWidget(this);
+
+    QScroller::grabGesture(this, QScroller::LeftMouseButtonGesture);
 }
 
 void AppListArea::addWidget(QWidget * view) {

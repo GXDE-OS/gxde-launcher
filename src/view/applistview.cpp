@@ -78,6 +78,9 @@ AppListView::AppListView(QWidget *parent)
     m_dropThresholdTimer->setInterval(DLauncher::APP_DRAG_SWAP_THRESHOLD);
     m_dropThresholdTimer->setSingleShot(true);
 
+    setVerticalScrollMode(QListView::ScrollPerPixel);
+    QScroller::grabGesture(this, QScroller::LeftMouseButtonGesture);
+
 #ifndef DISABLE_DRAG_ANIMATION
     connect(m_dropThresholdTimer, &QTimer::timeout, this, &AppListView::prepareDropSwap, Qt::QueuedConnection);
 #else
