@@ -1,9 +1,11 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_HK" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AppsManager</name>
     <message>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>無搜索結果</translation>
     </message>
     <message>
         <source>Internet</source>
@@ -54,15 +56,11 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>確定</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">確定</translation>
     </message>
 </context>
 <context>
@@ -81,7 +79,7 @@
     </message>
     <message>
         <source>Disable display scaling</source>
-        <translation type="unfinished"/>
+        <translation>禁用顯示縮放</translation>
     </message>
     <message>
         <source>Open</source>
@@ -89,30 +87,34 @@
     </message>
     <message>
         <source>Send to desktop</source>
-        <translation type="unfinished"/>
+        <translation>發送至桌面</translation>
     </message>
     <message>
         <source>Send to dock</source>
-        <translation type="unfinished"/>
+        <translation>發送至任務欄</translation>
     </message>
     <message>
         <source>Remove from startup</source>
-        <translation type="unfinished"/>
+        <translation>移除開機自啟動</translation>
     </message>
     <message>
         <source>Add to startup</source>
-        <translation type="unfinished"/>
+        <translation>開機自啟動</translation>
     </message>
     <message>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation>使用代理</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation>禁用瀏覽器沙箱</translation>
     </message>
 </context>
 <context>
     <name>MiniCategoryWidget</name>
     <message>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>所有程式</translation>
     </message>
     <message>
         <source>Internet</source>
@@ -167,11 +169,11 @@
     </message>
     <message>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文檔</translation>
     </message>
     <message>
         <source>Videos</source>
-        <translation type="unfinished"/>
+        <translation>視頻</translation>
     </message>
     <message>
         <source>Music</source>
@@ -179,7 +181,7 @@
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>照片</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -195,7 +197,7 @@
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>重啟</translation>
     </message>
     <message>
         <source>Suspend</source>
@@ -234,7 +236,7 @@
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>重啟</translation>
     </message>
     <message>
         <source>Suspend</source>
@@ -246,15 +248,15 @@
     </message>
     <message>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文檔</translation>
     </message>
     <message>
         <source>Videos</source>
-        <translation type="unfinished"/>
+        <translation>視頻</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>照片</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -285,15 +287,15 @@
     </message>
     <message>
         <source>Videos</source>
-        <translation type="unfinished"/>
+        <translation>視頻</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>照片</translation>
     </message>
     <message>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文檔</translation>
     </message>
     <message>
         <source>Power</source>
@@ -304,7 +306,7 @@
     <name>MiniFrameSwitchBtn</name>
     <message>
         <source>All Categories</source>
-        <translation type="unfinished"/>
+        <translation>所有分類</translation>
     </message>
     <message>
         <source>Back</source>
@@ -322,15 +324,11 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>確定</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">確定</translation>
     </message>
 </context>
 </TS>

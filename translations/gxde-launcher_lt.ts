@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="lt">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation type="vanished">Atsisakyti</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation type="vanished">Patvirtinti</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Ar tikrai norite pašalinti %1 ?</translation>
+        <translation type="vanished">Ar tikrai norite pašalinti %1 ?</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>Naudoti įgaliotąjį serverį</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation type="vanished">Atsisakyti</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation type="vanished">Patvirtinti</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Ar tikrai norite pašalinti %1 ?</translation>
+        <translation type="vanished">Ar tikrai norite pašalinti %1 ?</translation>
     </message>
 </context>
 </TS>

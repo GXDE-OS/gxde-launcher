@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nl">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation type="vanished">Annuleren</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bevestigen</translation>
+        <translation type="vanished">Bevestigen</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Weet u zeker dat u %1 wilt deïnstalleren?</translation>
+        <translation type="vanished">Weet u zeker dat u %1 wilt deïnstalleren?</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>gebruik een proxy</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation type="vanished">Annuleren</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bevestigen</translation>
+        <translation type="vanished">Bevestigen</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Weet u zeker dat u %1 wilt deïnstalleren?</translation>
+        <translation type="vanished">Weet u zeker dat u %1 wilt deïnstalleren?</translation>
     </message>
 </context>
 </TS>

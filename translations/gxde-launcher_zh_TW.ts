@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>確定</translation>
+        <translation type="vanished">確定</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>確定解除安裝 %1？</translation>
+        <translation type="vanished">確定解除安裝 %1？</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>使用代理伺服器</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished">禁用瀏覽器沙箱</translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>確定</translation>
+        <translation type="vanished">確定</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>確定解除安裝 %1？</translation>
+        <translation type="vanished">確定解除安裝 %1？</translation>
     </message>
 </context>
 </TS>

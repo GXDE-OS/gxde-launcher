@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>İptal</translation>
+        <translation type="vanished">İptal</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Onayla</translation>
+        <translation type="vanished">Onayla</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>%1 uygulamasını kaldırmak istediğinize emin misiniz?</translation>
+        <translation type="vanished">%1 uygulamasını kaldırmak istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>Vekil sunucu kullan</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>İptal</translation>
+        <translation type="vanished">İptal</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Onayla</translation>
+        <translation type="vanished">Onayla</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>%1 uygulamasını kaldırmak istediğinize emin misiniz?</translation>
+        <translation type="vanished">%1 uygulamasını kaldırmak istediğinize emin misiniz?</translation>
     </message>
 </context>
 </TS>

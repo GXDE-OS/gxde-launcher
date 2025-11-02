@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sk">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Zrušiť</translation>
+        <translation type="vanished">Zrušiť</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Potvrdiť</translation>
+        <translation type="vanished">Potvrdiť</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Naozaj chcete odinštalovať %1 ?</translation>
+        <translation type="vanished">Naozaj chcete odinštalovať %1 ?</translation>
     </message>
 </context>
 <context>
@@ -105,7 +107,11 @@
     </message>
     <message>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Zrušiť</translation>
+        <translation type="vanished">Zrušiť</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Potvrdiť</translation>
+        <translation type="vanished">Potvrdiť</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Naozaj chcete odinštalovať %1 ?</translation>
+        <translation type="vanished">Naozaj chcete odinštalovať %1 ?</translation>
     </message>
 </context>
 </TS>

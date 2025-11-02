@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="vanished">Abbrechen</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bestätigen</translation>
+        <translation type="vanished">Bestätigen</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Sind Sie sicher, dass Sie %1 deinstallieren möchten?</translation>
+        <translation type="vanished">Sind Sie sicher, dass Sie %1 deinstallieren möchten?</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>Proxy benutzen</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="vanished">Abbrechen</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bestätigen</translation>
+        <translation type="vanished">Bestätigen</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Sind Sie sicher, dass Sie %1 deinstallieren möchten?</translation>
+        <translation type="vanished">Sind Sie sicher, dass Sie %1 deinstallieren möchten?</translation>
     </message>
 </context>
 </TS>

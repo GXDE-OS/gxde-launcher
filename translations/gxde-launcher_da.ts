@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="da" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="da">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Annuller</translation>
+        <translation type="vanished">Annuller</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bekræft</translation>
+        <translation type="vanished">Bekræft</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Er du sikker på, at du vil afinstallere %1?</translation>
+        <translation type="vanished">Er du sikker på, at du vil afinstallere %1?</translation>
     </message>
 </context>
 <context>
@@ -105,7 +107,11 @@
     </message>
     <message>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Annuller</translation>
+        <translation type="vanished">Annuller</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Bekræft</translation>
+        <translation type="vanished">Bekræft</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Er du sikker på, at du vil afinstallere %1?</translation>
+        <translation type="vanished">Er du sikker på, at du vil afinstallere %1?</translation>
     </message>
 </context>
 </TS>

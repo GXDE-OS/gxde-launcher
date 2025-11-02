@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sl">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,11 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Prekliči</translation>
+        <translation type="vanished">Prekliči</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Potrdi</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">Potrdi</translation>
     </message>
 </context>
 <context>
@@ -105,7 +103,11 @@
     </message>
     <message>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -304,7 +306,7 @@
     <name>MiniFrameSwitchBtn</name>
     <message>
         <source>All Categories</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Back</source>
@@ -322,15 +324,11 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Prekliči</translation>
+        <translation type="vanished">Prekliči</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Potrdi</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">Potrdi</translation>
     </message>
 </context>
 </TS>

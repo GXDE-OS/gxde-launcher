@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="am_ET" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="am_ET">
 <context>
     <name>AppsManager</name>
     <message>
@@ -43,7 +45,7 @@
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Other</source>
@@ -54,15 +56,11 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>መሰረዣ</translation>
+        <translation type="vanished">መሰረዣ</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>ማረጋገጫ</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">ማረጋገጫ</translation>
     </message>
 </context>
 <context>
@@ -89,23 +87,27 @@
     </message>
     <message>
         <source>Send to desktop</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Send to dock</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove from startup</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add to startup</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -304,7 +306,7 @@
     <name>MiniFrameSwitchBtn</name>
     <message>
         <source>All Categories</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Back</source>
@@ -322,15 +324,11 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>መሰረዣ</translation>
+        <translation type="vanished">መሰረዣ</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>ማረጋገጫ</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to uninstall %1 ?</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">ማረጋገጫ</translation>
     </message>
 </context>
 </TS>

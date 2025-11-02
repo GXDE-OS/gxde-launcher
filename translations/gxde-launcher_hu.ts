@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hu">
 <context>
     <name>AppsManager</name>
     <message>
@@ -54,15 +56,15 @@
     <name>FullScreenFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="vanished">Mégse</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Megerősítés</translation>
+        <translation type="vanished">Megerősítés</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Biztosan el akarod távolítani %1 alkalmazást?</translation>
+        <translation type="vanished">Biztosan el akarod távolítani %1 alkalmazást?</translation>
     </message>
 </context>
 <context>
@@ -106,6 +108,10 @@
     <message>
         <source>Use a proxy</source>
         <translation>Proxy használata</translation>
+    </message>
+    <message>
+        <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,15 +328,15 @@
     <name>WindowedFrame</name>
     <message>
         <source>Cancel</source>
-        <translation>Mégse</translation>
+        <translation type="vanished">Mégse</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation>Megerősítés</translation>
+        <translation type="vanished">Megerősítés</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall %1 ?</source>
-        <translation>Biztosan el akarod távolítani %1 alkalmazást?</translation>
+        <translation type="vanished">Biztosan el akarod távolítani %1 alkalmazást?</translation>
     </message>
 </context>
 </TS>
