@@ -62,7 +62,8 @@ public:
         AppItemIsDraggingRole,
         AppDragIconRole,
         CategoryEnterIconRole,
-        DrawBackgroundRole
+        DrawBackgroundRole,
+        AppIsNoSandbox,
     };
 
     enum AppCategory {

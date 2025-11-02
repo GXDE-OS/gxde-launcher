@@ -58,7 +58,8 @@ public:
         Startup = 4,
         Proxy = 5,
         SwitchScale = 6,
-        Uninstall = 7
+        Uninstall = 7,
+        NoSandbox = 8
     };
 
     void initConnect();
@@ -82,6 +83,7 @@ public slots:
     void handleToStartup();
     void handleToProxy();
     void handleSwitchScaling();
+    void handleToNoSandbox();
 
     void handleMenuClosed();
     void setCurrentModelIndex(const QModelIndex &index);
@@ -108,6 +110,7 @@ private:
     bool m_isRemovable;
     bool m_isItemProxy;
     bool m_isItemEnableScaling;
+    bool m_isItemNoSandbox;
 
     bool m_menuIsShown = false;
 };

@@ -59,6 +59,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     m_isItemStartup = m_currentModelIndex.data(AppsListModel::AppAutoStartRole).toBool();
     m_isRemovable = m_currentModelIndex.data(AppsListModel::AppIsRemovableRole).toBool();
     m_isItemProxy = m_currentModelIndex.data(AppsListModel::AppIsProxyRole).toBool();
+    m_isItemNoSandbox = m_currentModelIndex.data(AppsListModel::AppIsNoSandbox).toBool();
     m_isItemEnableScaling = m_currentModelIndex.data(AppsListModel::AppEnableScalingRole).toBool();
 
     qDebug() << "appKey" << m_appKey;
@@ -68,6 +69,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     QSignalMapper *signalMapper = new QSignalMapper(menu);
 
     QAction *open;
+    QAction *noSandboxOption;
     QAction *desktop;
     QAction *dock;
     QAction *startup;
@@ -76,6 +78,8 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     QAction *uninstall;
 
     open = new QAction(tr("Open"), menu);
+
+    noSandboxOption = new QAction(tr("Disable App Sandbox"), menu);
 
     desktop = new QAction(m_isItemOnDesktop ?
                               tr("Remove from desktop") :
@@ -98,6 +102,8 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     uninstall->setEnabled(QFile::exists("/usr/bin/gxde-app-uninstaller"));
 
     menu->addAction(open);
+    menu->addSeparator();
+    menu->addAction(noSandboxOption);
     menu->addSeparator();
     menu->addAction(desktop);
     menu->addAction(dock);
@@ -122,6 +128,11 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
         signalMapper->setMapping(scale, SwitchScale);
         connect(scale, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     }
+
+    noSandboxOption->setCheckable(true);
+    noSandboxOption->setChecked(m_isItemNoSandbox);
+    signalMapper->setMapping(noSandboxOption, NoSandbox);
+    connect(noSandboxOption, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
     uninstall->setEnabled(m_isRemovable);
 
@@ -198,6 +209,9 @@ void MenuWorker::handleMenuAction(int index)
         break;
     case Uninstall:
         emit unInstallApp(m_currentModelIndex);
+        break;
+    case NoSandbox:
+        handleToNoSandbox();
         break;
     default:
         break;
@@ -287,4 +301,9 @@ void MenuWorker::handleToProxy()
 void MenuWorker::handleSwitchScaling()
 {
     m_launcherInterface->SetDisableScaling(m_appKey, m_isItemEnableScaling);
+}
+
+void MenuWorker::handleToNoSandbox()
+{
+    m_launcherInterface->SetNoSandbox(m_appKey, !m_isItemNoSandbox);
 }

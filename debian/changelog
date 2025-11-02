@@ -1,4 +1,4 @@
-gxde-launcher (5.0.35) UNRELEASED; urgency=medium
+gxde-launcher (5.0.36) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -11,8 +11,9 @@ gxde-launcher (5.0.35) UNRELEASED; urgency=medium
   * 修复 treeland 下无法隐藏标题栏的问题
   * 启动器全屏页面增加关机功能
   * 支持鼠标左键滑动滚动列表
+  * 支持设置 --no-sandbox
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 05 Oct 2025 20:41:57 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 02 Nov 2025 16:18:00 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 

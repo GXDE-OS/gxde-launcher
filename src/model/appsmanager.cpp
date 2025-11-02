@@ -390,6 +390,7 @@ void AppsManager::launchApp(const QModelIndex &index)
     const QString appDesktop = index.data(AppsListModel::AppDesktopRole).toString();
     qDebug() << appDesktop;
     QString appKey = index.data(AppsListModel::AppKeyRole).toString();
+    qDebug() << appKey;
     markLaunched(appKey);
 
     for (ItemInfo &info : m_userSortedList) {
@@ -525,6 +526,11 @@ bool AppsManager::appIsOnDesktop(const QString &desktop)
 bool AppsManager::appIsProxy(const QString &desktop)
 {
     return m_launcherInter->GetUseProxy(desktop).value();
+}
+
+bool AppsManager::appIsNoSandbox(const QString &desktop)
+{
+    return m_launcherInter->GetNoSandbox(desktop).value();
 }
 
 bool AppsManager::appIsEnableScaling(const QString &desktop)
