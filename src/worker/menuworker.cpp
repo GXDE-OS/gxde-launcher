@@ -103,11 +103,11 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
 
     menu->addAction(open);
     menu->addSeparator();
-    menu->addAction(noSandboxOption);
     menu->addSeparator();
     menu->addAction(desktop);
     menu->addAction(dock);
     menu->addSeparator();
+    menu->addAction(noSandboxOption);
     menu->addAction(startup);
 
     if (QFile::exists(ChainsProxy_path)) {
