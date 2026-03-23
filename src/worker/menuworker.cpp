@@ -61,6 +61,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     m_isItemProxy = m_currentModelIndex.data(AppsListModel::AppIsProxyRole).toBool();
     m_isItemNoSandbox = m_currentModelIndex.data(AppsListModel::AppIsNoSandbox).toBool();
     m_isItemEnableScaling = m_currentModelIndex.data(AppsListModel::AppEnableScalingRole).toBool();
+    m_isMarkLaunched = !m_currentModelIndex.data(AppsListModel::AppNewInstallRole).toBool();
 
     qDebug() << "appKey" << m_appKey;
 
@@ -76,6 +77,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     QAction *proxy;
     QAction *scale;
     QAction *uninstall;
+    QAction *markLaunched;
 
     open = new QAction(tr("Open"), menu);
 
@@ -101,6 +103,10 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     // 存在卸载器才启用卸载项
     uninstall->setEnabled(QFile::exists("/usr/bin/gxde-app-uninstaller"));
 
+    markLaunched = new QAction(tr("Mark Launched"), menu);
+    //markLaunched->setVisible(!m_isMarkLaunched);
+    markLaunched->setVisible(false);
+
     menu->addAction(open);
     menu->addSeparator();
     menu->addSeparator();
@@ -109,6 +115,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     menu->addSeparator();
     menu->addAction(noSandboxOption);
     menu->addAction(startup);
+    menu->addAction(markLaunched);
 
     if (QFile::exists(ChainsProxy_path)) {
         proxy = new QAction(tr("Use a proxy"), menu);
@@ -146,12 +153,14 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     connect(startup, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
     connect(uninstall, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+    connect(markLaunched, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
     signalMapper->setMapping(open, Open);
     signalMapper->setMapping(desktop, Desktop);
     signalMapper->setMapping(dock, Dock);
     signalMapper->setMapping(startup, Startup);
     signalMapper->setMapping(uninstall, Uninstall);
+    signalMapper->setMapping(markLaunched, MarkLaunched);
 
     connect(signalMapper, static_cast<void (QSignalMapper::*)(const int)>(&QSignalMapper::mapped), this, &MenuWorker::handleMenuAction);
     connect(menu, &QMenu::aboutToHide, this, &MenuWorker::handleMenuClosed);
@@ -213,6 +222,8 @@ void MenuWorker::handleMenuAction(int index)
     case NoSandbox:
         handleToNoSandbox();
         break;
+    case MarkLaunched:
+        handleToMarkLaunched();
     default:
         break;
     }
@@ -306,4 +317,10 @@ void MenuWorker::handleSwitchScaling()
 void MenuWorker::handleToNoSandbox()
 {
     m_launcherInterface->SetNoSandbox(m_appKey, !m_isItemNoSandbox);
+}
+
+void MenuWorker::handleToMarkLaunched()
+{
+    m_launcherInterface->MarkLaunched(m_appKey);
+    qDebug() << m_appKey;
 }
