@@ -73,7 +73,8 @@ const QStringList sysHoldPackages()
                              << "gxde-wm-multitaskingview"
                              << "gxde-calendar"
                              << "gxde-terminal"
-                             << "kwin-wm-multitaskingview";
+                             << "kwin-wm-multitaskingview"
+                             << "gxde-multitaskingview";
 
     return holds_list;
 }
