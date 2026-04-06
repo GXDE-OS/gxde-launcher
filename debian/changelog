@@ -1,4 +1,4 @@
-gxde-launcher (5.0.37) UNRELEASED; urgency=medium
+gxde-launcher (5.0.38) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -12,8 +12,9 @@ gxde-launcher (5.0.37) UNRELEASED; urgency=medium
   * 启动器全屏页面增加关机功能
   * 支持鼠标左键滑动滚动列表
   * 支持设置 --no-sandbox，且放到较下方
+  * 禁用卸载多任务视图
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 02 Nov 2025 16:18:00 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Mon, 06 Apr 2026 16:10:39 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
