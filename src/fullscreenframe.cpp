@@ -561,6 +561,8 @@ void FullScreenFrame::initUI()
     // animation
     m_scrollAnimation = new QPropertyAnimation(m_appsArea->verticalScrollBar(), "value");
     m_scrollAnimation->setEasingCurve(QEasingCurve::OutQuad);
+
+    setWindowTitle(tr("GXDE Launcher"));
 }
 
 // FIXME(sbw): optimize this implements.
