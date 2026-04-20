@@ -58,6 +58,10 @@
         <source>Cancel</source>
         <translation type="vanished">Peruuta</translation>
     </message>
+    <message>
+        <source>GXDE Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MenuWorker</name>
@@ -103,6 +107,10 @@
     </message>
     <message>
         <source>Use a proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark Launched</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

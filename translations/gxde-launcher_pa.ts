@@ -66,6 +66,10 @@
         <source>Are you sure you want to uninstall %1 ?</source>
         <translation type="vanished">ਕੀ ਤੁਸੀਂ %1 ਨੂੰ ਅਣ-ਇੰਸਟਾਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</translation>
     </message>
+    <message>
+        <source>GXDE Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MenuWorker</name>
@@ -111,6 +115,10 @@
     </message>
     <message>
         <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark Launched</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

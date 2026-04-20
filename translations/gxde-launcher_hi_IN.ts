@@ -62,6 +62,10 @@
         <source>Confirm</source>
         <translation type="vanished">पुष्टि करें </translation>
     </message>
+    <message>
+        <source>GXDE Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MenuWorker</name>
@@ -107,6 +111,10 @@
     </message>
     <message>
         <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark Launched</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

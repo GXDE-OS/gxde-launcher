@@ -66,6 +66,10 @@
         <source>Are you sure you want to uninstall %1 ?</source>
         <translation type="vanished">確定解除安裝 %1？</translation>
     </message>
+    <message>
+        <source>GXDE Launcher</source>
+        <translation>GXDE 啟動器</translation>
+    </message>
 </context>
 <context>
     <name>MenuWorker</name>
@@ -112,6 +116,10 @@
     <message>
         <source>Disable App Sandbox</source>
         <translation type="unfinished">禁用瀏覽器沙箱</translation>
+    </message>
+    <message>
+        <source>Mark Launched</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

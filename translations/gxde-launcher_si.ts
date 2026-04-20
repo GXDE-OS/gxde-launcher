@@ -53,6 +53,13 @@
     </message>
 </context>
 <context>
+    <name>FullScreenFrame</name>
+    <message>
+        <source>GXDE Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MenuWorker</name>
     <message>
         <source>Remove from desktop</source>
@@ -96,6 +103,10 @@
     </message>
     <message>
         <source>Disable App Sandbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark Launched</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
