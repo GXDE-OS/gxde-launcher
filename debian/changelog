@@ -1,4 +1,4 @@
-gxde-launcher (6.0.0) UNRELEASED; urgency=medium
+gxde-launcher (6.0.1) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -15,8 +15,9 @@ gxde-launcher (6.0.0) UNRELEASED; urgency=medium
   * 禁用卸载多任务视图
   * 修复启动器全屏显示时顶栏显示问题有误的问题
   * Qt6 迁移
+  * fix: 修复关闭沙箱选项中文无了的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 28 Jun 2026 20:16:16 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Mon, 29 Jun 2026 07:50:12 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
