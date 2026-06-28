@@ -22,7 +22,7 @@
  */
 
 #include <QDebug>
-#include <QX11Info>
+#include <QGuiApplication>
 
 #include <xcb/xcb.h>
 #include <xcb/xcb_ewmh.h>
@@ -31,9 +31,16 @@
 
 static XcbMisc * _xcb_misc_instance = NULL;
 
+static xcb_connection_t *xcbConnection()
+{
+    if (auto *x11App = qApp->nativeInterface<QNativeInterface::QX11Application>())
+        return x11App->connection();
+    return nullptr;
+}
+
 XcbMisc::XcbMisc()
 {
-    xcb_intern_atom_cookie_t * cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_intern_atom_cookie_t * cookie = xcb_ewmh_init_atoms(xcbConnection(), &m_ewmh_connection);
     xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 }
 
@@ -115,7 +122,7 @@ void XcbMisc::set_deepin_override(xcb_window_t winId)
 {
     QString deepinOverride("_DEEPIN_OVERRIDE");
 
-    xcb_connection_t * connection = QX11Info::connection();
+    xcb_connection_t * connection = xcbConnection();
     xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection,
                                                       0,
                                                       deepinOverride.length(),

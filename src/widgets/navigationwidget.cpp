@@ -132,7 +132,7 @@ void NavigationWidget::initUI()
     mainLayout->addWidget(m_othersBtn);
     mainLayout->addStretch();
     mainLayout->setSpacing(0);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
 
     setLayout(mainLayout);
 }
@@ -206,7 +206,7 @@ void NavigationWidget::setZoomLevel(const qreal &zoomLevel)
     }
 }
 
-void NavigationWidget::enterEvent(QEvent *e)
+void NavigationWidget::enterEvent(QEnterEvent *e)
 {
     QFrame::enterEvent(e);
 

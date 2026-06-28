@@ -67,7 +67,7 @@ void UserButton::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setClipPath(path);
-    painter.drawPixmap(0, 0, *pixmap());
+    painter.drawPixmap(0, 0, pixmap());
 }
 
 void UserButton::initUser()

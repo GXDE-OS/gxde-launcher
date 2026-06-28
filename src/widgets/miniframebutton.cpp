@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QScreen>
 
 MiniFrameButton::MiniFrameButton(const QString &text, QWidget *parent)
     : QPushButton(text, parent)
@@ -16,7 +16,7 @@ MiniFrameButton::~MiniFrameButton()
 {
 }
 
-void MiniFrameButton::enterEvent(QEvent *event)
+void MiniFrameButton::enterEvent(QEnterEvent *event)
 {
     QPushButton::enterEvent(event);
 
@@ -42,7 +42,7 @@ bool MiniFrameButton::event(QEvent *event) {
 
 void MiniFrameButton::updateFont() {
     QFont font = this->font();
-    const int px = (qApp->font().pointSizeF() * qApp->desktop()->logicalDpiX() / 72) + 2;
+    const int px = (qApp->font().pointSizeF() * qApp->primaryScreen()->logicalDotsPerInchX() / 72) + 2;
     font.setPixelSize(std::max(px, 14));
     qDebug() << px;
     setFont(font);

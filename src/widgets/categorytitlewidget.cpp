@@ -40,7 +40,7 @@ CategoryTitleWidget::CategoryTitleWidget(const QString &title, QWidget *parent) 
     whiteLine->setFixedHeight(1);
 
     QVBoxLayout* lineLayout = new QVBoxLayout;
-    lineLayout->setMargin(0);
+    lineLayout->setContentsMargins(0, 0, 0, 0);
     lineLayout->setSpacing(0);
     lineLayout->addStretch();
     lineLayout->addWidget(whiteLine);
@@ -88,7 +88,7 @@ void CategoryTitleWidget::setTextVisible(const bool visible, const bool animatio
 void CategoryTitleWidget::setText(const QString &title)
 {
     QFontMetrics fontMetric(m_title->font());
-    const int width = fontMetric.width(title);
+    const int width = fontMetric.horizontalAdvance(title);
     m_title->setFixedWidth(width + 10);
 
     // DON'T set style sheet for m_title, otherwise we can't fake opacity
@@ -115,7 +115,7 @@ void CategoryTitleWidget::relayout()
     titleFont.setPixelSize(m_calcUtil->titleTextSize());
     m_title->setFont(titleFont);
     QFontMetrics fontMetric(titleFont);
-    const int width = fontMetric.width(m_title->text());
+    const int width = fontMetric.horizontalAdvance(m_title->text());
     m_title->setFixedWidth(width + 10);
 }
 

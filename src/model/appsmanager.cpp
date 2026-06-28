@@ -28,8 +28,8 @@
 #include "src/global_util/constants.h"
 #include "src/global_util/calculate_util.h"
 
+#include <algorithm>
 #include <QDebug>
-#include <QX11Info>
 #include <QSvgRenderer>
 #include <QPainter>
 #include <QDataStream>
@@ -45,6 +45,7 @@
 #include <QScopedPointer>
 
 #include <QProcess>
+#include <QGuiApplication>
 
 DWIDGET_USE_NAMESPACE
 
@@ -242,7 +243,7 @@ void AppsManager::sortByPresetOrder(ItemInfoList &processList)
     if (preset.isEmpty())
         preset = LAUNCHER_SETTINGS.get("apps-order").toStringList();
 
-    qSort(processList.begin(), processList.end(), [&preset] (const ItemInfo &i1, const ItemInfo &i2) {
+    std::sort(processList.begin(), processList.end(), [&preset] (const ItemInfo &i1, const ItemInfo &i2) {
         int index1 = preset.indexOf(i1.m_key.toLower());
         int index2 = preset.indexOf(i2.m_key.toLower());
 
@@ -412,7 +413,7 @@ void AppsManager::launchApp(const QModelIndex &index)
     refreshUserInfoList();
 
     if (!appDesktop.isEmpty())
-        m_startManagerInter->LaunchWithTimestamp(appDesktop, QX11Info::getTimestamp());
+        m_startManagerInter->LaunchWithTimestamp(appDesktop, 0);
 }
 
 void AppsManager::uninstallAppWithUninstaller(const QString &appKey)

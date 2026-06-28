@@ -287,7 +287,7 @@ bool AppGridView::eventFilter(QObject *o, QEvent *e)
     return false;
 }
 
-void AppGridView::enterEvent(QEvent *e)
+void AppGridView::enterEvent(QEnterEvent *e)
 {
     QListView::enterEvent(e);
 

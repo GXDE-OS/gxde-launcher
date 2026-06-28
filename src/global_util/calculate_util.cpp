@@ -27,8 +27,8 @@
 
 #include <QDebug>
 #include <QScreen>
-#include <QDesktopWidget>
 #include <QApplication>
+#include <QFont>
 
 static const QString DisplayModeKey = "display-mode";
 static const QString DisplayModeFree = "free";

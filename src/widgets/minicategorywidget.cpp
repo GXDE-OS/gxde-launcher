@@ -87,14 +87,14 @@ MiniCategoryWidget::MiniCategoryWidget(QWidget *parent)
     buttonLayout->addWidget(m_system);
     buttonLayout->addWidget(m_others);
     buttonLayout->setSpacing(0);
-    buttonLayout->setMargin(0);
+    buttonLayout->setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout *centralLayout = new QHBoxLayout;
     centralLayout->addStretch();
     centralLayout->addLayout(buttonLayout);
     centralLayout->addStretch();
     centralLayout->setSpacing(0);
-    centralLayout->setMargin(0);
+    centralLayout->setContentsMargins(0, 0, 0, 0);
 
     setLayout(centralLayout);
     setObjectName("MiniCategoryWidget");
@@ -136,7 +136,7 @@ void MiniCategoryWidget::keyPressEvent(QKeyEvent *e)
     }
 }
 
-void MiniCategoryWidget::enterEvent(QEvent *e)
+void MiniCategoryWidget::enterEvent(QEnterEvent *e)
 {
     QWidget::enterEvent(e);
 

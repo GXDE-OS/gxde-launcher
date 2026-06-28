@@ -32,7 +32,7 @@
 #include <QSvgRenderer>
 #include <QPainter>
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QScreen>
 
 CategoryButton::CategoryButton(const AppsListModel::AppCategory category, QWidget *parent) :
     QAbstractButton(parent),
@@ -49,7 +49,7 @@ CategoryButton::CategoryButton(const AppsListModel::AppCategory category, QWidge
     m_textLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->setSpacing(0);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->addSpacing(20);
     mainLayout->addWidget(m_iconLabel);
     mainLayout->addStretch();
@@ -84,7 +84,7 @@ void CategoryButton::paintEvent(QPaintEvent *e)
     QWidget::paintEvent(e);
 }
 
-void CategoryButton::enterEvent(QEvent *e)
+void CategoryButton::enterEvent(QEnterEvent *e)
 {
     if (!isChecked())
         updateState(Hover);
@@ -216,7 +216,7 @@ void CategoryButton::addTextShadow() {
 void CategoryButton::relayout()
 {
     QFont font   = m_textLabel->font();
-    const int px = (qApp->font().pointSizeF() * qApp->desktop()->logicalDpiX() / 72) + 2;
+    const int px = (qApp->font().pointSizeF() * qApp->primaryScreen()->logicalDotsPerInchX() / 72) + 2;
     font.setPixelSize(std::max(px, m_calcUtil->navgationTextSize()));
     m_textLabel->setFont(font);
 }

@@ -15,7 +15,7 @@ signals:
     void entered() const;
 
 protected:
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     bool event(QEvent *event) override;
 

@@ -57,7 +57,7 @@ signals:
 protected:
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent *e);
-    void enterEvent(QEvent *e);
+    void enterEvent(QEnterEvent *e);
     bool event(QEvent *event);
 
 private slots:

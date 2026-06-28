@@ -5,7 +5,7 @@ set(VERSION 4.0)
 project(gxde-launcher)
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -46,35 +46,38 @@ file(GLOB INTERFACES "src/dbusinterface/*.h")
 
 # Find the library
 find_package(PkgConfig REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
-find_package(Qt5X11Extras REQUIRED)
-find_package(Qt5DBus REQUIRED)
-find_package(DtkWidget REQUIRED)
-find_package(Qt5Svg REQUIRED)
+find_package(Qt6Widgets REQUIRED)
+find_package(Qt6Concurrent REQUIRED)
+find_package(Qt6DBus REQUIRED)
+find_package(Qt6Svg REQUIRED)
+find_package(Dtk2widget REQUIRED)
+find_package(Dtk6Core REQUIRED)
+find_package(Dtk6Gui REQUIRED)
+find_package(DFrameworkdbusQt6 REQUIRED)
 
 pkg_check_modules(XCB_EWMH REQUIRED xcb-ewmh x11)
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
-pkg_check_modules(QGSettings REQUIRED gsettings-qt)
+pkg_check_modules(QGSettings REQUIRED gsettings-qt6)
 
 add_executable(${BIN_NAME} ${SRCS} ${INTERFACES} src/skin.qrc src/widgets/images.qrc)
-target_include_directories(${BIN_NAME} PUBLIC ${DtkWidget_INCLUDE_DIRS}
-                                              ${XCB_EWMH_INCLUDE_DIRS}
-                                              ${DFrameworkDBus_INCLUDE_DIRS}
-                                              ${Qt5Gui_PRIVATE_INCLUDE_DIRS}
+target_include_directories(${BIN_NAME} PUBLIC ${XCB_EWMH_INCLUDE_DIRS}
+                                              ${DFrameworkdbusQt6_INCLUDE_DIRS}
+                                              /usr/include/libdframeworkdbus-qt6-6.0
+                                              ${Qt6Gui_PRIVATE_INCLUDE_DIRS}
                                               ${QGSettings_INCLUDE_DIRS}
+                                              ${Dtk6Core_INCLUDE_DIRS}
+                                              ${Dtk6Gui_INCLUDE_DIRS}
                                               ${PROJECT_BINARY_DIR})
 
 target_link_libraries(${BIN_NAME} PRIVATE
     ${XCB_EWMH_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
-    ${DtkWidget_LIBRARIES}
-    ${Qt5Widgets_LIBRARIES}
-    ${Qt5Concurrent_LIBRARIES}
-    ${Qt5X11Extras_LIBRARIES}
-    ${Qt5DBus_LIBRARIES}
+    DFrameworkdbusQt6::DFrameworkdbusQt6
+    ${Dtk2widget_LIBRARIES}
+    Dtk6::Gui
+    ${Qt6Widgets_LIBRARIES}
+    ${Qt6Concurrent_LIBRARIES}
+    ${Qt6DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
-    ${Qt5Svg_LIBRARIES}
+    ${Qt6Svg_LIBRARIES}
 )
 
 ## qm files

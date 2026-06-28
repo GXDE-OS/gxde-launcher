@@ -28,7 +28,7 @@
 #include <QEvent>
 #include <QTimer>
 #include <QResizeEvent>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent) :
     QLineEdit(parent)
@@ -46,7 +46,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 
     m_placeholderText = new QLabel(tr("Search"));
     QFontMetrics fm(m_placeholderText->font());
-    m_placeholderText->setFixedWidth(fm.width(m_placeholderText->text()) + 10);
+    m_placeholderText->setFixedWidth(fm.horizontalAdvance(m_placeholderText->text()) + 10);
     m_placeholderText->setStyleSheet("color:white;");
     m_floatWidget = new QWidget(this);
 
@@ -59,7 +59,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
     floatLayout->addWidget(m_placeholderText);
     floatLayout->setAlignment(m_placeholderText, Qt::AlignVCenter);
     floatLayout->setSpacing(0);
-    floatLayout->setMargin(0);
+    floatLayout->setContentsMargins(0, 0, 0, 0);
 
     m_floatWidget->setFixedHeight(30);
     m_floatWidget->setFixedWidth(m_icon->width() + m_placeholderText->width() + 5);

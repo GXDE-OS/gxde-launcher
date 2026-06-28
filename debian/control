@@ -6,17 +6,15 @@ Build-Depends:
  debhelper (>= 8.0.0),
  pkg-config,
  cmake,
- qtbase5-dev,
+ qt6-base-dev,
  libxcb-ewmh-dev,
- libqt5x11extras5-dev,
- libqt5svg5-dev,
- libgsettings-qt-dev,
- qttools5-dev-tools,
- libdtkcore-dev,
- libdtkwidget2-dev,
- libgxframeworkdbus-dev,
- qtbase5-private-dev,
- qttools5-dev-tools
+ libdtk2widget6-dev,
+ libdtk6core-dev,
+ libdframeworkdbus-qt6-dev,
+ qt6-base-private-dev,
+ qt6-svg-dev,
+ libgsettings-qt6-dev,
+ qt6-tools-dev-tools
 Standards-Version: 3.9.8
 Homepage: http://www.deepin.org/
 

@@ -36,11 +36,7 @@
 #include <DLog>
 
 DWIDGET_USE_NAMESPACE
-#ifdef DCORE_NAMESPACE
 DCORE_USE_NAMESPACE
-#else
-DUTIL_USE_NAMESPACE
-#endif
 
 void dump_user_apss_preset_order_list()
 {
@@ -57,7 +53,6 @@ void dump_user_apss_preset_order_list()
 
 int main(int argv, char *args[])
 {
-    DApplication::loadDXcbPlugin();
     DApplication app(argv, args);
     app.setQuitOnLastWindowClosed(false);
     app.setOrganizationName("deepin");
@@ -65,7 +60,6 @@ int main(int argv, char *args[])
     app.setApplicationVersion("3.0");
     app.setTheme("dark");
     app.loadTranslator();
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     DLogManager::registerConsoleAppender();
 #ifndef QT_DEBUG

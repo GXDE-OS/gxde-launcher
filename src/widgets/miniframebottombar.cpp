@@ -67,7 +67,7 @@ MiniFrameBottomBar::MiniFrameBottomBar(QWidget *parent)
     navigationLayout->addWidget(m_sysInfoBtn);
 #endif
     navigationLayout->addWidget(m_shutdownBtn);
-    navigationLayout->setMargin(0);
+    navigationLayout->setContentsMargins(0, 0, 0, 0);
 
     m_navigationPanel = new QWidget;
     m_navigationPanel->setLayout(navigationLayout);
@@ -88,7 +88,7 @@ MiniFrameBottomBar::MiniFrameBottomBar(QWidget *parent)
     shutdownLayout->addWidget(m_logout);
     shutdownLayout->addStretch();
     shutdownLayout->addWidget(m_toNavigation);
-    shutdownLayout->setMargin(0);
+    shutdownLayout->setContentsMargins(0, 0, 0, 0);
 
     m_shutdownPanel = new QWidget;
     m_shutdownPanel->setLayout(shutdownLayout);

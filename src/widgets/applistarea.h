@@ -42,7 +42,7 @@ signals:
 
 protected:
     void wheelEvent(QWheelEvent *e) override;
-    void enterEvent(QEvent *e) override;
+    void enterEvent(QEnterEvent *e) override;
     bool eventFilter(QObject *watched, QEvent *e) override;
 
 private:

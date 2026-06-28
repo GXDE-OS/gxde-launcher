@@ -20,6 +20,7 @@
 #include "datetimewidget.h"
 #include <QVBoxLayout>
 #include <QDateTime>
+#include <QLocale>
 #include <QMouseEvent>
 
 DatetimeWidget::DatetimeWidget(QWidget *parent)
@@ -37,7 +38,7 @@ DatetimeWidget::DatetimeWidget(QWidget *parent)
     m_currentDateLabel->setStyleSheet("QLabel { color: rgba(255, 255, 255, 0.6); }");
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->setContentsMargins(5, 0, 0, 0);
     layout->addWidget(m_currentTimeLabel);
@@ -73,5 +74,5 @@ void DatetimeWidget::updateTime()
 {
     const QDateTime dateTime = QDateTime::currentDateTime();
     m_currentTimeLabel->setText(dateTime.toString("HH:mm"));
-    m_currentDateLabel->setText(dateTime.date().toString(Qt::SystemLocaleLongDate));
+    m_currentDateLabel->setText(QLocale().toString(dateTime.date(), QLocale::LongFormat));
 }

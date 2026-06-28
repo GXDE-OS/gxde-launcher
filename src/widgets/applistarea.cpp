@@ -57,7 +57,7 @@ void AppListArea::wheelEvent(QWheelEvent *e)
     {
         e->accept();
 
-        if (e->delta() > 0)
+        if (e->angleDelta().y() > 0)
             emit increaseIcon();
         else
             emit decreaseIcon();
@@ -66,7 +66,7 @@ void AppListArea::wheelEvent(QWheelEvent *e)
     }
 }
 
-void AppListArea::enterEvent(QEvent *e)
+void AppListArea::enterEvent(QEnterEvent *e)
 {
     QScrollArea::enterEvent(e);
 

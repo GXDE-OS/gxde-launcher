@@ -146,7 +146,7 @@ WindowedFrame::WindowedFrame(QWidget *parent)
 
     QVBoxLayout *containLayout = new QVBoxLayout;
     containLayout->setSpacing(0);
-    containLayout->setMargin(0);
+    containLayout->setContentsMargins(0, 0, 0, 0);
 
     containLayout->addSpacing(10);
     containLayout->addLayout(searchLayout);
@@ -164,7 +164,7 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(m_leftWidget);
     mainLayout->addWidget(m_rightBar);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
 
     setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint);
@@ -565,7 +565,7 @@ void WindowedFrame::hideEvent(QHideEvent *e)
     QTimer::singleShot(1, this, [=] { emit visibleChanged(false); });
 }
 
-void WindowedFrame::enterEvent(QEvent *e)
+void WindowedFrame::enterEvent(QEnterEvent *e)
 {
     QWidget::enterEvent(e);
 

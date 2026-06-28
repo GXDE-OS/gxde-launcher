@@ -104,7 +104,7 @@ const QModelIndex AppListView::indexAt(const int index) const
 
 void AppListView::wheelEvent(QWheelEvent *e)
 {
-    int offset = -e->delta();
+    int offset = -e->angleDelta().y();
 
     m_scrollAni->stop();
     m_scrollAni->setStartValue(verticalScrollBar()->value());
@@ -298,7 +298,7 @@ void AppListView::dropEvent(QDropEvent *e)
     m_enableDropInside = true;
 }
 
-void AppListView::enterEvent(QEvent *event)
+void AppListView::enterEvent(QEnterEvent *event)
 {
     QListView::leaveEvent(event);
 

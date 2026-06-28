@@ -27,7 +27,6 @@
 #include "src/boxframe/backgroundmanager.h"
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QClipboard>
 #include <QScreen>
 #include <QHBoxLayout>
@@ -313,16 +312,16 @@ void FullScreenFrame::mouseReleaseEvent(QMouseEvent *e)
 void FullScreenFrame::wheelEvent(QWheelEvent *e)
 {
     auto shouldPostWheelEvent = [this, e]() -> bool {
-        bool inAppArea = m_appsArea->geometry().contains(e->pos());
+        bool inAppArea = m_appsArea->geometry().contains(e->position().toPoint());
         bool topMost = m_appsArea->verticalScrollBar()->value() == m_appsArea->verticalScrollBar()->minimum();
         bool bottomMost = m_appsArea->verticalScrollBar()->value() == m_appsArea->verticalScrollBar()->maximum();
-        bool exceedingLimits = e->modifiers() ? false : (e->delta() > 0 && topMost) || (e->delta() < 0 && bottomMost);
+        bool exceedingLimits = e->modifiers() ? false : (e->angleDelta().y() > 0 && topMost) || (e->angleDelta().y() < 0 && bottomMost);
 
         return !inAppArea && !exceedingLimits;
     };
 
     if (shouldPostWheelEvent()) {
-        QWheelEvent *event = new QWheelEvent(e->pos(), e->delta(), e->buttons(), e->modifiers());
+        QWheelEvent *event = new QWheelEvent(e->position(), e->globalPosition(), e->pixelDelta(), e->angleDelta(), e->buttons(), e->modifiers(), e->phase(), e->inverted());
         qApp->postEvent(m_appsArea->viewport(), event);
 
         e->accept();
@@ -526,11 +525,11 @@ void FullScreenFrame::initUI()
     m_contentFrame->setStyleSheet("background: transparent;");
 
     QVBoxLayout *scrollVLayout = new QVBoxLayout;
-    scrollVLayout->setMargin(0);
+    scrollVLayout->setContentsMargins(0, 0, 0, 0);
     scrollVLayout->setSpacing(0);
 
     QHBoxLayout *scrollHLayout = new QHBoxLayout;
-    scrollHLayout->setMargin(0);
+    scrollHLayout->setContentsMargins(0, 0, 0, 0);
     scrollHLayout->setSpacing(0);
     scrollHLayout->addSpacing(LEFT_PADDING);
     scrollHLayout->addWidget(m_appsVbox, 0, Qt::AlignTop);
@@ -548,7 +547,7 @@ void FullScreenFrame::initUI()
     m_bottomGradient->setDirection(GradientLabel::BottomToTop);
 
     m_mainLayout = new QVBoxLayout;
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
     m_mainLayout->addSpacing(0);
     m_mainLayout->addWidget(m_topSpacing);
     m_mainLayout->addWidget(m_searchWidget);

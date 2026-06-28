@@ -162,7 +162,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     signalMapper->setMapping(uninstall, Uninstall);
     signalMapper->setMapping(markLaunched, MarkLaunched);
 
-    connect(signalMapper, static_cast<void (QSignalMapper::*)(const int)>(&QSignalMapper::mapped), this, &MenuWorker::handleMenuAction);
+    connect(signalMapper, &QSignalMapper::mappedInt, this, &MenuWorker::handleMenuAction);
     connect(menu, &QMenu::aboutToHide, this, &MenuWorker::handleMenuClosed);
     connect(menu, &QMenu::aboutToHide, menu, &QMenu::deleteLater);
 

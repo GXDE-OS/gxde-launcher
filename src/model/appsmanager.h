@@ -37,7 +37,6 @@
 #include <QPixmap>
 #include <QTimer>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QScreen>
 #include <QDBusArgument>
 #include <QList>

@@ -55,7 +55,7 @@ public slots:
     void refershCategoryVisible(const AppsListModel::AppCategory category, const int appNums);
 
 protected:
-    void enterEvent(QEvent *e) Q_DECL_OVERRIDE;
+    void enterEvent(QEnterEvent *e) Q_DECL_OVERRIDE;
     void leaveEvent(QEvent *e) Q_DECL_OVERRIDE;
     void showEvent(QShowEvent *e) Q_DECL_OVERRIDE;
 

@@ -17,7 +17,6 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtCore/QVariant>
-#include <QX11Info>
 
 /*
  * Implementation of adaptor class DBusLauncherService

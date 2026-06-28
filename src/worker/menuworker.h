@@ -26,7 +26,6 @@
 
 #include <QVariant>
 #include <QProcess>
-#include <QX11Info>
 #include <QDBusObjectPath>
 #include <QJsonArray>
 #include <QJsonObject>
