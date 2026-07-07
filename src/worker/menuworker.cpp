@@ -149,7 +149,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     primeNvidiaOption->setCheckable(true);
     primeNvidiaOption->setChecked(m_isItemPrimeNvidia);
     // 不存在闭源 N 卡驱动或 prime-run，则不启用该选项
-    if (!QFile::exists("/usr/bin/nvidia-smi") || !QFile::exists("/usr/bin/prime-run")) {
+    if (!QFile::exists("/usr/bin/nvidia-smi")) {
         primeNvidiaOption->setVisible(false);
     }
     signalMapper->setMapping(primeNvidiaOption, PrimeNvidia);
