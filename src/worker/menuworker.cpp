@@ -60,6 +60,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     m_isRemovable = m_currentModelIndex.data(AppsListModel::AppIsRemovableRole).toBool();
     m_isItemProxy = m_currentModelIndex.data(AppsListModel::AppIsProxyRole).toBool();
     m_isItemNoSandbox = m_currentModelIndex.data(AppsListModel::AppIsNoSandbox).toBool();
+    m_isItemPrimeNvidia = m_currentModelIndex.data(AppsListModel::AppIsPrimeNvidia).toBool();
     m_isItemEnableScaling = m_currentModelIndex.data(AppsListModel::AppEnableScalingRole).toBool();
     m_isMarkLaunched = !m_currentModelIndex.data(AppsListModel::AppNewInstallRole).toBool();
 
@@ -71,6 +72,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
 
     QAction *open;
     QAction *noSandboxOption;
+    QAction *primeNvidiaOption;
     QAction *desktop;
     QAction *dock;
     QAction *startup;
@@ -80,6 +82,8 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     QAction *markLaunched;
 
     open = new QAction(tr("Open"), menu);
+
+    primeNvidiaOption = new QAction(tr("Use Nvidia Only"), menu);
 
     noSandboxOption = new QAction(tr("Disable App Sandbox"), menu);
 
@@ -114,6 +118,7 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     menu->addAction(dock);
     menu->addSeparator();
     menu->addAction(noSandboxOption);
+    menu->addAction(primeNvidiaOption);
     menu->addAction(startup);
     menu->addAction(markLaunched);
 
@@ -140,6 +145,15 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     noSandboxOption->setChecked(m_isItemNoSandbox);
     signalMapper->setMapping(noSandboxOption, NoSandbox);
     connect(noSandboxOption, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+
+    primeNvidiaOption->setCheckable(true);
+    primeNvidiaOption->setChecked(m_isItemPrimeNvidia);
+    // 不存在闭源 N 卡驱动或 prime-run，则不启用该选项
+    if (!QFile::exists("/usr/bin/nvidia-smi") || !QFile::exists("/usr/bin/prime-run")) {
+        primeNvidiaOption->setVisible(false);
+    }
+    signalMapper->setMapping(primeNvidiaOption, PrimeNvidia);
+    connect(primeNvidiaOption, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
     uninstall->setEnabled(m_isRemovable);
 
@@ -221,6 +235,9 @@ void MenuWorker::handleMenuAction(int index)
         break;
     case NoSandbox:
         handleToNoSandbox();
+        break;
+    case PrimeNvidia:
+        handleToPrimeNvidia();
         break;
     case MarkLaunched:
         handleToMarkLaunched();
@@ -323,4 +340,9 @@ void MenuWorker::handleToMarkLaunched()
 {
     m_launcherInterface->MarkLaunched(m_appKey);
     qDebug() << m_appKey;
+}
+
+void MenuWorker::handleToPrimeNvidia()
+{
+    m_launcherInterface->SetPrimeNvidia(m_appKey, !m_isItemPrimeNvidia);
 }

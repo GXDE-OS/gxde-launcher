@@ -534,6 +534,11 @@ bool AppsManager::appIsNoSandbox(const QString &desktop)
     return m_launcherInter->GetNoSandbox(desktop).value();
 }
 
+bool AppsManager::appIsPrimeNvidia(const QString &desktop)
+{
+    return m_launcherInter->GetPrimeNvidia(desktop).value();
+}
+
 bool AppsManager::appIsEnableScaling(const QString &desktop)
 {
     return !m_launcherInter->GetDisableScaling(desktop);

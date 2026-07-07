@@ -285,6 +285,8 @@ QVariant AppsListModel::data(const QModelIndex &index, int role) const
         return m_appsManager->appIsProxy(itemInfo.m_key);
     case AppIsNoSandbox:
         return m_appsManager->appIsNoSandbox(itemInfo.m_key);
+    case AppIsPrimeNvidia:
+        return m_appsManager->appIsPrimeNvidia(itemInfo.m_key);
     case AppEnableScalingRole:
         return m_appsManager->appIsEnableScaling(itemInfo.m_key);
     case AppNewInstallRole: {

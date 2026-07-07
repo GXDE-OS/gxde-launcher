@@ -207,6 +207,20 @@ public Q_SLOTS: // METHODS
         return asyncCallWithArgumentList(QStringLiteral("GetNoSandbox"), argumentList);
     }
 
+    inline QDBusPendingReply<> SetPrimeNvidia(const QString &in0, bool in1)
+    {
+        QList<QVariant> argumentList;
+        argumentList << QVariant::fromValue(in0) << QVariant::fromValue(in1);
+        return asyncCallWithArgumentList(QStringLiteral("SetPrimeNvidia"), argumentList);
+    }
+
+    inline QDBusPendingReply<bool> GetPrimeNvidia(const QString &in0)
+    {
+        QList<QVariant> argumentList;
+        argumentList << QVariant::fromValue(in0);
+        return asyncCallWithArgumentList(QStringLiteral("GetPrimeNvidia"), argumentList);
+    }
+
    Q_SIGNALS: // SIGNALS
        void ItemChanged(const QString &in0, ItemInfo in1, qlonglong in2);
        void NewAppLaunched(const QString &in0);

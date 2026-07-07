@@ -64,6 +64,7 @@ public:
         CategoryEnterIconRole,
         DrawBackgroundRole,
         AppIsNoSandbox,
+        AppIsPrimeNvidia
     };
 
     enum AppCategory {

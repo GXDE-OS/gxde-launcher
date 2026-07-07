@@ -59,7 +59,8 @@ public:
         SwitchScale = 6,
         Uninstall = 7,
         NoSandbox = 8,
-        MarkLaunched = 9
+        MarkLaunched = 9,
+        PrimeNvidia = 10
     };
 
     void initConnect();
@@ -84,6 +85,7 @@ public slots:
     void handleToProxy();
     void handleSwitchScaling();
     void handleToNoSandbox();
+    void handleToPrimeNvidia();
     void handleToMarkLaunched();
 
     void handleMenuClosed();
@@ -112,6 +114,7 @@ private:
     bool m_isItemProxy;
     bool m_isItemEnableScaling;
     bool m_isItemNoSandbox;
+    bool m_isItemPrimeNvidia;
     bool m_isMarkLaunched;
 
     bool m_menuIsShown = false;
