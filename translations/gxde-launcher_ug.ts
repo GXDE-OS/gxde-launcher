@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ug">
+<TS version="2.1" language="ug_CN">
 <context>
     <name>AppsManager</name>
     <message>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>ئويۇنچا</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>باشقا</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE لاۋنچەر</translation>
     </message>
 </context>
 <context>
@@ -85,22 +85,22 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Desktoptan azal</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Docktan azal</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Qurmaq</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Koʻrsatish miqyosini o`chirish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
@@ -110,42 +110,42 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Faqat Nvidia dan foydalanish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Desktonga yuborish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Dockga yuborish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdan azal</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Startga qo`shish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy dan foydalanish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>App Sandboxni o`chirish</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Ishga tushganini belgilash</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>بەتەر قۇرغۇچلار</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -239,17 +239,17 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="43"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>کۆمپۇتەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ھۆججەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>ڤىدىئولار</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>سۈرەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
@@ -289,12 +289,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="79"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>چەكىنەش</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>قايتۇش</translation>
     </message>
 </context>
 <context>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="113"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>کۆمپۇتەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="116"/>
@@ -313,7 +313,7 @@
         <location filename="../src/widgets/miniframenavigation.cpp" line="119"/>
         <location filename="../src/widgets/miniframenavigation.cpp" line="138"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>چەكىنەش</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="134"/>
@@ -338,22 +338,22 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>قەيتە</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ھۆججەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>ڤىدىئولار</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>سۈرەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="61"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>کۆمپۇتەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="63"/>
@@ -386,27 +386,27 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="68"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تەڭشەپ قەرغە</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>ڤىدىئولار</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>سۈرەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ھۆججەتلەر</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>قۇۋۋەت</translation>
     </message>
 </context>
 <context>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>بەتەر قۇرئا</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>قەيتە</translation>
     </message>
 </context>
 <context>

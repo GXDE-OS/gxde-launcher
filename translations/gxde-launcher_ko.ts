@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ko">
+<TS version="2.1" language="ko_KR">
 <context>
     <name>AppsManager</name>
     <message>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE 런처</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nvidia 전용 사용</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
@@ -144,12 +144,13 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>앱 샌드박스 비활성화</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>
+시작 표시</translation>
     </message>
 </context>
 <context>

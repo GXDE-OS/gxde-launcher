@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="af">
+<TS version="2.1" language="af_ZA">
 <context>
     <name>AppsManager</name>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="854"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen soekresultate</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="160"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Kletskoekie</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="161"/>
@@ -31,22 +31,22 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kantoor</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Lees</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Ontwikkeling</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spele</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Ander</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Afskeider</translation>
     </message>
 </context>
 <context>
@@ -85,22 +85,22 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwyder van skryfbord</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwyder van dok</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwyder</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Skakel skermskalering uit</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
@@ -110,42 +110,42 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik slegs Nvidia</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stuur na skryfbord</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Stuur na dok</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwyder van opstart</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Voeg by opstart</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik &apos;n proxy</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Skakel App Sandbox uit</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Merk as gelanseer</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Apps</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -161,14 +161,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="120"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Kletskoekie</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="121"/>
@@ -189,7 +189,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="124"/>
@@ -203,21 +203,21 @@
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kantoor</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Lees</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Ontwikkeling</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
@@ -231,7 +231,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Anders</translation>
     </message>
 </context>
 <context>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumente</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Videos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,17 +259,17 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Beelde</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Aflaai</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergrendel</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="76"/>
@@ -279,7 +279,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="77"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Herlaai</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="78"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Terug</translation>
     </message>
 </context>
 <context>
@@ -318,7 +318,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="134"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="135"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="136"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstart</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="137"/>
@@ -338,27 +338,27 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Terug</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumente</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Videos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Beelde</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Aflaai</translation>
     </message>
 </context>
 <context>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="66"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Aflaai</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
@@ -386,22 +386,22 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="68"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellings</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Videos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Beelde</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumente</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Kategories</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Terug</translation>
     </message>
 </context>
 <context>
@@ -427,7 +427,7 @@
     <message>
         <location filename="../src/widgets/searchlineedit.cpp" line="47"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Soek</translation>
     </message>
 </context>
 <context>

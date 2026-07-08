@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fa">
+<TS version="2.1" language="fa_IR">
 <context>
     <name>AppsManager</name>
     <message>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>سایر</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>گشایشگر GXDE</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>فقط از Nvidia استفاده کنید</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
@@ -135,17 +135,17 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>از پروکسی استفاده کنید</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>غیرفعال کردن ساندباکس برنامه</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>علامت گذاری شده</translation>
     </message>
 </context>
 <context>

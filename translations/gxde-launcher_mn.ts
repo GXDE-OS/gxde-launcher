@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="mn">
+<TS version="2.1" language="mn_MN">
 <context>
     <name>AppsManager</name>
     <message>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Тоглоом</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Бусад</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Эхлүүлэгч</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Зөвхөн Nvidia ашиглах</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
@@ -135,17 +135,17 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy ашиглах</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Аппликэшн сандобоксыг идэвхижүүлэх</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Эхлүүлсэн гэж тэмдэглэх</translation>
     </message>
 </context>
 <context>

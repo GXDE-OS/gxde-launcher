@@ -6,17 +6,17 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="854"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Neteweya lêdanê</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Întirnet</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="160"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Qise</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="161"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="162"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Vîdeo</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafîk</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Ofîs</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Xwendin</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Pêşvebirin</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sîstem</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Lîstik</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Din</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Launcher</translation>
     </message>
 </context>
 <context>
@@ -85,67 +85,67 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Ji bo desktopê jê bikin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Ji bo dockê jê bikin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Jê bikin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Guhêztina nîşanê qedandin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Vekirin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tenê Nvidia bikar bînin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Şînên desktopê</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Şînên dockê</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ji bo destpêkê jê bikin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Li destpêkê zêde bikin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Bikarînerê proxy bikar bînin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>App Sandbox qedandin</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Nîşan bide ku hatiye vekirin</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Tevayî Programan</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -161,14 +161,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Întarnet</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="120"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Qise</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="121"/>
@@ -182,56 +182,56 @@
         <location filename="../src/widgets/categorybutton.cpp" line="144"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="50"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Vîdeo</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="123"/>
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafîk</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Lîstik</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Ofîs</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Xwendin</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Pêşvebirin</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sîstem</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="129"/>
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Din</translation>
     </message>
 </context>
 <context>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgeyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vîdeoyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Wêneyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
@@ -269,27 +269,27 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Qefilandin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="76"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Derkeve</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="77"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Nûvekirin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="78"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekinandin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="79"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>Girtin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
@@ -313,27 +313,27 @@
         <location filename="../src/widgets/miniframenavigation.cpp" line="119"/>
         <location filename="../src/widgets/miniframenavigation.cpp" line="138"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>Girtin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="134"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Qeflê kirin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="135"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Derketin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="136"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Nûvekirin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="137"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekinandin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
@@ -343,17 +343,17 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgeyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vîdeoyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Wêneyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Pêşniyar</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="68"/>
@@ -391,22 +391,22 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vîdeoyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Wêneyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgeyên</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Hikûmêt</translation>
     </message>
 </context>
 <context>
@@ -414,7 +414,7 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Tevayê Kategoriyan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>

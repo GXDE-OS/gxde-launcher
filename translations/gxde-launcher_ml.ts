@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ml">
+<TS version="2.1" language="ml_IN">
 <context>
     <name>AppsManager</name>
     <message>
@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>ഇന്റർനെറ്റ്</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="160"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>ചാറ്റ്</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="161"/>
@@ -31,22 +31,22 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>ഗ്രാഫിക്സ്</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>ഓഫീസ്</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>വായന</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>വികസനം</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>ഗെയിമുകൾ</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>മറ്റുള്ളവ</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>ജിഎക്സ്ഡിഇ ലോഞ്ചർ</translation>
     </message>
 </context>
 <context>
@@ -100,52 +100,52 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡിസ്പ്ലേ സ്കെയിലിംഗ് നിരോധിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>നിവീഡിയ മാത്രം ഉപയോഗിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡെസ്ക്ടോപ്പിലേക്ക് അയക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡോക്ക്‌ക്ക് അയക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>സ്റ്റാർട്ടപ്പിൽ നിന്ന് നീക്കം ചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>സ്റ്റാർട്ടപ്പിലേക്ക് ചേർക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>പ്രോക്സി ഉപയോഗിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>അപ്പ് സാൻഡ്‌ബോക്സ് നിരോധിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>ലോഞ്ച് ചെയ്തതായി ചিহ്നമിട്ടുക</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>എല്ലാ ആപ്ലിക്കേഷനുകളും</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -161,14 +161,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>ഇന്റർനെറ്റ്</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="120"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>ചാറ്റ്</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="121"/>
@@ -189,35 +189,35 @@
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>ഗ്രാഫിക്സ്</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>ഗെയിം</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>ഓഫീസ്</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>വായന</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>വികസനം</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
@@ -231,7 +231,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>മറ്റുള്ളവ</translation>
     </message>
 </context>
 <context>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡോക്യുമെന്റുകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>വീഡിയോകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,32 +259,32 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>ചിത്രങ്ങൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡൗൺലോഡുകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>ലോക്ക്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="76"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>ലോഗൗട്ട്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="77"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>റീബൂട്ട്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="78"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>സസ്പെൻഡ്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="79"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>പിന്നിലേക്ക്</translation>
     </message>
 </context>
 <context>
@@ -318,47 +318,47 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="134"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>ലോക്ക്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="135"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>ലോഗൗട്ട്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="136"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>റീബൂട്ട്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="137"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>സസ്പെൻഡ്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>പിന്നിലേക്ക്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡോക്യുമെന്റുകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>വീഡിയോകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>ചിത്രങ്ങൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡൗൺലോഡുകൾ</translation>
     </message>
 </context>
 <context>
@@ -376,37 +376,37 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="66"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡൗൺലോഡുകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>മാനുവൽ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="68"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>സെറ്റിംഗ്സ്</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>വീഡിയോകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>ചിത്രങ്ങൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ഡോക്യുമെന്റുകൾ</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>പവർ</translation>
     </message>
 </context>
 <context>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>എല്ലാ വിഭാഗങ്ങളും</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>പിന്നിലേക്ക്</translation>
     </message>
 </context>
 <context>

@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Lanzador</translation>
     </message>
 </context>
 <context>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar a escalado da pantalla</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
@@ -110,42 +110,42 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar só Nvidia</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar ao escritorio</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar ao muíño</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar do inicio</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Engadir ao inicio</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar un proxy</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar a caixa de area de aplicación</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar lanzado</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas as apps</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Imaxes</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
@@ -343,17 +343,17 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Imaxes</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
@@ -391,17 +391,17 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Imaxes</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentos</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
@@ -414,7 +414,7 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas as categorías</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>

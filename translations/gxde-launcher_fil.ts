@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fil">
+<TS version="2.1" language="fil_PH">
 <context>
     <name>AppsManager</name>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="854"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Walang mga resulta ng paghahanap</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanggapan</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
@@ -46,22 +46,22 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Pag-unlad</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Laro</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Iba pa</translation>
     </message>
 </context>
 <context>
@@ -69,7 +69,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Launcher</translation>
     </message>
 </context>
 <context>
@@ -77,67 +77,67 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Alisin sa desktop</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Alisin sa dock</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Uninstall</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihibang ang display scaling</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Buksan</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Gamitin ang Nvidia lamang</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Ipadala sa desktop</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Ipadala sa dock</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Alisin sa startup</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Magdagdag sa startup</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Gamitin ang proxy</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihibang ang App Sandbox</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Tandaan na inilaunch</translation>
     </message>
 </context>
 <context>
@@ -145,7 +145,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Lahat ng Apps</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -195,7 +195,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanggapan</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
@@ -209,14 +209,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Pag-unlad</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="129"/>
@@ -231,17 +231,17 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="43"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompyuter</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Dokumento</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Bidyo</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -251,42 +251,42 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Larawan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga I-download</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulungan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="76"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mag-logout</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="77"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Muliang magpatakbo</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="78"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspen</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="79"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>Itigil</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Bumalik</translation>
     </message>
 </context>
 <context>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="113"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompyuter</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="116"/>
@@ -305,52 +305,52 @@
         <location filename="../src/widgets/miniframenavigation.cpp" line="119"/>
         <location filename="../src/widgets/miniframenavigation.cpp" line="138"/>
         <source>Shutdown</source>
-        <translation type="unfinished"></translation>
+        <translation>Itigil</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="134"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulungan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="135"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mag-logout</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="136"/>
         <source>Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Muliin</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="137"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>Itigil sa sandali</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Bumalik</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Dokumento</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Bidyo</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga Larawan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga I-download</translation>
     </message>
 </context>
 <context>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="61"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompyuter</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="63"/>
@@ -368,37 +368,37 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="66"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>I-download</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manwal</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="68"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga setting</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga bidyo</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Larawan</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mga dokumento</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapasidad</translation>
     </message>
 </context>
 <context>
@@ -406,12 +406,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Lahat ng Kategorya</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Bumalik</translation>
     </message>
 </context>
 <context>
@@ -419,7 +419,7 @@
     <message>
         <location filename="../src/widgets/searchlineedit.cpp" line="47"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Maghanap</translation>
     </message>
 </context>
 </TS>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ne">
+<TS version="2.1" language="ne_NP">
 <context>
     <name>AppsManager</name>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="854"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>कोही खोज परिणामहरू छैनन्</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्टरनेट</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="160"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>च्याट</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="161"/>
@@ -31,22 +31,22 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>ग्राफिक्स</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>कार्यालय</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>पढ्ने</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>विकास</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>खेलहरू</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>अन्य</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE लांचर</translation>
     </message>
 </context>
 <context>
@@ -85,22 +85,22 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटपबाट हटाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>डकबाट हटाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>अनस्थापन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>डिस्प्ले स्केलिंग अक्षम पार्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
@@ -110,42 +110,42 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>केवल Nvidia प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटपमा पठाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>डकमा पठाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरुवातबाट हटाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरुवातमा थप्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रॉक्सी प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>एप्लिकेशन स्यान्डबक्स अक्षम पार्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>लान्च गरिएको चिन्ह लगाउनुहोस्</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>सबै एप्स</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -161,14 +161,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्टरनेट</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="120"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>च्याट</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="121"/>
@@ -189,35 +189,35 @@
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>ग्राफिक्स</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>खेल</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>कार्यालय</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>पढ्ने</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>विकास</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
@@ -231,7 +231,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>अन्य</translation>
     </message>
 </context>
 <context>
@@ -239,17 +239,17 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="43"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्प्युटर</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>दस्तावेजहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>भिडियोहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,12 +259,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>चित्रहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोडहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
@@ -274,7 +274,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="76"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>बाहिर निस्कनु</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="77"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>पछाडि</translation>
     </message>
 </context>
 <context>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="113"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्प्युटर</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="116"/>
@@ -323,7 +323,7 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="135"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>बाहिर निस्कनु</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="136"/>
@@ -338,27 +338,27 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>पछाडि</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>दस्तावेजहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>भिडियोहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>चित्रहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोडहरू</translation>
     </message>
 </context>
 <context>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="61"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्प्युटर</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="63"/>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="66"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
@@ -391,17 +391,17 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>भिडियो</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>चित्रहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>दस्तावेजहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>सबै श्रेणीहरू</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>पछाडि</translation>
     </message>
 </context>
 <context>

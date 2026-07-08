@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ta">
+<TS version="2.1" language="ta_IN">
 <context>
     <name>AppsManager</name>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="854"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>தேடல் முடிவுகள் இல்லை</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="159"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>இணையம்</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="160"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>சொற்பொழிவு</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="161"/>
@@ -31,22 +31,22 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>கிராஃபிக்ஸ்</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆபிஸ்</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>வாசிப்பு</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>வளர்ச்சி</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="168"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டுகள்</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>மற்றவை</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>ஜிஎக்ஸ்டி ஈ லான்சர்</translation>
     </message>
 </context>
 <context>
@@ -85,22 +85,22 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="91"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>டெஸ்க்டாபில் இருந்து நீக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="96"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>டாகில் இருந்து நீக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="106"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>நீக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="136"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>பரப்பளவு அளவீட்டை நிறுத்தவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="84"/>
@@ -110,42 +110,42 @@
     <message>
         <location filename="../src/worker/menuworker.cpp" line="86"/>
         <source>Use Nvidia Only</source>
-        <translation type="unfinished"></translation>
+        <translation>மட்டும் ந்விடியா பயன்படுத்தவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="92"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>டெஸ்க்டாபுக்கு அனுப்பவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>டாகுக்கு அனுப்பவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>தொடக்கத்தில் இருந்து நீக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="102"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>தொடக்கத்தில் சேர்க்கவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="126"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு பிராக்சி பயன்படுத்தவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="88"/>
         <source>Disable App Sandbox</source>
-        <translation type="unfinished"></translation>
+        <translation>அப்பு சாண்ட்பாக்ஸ் நிறுத்தவும்</translation>
     </message>
     <message>
         <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Mark Launched</source>
-        <translation type="unfinished"></translation>
+        <translation>செயலாக்கப்பட்டதாக குறிக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/widgets/minicategorywidget.cpp" line="46"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்து பயன்பாடுகள்</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="118"/>
@@ -161,14 +161,14 @@
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>இணையம்</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="120"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>சொற்பொழிவு</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="121"/>
@@ -189,7 +189,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>கிராஃபிக்ஸ்</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="124"/>
@@ -203,21 +203,21 @@
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆபிஸ்</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>வாசிப்பு</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>வளர்ச்சி</translation>
     </message>
     <message>
         <location filename="../src/fullscreenframe.cpp" line="128"/>
@@ -231,7 +231,7 @@
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>மற்றவை</translation>
     </message>
 </context>
 <context>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="44"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டளைகள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="45"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>வீடியோக்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="46"/>
@@ -259,12 +259,12 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="47"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>படங்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="48"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>டவுன்லோடுகள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="75"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/widgets/miniframebottombar.cpp" line="80"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>பின்னே</translation>
     </message>
 </context>
 <context>
@@ -338,27 +338,27 @@
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="139"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>பின்னே</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="114"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டளைகள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="115"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>வீடியோக்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="117"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>படங்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframenavigation.cpp" line="118"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>தெளிவுகள்</translation>
     </message>
 </context>
 <context>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="66"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>டவுன்லோட்ஸ்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="67"/>
@@ -391,17 +391,17 @@
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="62"/>
         <source>Videos</source>
-        <translation type="unfinished"></translation>
+        <translation>வீடியோக்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="64"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>படங்கள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="65"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுரைகள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframerightbar.cpp" line="69"/>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="67"/>
         <source>All Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்து வகைகள்</translation>
     </message>
     <message>
         <location filename="../src/widgets/miniframeswitchbtn.cpp" line="70"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>பின்னே</translation>
     </message>
 </context>
 <context>
@@ -427,7 +427,7 @@
     <message>
         <location filename="../src/widgets/searchlineedit.cpp" line="47"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>தேடு</translation>
     </message>
 </context>
 <context>

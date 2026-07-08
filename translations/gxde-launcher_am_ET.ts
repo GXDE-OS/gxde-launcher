@@ -56,7 +56,7 @@
     <message>
         <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ጮዳዎች</translation>
     </message>
     <message>
         <location filename="../src/model/appsmanager.cpp" line="169"/>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/fullscreenframe.cpp" line="564"/>
         <source>GXDE Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ግክደ ላንችር</translation>
     </message>
 </context>
 <context>
