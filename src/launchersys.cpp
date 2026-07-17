@@ -27,7 +27,10 @@
 #include "windowedframe.h"
 #include "model/appsmanager.h"
 
+#include <dapplication.h>
 #include <QGSettings>
+
+DWIDGET_USE_NAMESPACE
 
 #define FULL_SCREEN     0
 #define MINI_FRAME      1
@@ -175,6 +178,9 @@ bool LauncherSys::eventFilter(QObject *watched, QEvent *event)
 }
 
 void LauncherSys::registerRegion() {
+    if (DApplication::isWayland()) {
+        return;
+    }
     m_regionMonitorConnect = connect(m_regionMonitor, &DRegionMonitor::buttonPress, this, [=] (const QPoint &p, const int flag) {
         if (flag == MOUSE_LEFTBUTTON) {
             m_launcherInter->regionMonitorPoint(p);

@@ -94,6 +94,8 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     , m_displayMode(All)
     , m_focusPos(LeftTop)
 {
+    m_dockInter->setTimeout(500);
+
     setMaskColor(DBlurEffectWidget::DarkColor);
     setBlendMode(DBlurEffectWidget::InWindowBlend);
 

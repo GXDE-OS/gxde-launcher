@@ -1,4 +1,4 @@
-gxde-launcher (6.0.4) UNRELEASED; urgency=medium
+gxde-launcher (6.0.5) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -19,8 +19,9 @@ gxde-launcher (6.0.4) UNRELEASED; urgency=medium
   * 支持使用 prime-run 调用 Nvidia 显卡运行应用
   * 不使用 deepin-prime
   * 完善翻译（AI）
+  * 修复 Wayland 下显示所需等待时间过长的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Wed, 08 Jul 2026 10:09:34 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 17 Jul 2026 18:55:23 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
