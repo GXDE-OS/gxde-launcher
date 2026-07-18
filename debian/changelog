@@ -1,4 +1,4 @@
-gxde-launcher (6.0.5) UNRELEASED; urgency=medium
+gxde-launcher (6.0.6) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -20,8 +20,9 @@ gxde-launcher (6.0.5) UNRELEASED; urgency=medium
   * 不使用 deepin-prime
   * 完善翻译（AI）
   * 修复 Wayland 下显示所需等待时间过长的问题
+  * 修复Wayland下使用全屏模式崩溃的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Fri, 17 Jul 2026 18:55:23 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sat, 18 Jul 2026 21:09:26 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 

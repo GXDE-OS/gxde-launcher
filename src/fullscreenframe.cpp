@@ -36,6 +36,7 @@
 #include <QGraphicsEffect>
 #include <QProcess>
 #include <DWindowManagerHelper>
+#include "dapplication.h"
 
 #include <ddialog.h>
 #include <QScroller>
@@ -264,7 +265,9 @@ void FullScreenFrame::showEvent(QShowEvent *e)
     m_searchWidget->clearSearchContent();
     updateCurrentVisibleCategory();
     // TODO: Do we need this in showEvent ???
-    XcbMisc::instance()->set_deepin_override(winId());
+    if (!DApplication::isWayland()) {
+        XcbMisc::instance()->set_deepin_override(winId());
+    }
     // To make sure the window is placed at the right position.
     updateGeometry();
     updateBackground();
