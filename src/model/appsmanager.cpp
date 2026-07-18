@@ -152,6 +152,12 @@ AppsManager::AppsManager(QObject *parent) :
     m_searchTimer(new QTimer(this)),
     m_delayRefreshTimer(new QTimer(this))
 {
+    if (DApplication::isWayland()) {
+        // Wayland 下因为 deepin-daemon 异常，获取不到数据
+        // 直接设置马上超时以避免卡住
+        m_dockInter->setTimeout(1);
+    }
+
     m_iconRefreshTimer->setInterval(10 * 1000);
     m_iconRefreshTimer->setSingleShot(false);
 
