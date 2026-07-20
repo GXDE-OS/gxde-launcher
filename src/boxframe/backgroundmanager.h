@@ -29,6 +29,7 @@
 #include <com_deepin_wm.h>
 #include <com_deepin_daemon_imageblur.h>
 #include <com_deepin_daemon_appearance.h>
+#include <QGSettings>
 
 using ImageBlurInter = com::deepin::daemon::ImageBlur;
 using AppearanceInter = com::deepin::daemon::Appearance;
@@ -48,11 +49,13 @@ private slots:
 
 private:
     int m_currentWorkspace;
+    int m_currentWorkspaceIndex = 0;
     mutable QString m_background;
 
     com::deepin::wm *m_wmInter;
     ImageBlurInter *m_blurInter;
     AppearanceInter *m_appearanceInter;
+    QGSettings *m_gsettings = nullptr;
 };
 
 #endif // BACKGROUNDMANAGER_H
