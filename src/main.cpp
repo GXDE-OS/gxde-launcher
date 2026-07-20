@@ -35,6 +35,8 @@
 #include <dapplication.h>
 #include <DLog>
 
+#include <LayerShellQt/Shell>
+
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
 
@@ -53,6 +55,8 @@ void dump_user_apss_preset_order_list()
 
 int main(int argv, char *args[])
 {
+    LayerShellQt::Shell::useLayerShell();
+
     DApplication app(argv, args);
     app.setQuitOnLastWindowClosed(false);
     app.setOrganizationName("deepin");

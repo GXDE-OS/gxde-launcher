@@ -47,6 +47,8 @@
 #include <DForeignWindow>
 #include <qpa/qplatformwindow.h>
 
+#include <LayerShellQt/Window>
+
 #define DOCK_TOP        0
 #define DOCK_RIGHT      1
 #define DOCK_BOTTOM     2
@@ -247,8 +249,15 @@ void WindowedFrame::showLauncher()
     }
 
     adjustSize(); // right widget need calculate width based on font
-    adjustPosition();
-    show();
+
+    if (DApplication::isWayland()) {
+        show();
+        setupLayerShell();
+        adjustPosition();
+    } else {
+        adjustPosition();
+        show();
+    }
 
     connect(m_dockInter, &DBusDock::FrontendRectChanged, this, &WindowedFrame::adjustPosition, Qt::UniqueConnection);
 }
@@ -715,7 +724,44 @@ void WindowedFrame::adjustPosition()
     }
 
     initAnchoredCornor();
+
+    if (DApplication::isWayland()) {
+        QWindow *win = windowHandle();
+        if (!win) win = window()->windowHandle();
+        if (win) {
+            if (LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win)) {
+                LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
+                anchors |= LayerShellQt::Window::AnchorLeft;
+                lsWin->setAnchors(anchors);
+                lsWin->setExclusiveZone(0);
+                lsWin->setLayer(LayerShellQt::Window::LayerTop);
+                lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+                lsWin->setMargins(QMargins(p.x(), p.y(), 0, 0));
+                return;
+            }
+        }
+    }
+
     move(p);
+}
+
+void WindowedFrame::setupLayerShell()
+{
+    if (!DApplication::isWayland())
+        return;
+
+    QWindow *win = windowHandle();
+    if (!win) win = window()->windowHandle();
+    if (!win) return;
+
+    if (LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win)) {
+        LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
+        anchors |= LayerShellQt::Window::AnchorLeft;
+        lsWin->setAnchors(anchors);
+        lsWin->setExclusiveZone(0);
+        lsWin->setLayer(LayerShellQt::Window::LayerTop);
+        lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+    }
 }
 
 void WindowedFrame::onToggleFullScreen()

@@ -112,6 +112,7 @@ protected:
 private slots:
     void initAnchoredCornor();
     void adjustPosition();
+    void setupLayerShell();
     void onToggleFullScreen();
     void onSwitchBtnClicked();
     void onWMCompositeChanged();
