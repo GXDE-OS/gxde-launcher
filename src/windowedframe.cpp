@@ -49,6 +49,8 @@
 
 #include <LayerShellQt/Window>
 
+#include "wayland/layershell_styler.h"
+
 #define DOCK_TOP        0
 #define DOCK_RIGHT      1
 #define DOCK_BOTTOM     2
@@ -101,11 +103,15 @@ WindowedFrame::WindowedFrame(QWidget *parent)
 
     m_appearanceInter->setSync(false, false);
 
-    m_windowHandle.setShadowRadius(60);
-    m_windowHandle.setBorderWidth(0);
-    m_windowHandle.setShadowOffset(QPoint(0, -1));
-    m_windowHandle.setEnableBlurWindow(true);
-    m_windowHandle.setTranslucentBackground(false);
+    if (DApplication::isWayland()) {
+        setAttribute(Qt::WA_TranslucentBackground);
+    } else {
+        m_windowHandle.setShadowRadius(60);
+        m_windowHandle.setBorderWidth(0);
+        m_windowHandle.setShadowOffset(QPoint(0, -1));
+        m_windowHandle.setEnableBlurWindow(true);
+        m_windowHandle.setTranslucentBackground(false);
+    }
 
     m_appsView->setModel(m_appsModel);
     m_appsView->setItemDelegate(new AppListDelegate);
@@ -585,6 +591,24 @@ void WindowedFrame::enterEvent(QEnterEvent *e)
     setFocus();
 }
 
+void WindowedFrame::paintEvent(QPaintEvent *e)
+{
+    if (DApplication::isWayland()) {
+        QPainter p(this);
+        p.setRenderHint(QPainter::Antialiasing);
+
+        const int r = 5;
+        QPainterPath path;
+        path.addRoundedRect(rect(), r, r);
+        p.setClipPath(path);
+
+        p.fillRect(rect(), QColor(0, 0, 0, m_appearanceInter->opacity() * 255));
+        return;
+    }
+
+    DBlurEffectWidget::paintEvent(e);
+}
+
 void WindowedFrame::inputMethodEvent(QInputMethodEvent *e)
 {
     if (!e->commitString().isEmpty()) {
@@ -761,6 +785,8 @@ void WindowedFrame::setupLayerShell()
         lsWin->setExclusiveZone(0);
         lsWin->setLayer(LayerShellQt::Window::LayerTop);
         lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+
+        Wayland::LayerShellStyler::apply(win, 5, true);
     }
 }
 

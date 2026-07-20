@@ -26,7 +26,7 @@ endif ()
 set(BIN_NAME gxde-launcher)
 
 # Sources files
-file(GLOB_RECURSE SRCS "src/*.h" "src/*.cpp")
+file(GLOB_RECURSE SRCS "src/*.h" "src/*.cpp" "src/*.c")
 
 # Install settings
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
@@ -58,6 +58,7 @@ find_package(LayerShellQt REQUIRED)
 
 pkg_check_modules(XCB_EWMH REQUIRED xcb-ewmh x11)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt6)
+pkg_check_modules(WAYLAND_CLIENT REQUIRED wayland-client)
 
 add_executable(${BIN_NAME} ${SRCS} ${INTERFACES} src/skin.qrc src/widgets/images.qrc)
 target_include_directories(${BIN_NAME} PUBLIC ${XCB_EWMH_INCLUDE_DIRS}
@@ -67,6 +68,7 @@ target_include_directories(${BIN_NAME} PUBLIC ${XCB_EWMH_INCLUDE_DIRS}
                                               ${QGSettings_INCLUDE_DIRS}
                                               ${Dtk6Core_INCLUDE_DIRS}
                                               ${Dtk6Gui_INCLUDE_DIRS}
+                                              ${WAYLAND_CLIENT_INCLUDE_DIRS}
                                               ${PROJECT_BINARY_DIR})
 
 target_link_libraries(${BIN_NAME} PRIVATE
@@ -80,6 +82,7 @@ target_link_libraries(${BIN_NAME} PRIVATE
     ${QGSettings_LIBRARIES}
     ${Qt6Svg_LIBRARIES}
     LayerShellQt::Interface
+    ${WAYLAND_CLIENT_LIBRARIES}
 )
 
 ## qm files
