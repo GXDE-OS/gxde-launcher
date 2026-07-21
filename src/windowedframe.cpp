@@ -470,10 +470,12 @@ void WindowedFrame::uninstallApp(const QModelIndex &context)
 
 bool WindowedFrame::windowDeactiveEvent()
 {
-      // don't need
-//    if (isVisible() && !m_menuWorker->isMenuShown() && !m_delayHideTimer->isActive()) {
-//        m_delayHideTimer->start();
-//    }
+    if (DApplication::isWayland()) {
+        if (!m_menuWorker->isMenuShown() && !m_delayHideTimer->isActive()) {
+            hideLauncher();
+        }
+        return false;
+    }
 
     return false;
 }
