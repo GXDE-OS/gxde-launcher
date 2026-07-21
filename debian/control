@@ -15,7 +15,8 @@ Build-Depends:
  qt6-svg-dev,
  libgsettings-qt6-dev,
  qt6-tools-dev-tools,
- liblayershellqtinterface-dev
+ liblayershellqtinterface-dev,
+ libwayland-dev
 Standards-Version: 3.9.8
 Homepage: http://www.deepin.org/
 
