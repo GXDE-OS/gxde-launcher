@@ -34,8 +34,12 @@
 
 #include <dapplication.h>
 #include <DLog>
+#include <QIcon>
+#include <QSettings>
 
 #include <LayerShellQt/Shell>
+
+#include "wayland/xsettings.h"
 
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
@@ -58,6 +62,23 @@ int main(int argv, char *args[])
     LayerShellQt::Shell::useLayerShell();
 
     DApplication app(argv, args);
+
+    if (DApplication::isWayland()) {
+        QString iconTheme = Wayland::xsettingsString(QStringLiteral(
+            "Net/IconThemeName"));
+
+        if (iconTheme.isEmpty()) {
+            QSettings qtSettings(QSettings::IniFormat, QSettings::UserScope,
+                "deepin", "qt-theme");
+            qtSettings.beginGroup("Theme");
+            iconTheme = qtSettings.value("IconThemeName").toString();
+        }
+
+        if (!iconTheme.isEmpty()) {
+            QIcon::setThemeName(iconTheme);
+        }
+    }
+
     app.setQuitOnLastWindowClosed(false);
     app.setOrganizationName("deepin");
     app.setApplicationName("gxde-launcher");
