@@ -111,7 +111,12 @@ bool AppListArea::eventFilter(QObject *watched, QEvent *e)
                     break;
                 case QMouseEvent::MouseButtonRelease:
                     if (QScroller::hasScroller(this)) {
-                        return true;
+                        QScroller *scroller = QScroller::scroller(this);
+                        // 只有在真正滚动时才拦截事件，否则让点击事件传递到子控件
+                        if (scroller->state() == QScroller::Dragging ||
+                            scroller->state() == QScroller::Scrolling) {
+                            return true;
+                        }
                     }
                     break;
                 case QMouseEvent::MouseMove:

@@ -219,6 +219,10 @@ void AppGridView::mouseReleaseEvent(QMouseEvent *e)
     const QModelIndex index = QListView::indexAt(e->pos());
     if (!index.isValid())
         emit clicked(index);
+    else if (e->source() == Qt::MouseEventSynthesizedByQt) {
+        // 处理触摸事件，发出clicked信号以启动应用
+        emit clicked(index);
+    }
 
     QListView::mouseReleaseEvent(e);
 }
