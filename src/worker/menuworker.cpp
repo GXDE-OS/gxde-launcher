@@ -25,6 +25,10 @@
 
 #include <QMenu>
 #include <QSignalMapper>
+#include <QProcess>
+#include <QFile>
+#include <QTextStream>
+#include <QRegularExpression>
 
 static QString ChainsProxy_path = QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first()
         + "/deepin/proxychains.conf";
@@ -326,9 +330,107 @@ void MenuWorker::handleToProxy()
     m_launcherInterface->SetUseProxy(m_appKey, !m_isItemProxy);
 }
 
+bool MenuWorker::isElectronApp(const QString &desktopPath)
+{
+    if (!QFile::exists(desktopPath)) {
+        return false;
+    }
+
+    QFile file(desktopPath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return false;
+    }
+
+    QTextStream in(&file);
+    in.setCodec("UTF-8");
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (line.startsWith("Exec=")) {
+            QString execValue = line.mid(5);
+            // 检查 Exec 字段是否包含 electron 相关关键字
+            QStringList electronKeywords = {"electron", "electron-builder", "electron-forge", "electron-packager"};
+            for (const QString &keyword : electronKeywords) {
+                if (execValue.contains(keyword, Qt::CaseInsensitive)) {
+                    return true;
+                }
+            }
+            // 检查是否使用 electron 作为运行时
+            if (execValue.contains("/electron", Qt::CaseInsensitive) || 
+                execValue.startsWith("electron", Qt::CaseInsensitive)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+void MenuWorker::setElectronAppScaling(const QString &appKey, bool enableScaling)
+{
+    QProcess process;
+    QString gsettingsCmd;
+    
+    if (enableScaling) {
+        // 启用缩放从 electron 应用列表中移除
+        gsettingsCmd = QString("gsettings get com.deepin.dde.launcher apps-disable-scaling-electron");
+        process.start("bash", QStringList() << "-c" << gsettingsCmd);
+        process.waitForFinished();
+        QString currentList = QString::fromLocal8Bit(process.readAllStandardOutput()).trimmed();
+        
+        // 从列表中移除该应用
+        if (currentList.contains(appKey)) {
+            currentList.replace("'" + appKey + "',", "");
+            currentList.replace("'" + appKey + "'", "");
+            currentList = currentList.replace(",,", ",").trimmed();
+            
+            // 确保格式正确
+            if (currentList.isEmpty() || currentList == "[]" || currentList == "@as") {
+                currentList = "[]";
+            }
+            
+            gsettingsCmd = QString("gsettings set com.deepin.dde.launcher apps-disable-scaling-electron '%1'").arg(currentList);
+            QProcess setProcess;
+            setProcess.start("bash", QStringList() << "-c" << gsettingsCmd);
+            setProcess.waitForFinished();
+        }
+    } else {
+        // 禁用缩放添加到 electron 应用列表
+        gsettingsCmd = QString("gsettings get com.deepin.dde.launcher apps-disable-scaling-electron");
+        process.start("bash", QStringList() << "-c" << gsettingsCmd);
+        process.waitForFinished();
+        QString currentList = QString::fromLocal8Bit(process.readAllStandardOutput()).trimmed();
+        
+        // 解析当前列表并添加新应用
+        if (currentList.isEmpty() || currentList == "@as") {
+            currentList = "['" + appKey + "']";
+        } else if (currentList == "[]") {
+            currentList = "['" + appKey + "']";
+        } else if (!currentList.contains(appKey)) {
+            // 在列表中添加新应用
+            if (currentList.endsWith("]")) {
+                currentList.chop(1);
+                if (currentList.endsWith("'")) {
+                    currentList += ", '" + appKey + "']";
+                } else {
+                    currentList += "'" + appKey + "']";
+                }
+            }
+        }
+        
+        gsettingsCmd = QString("gsettings set com.deepin.dde.launcher apps-disable-scaling-electron '%1'").arg(currentList);
+        QProcess setProcess;
+        setProcess.start("bash", QStringList() << "-c" << gsettingsCmd);
+        setProcess.waitForFinished();
+    }
+}
+
 void MenuWorker::handleSwitchScaling()
 {
-    m_launcherInterface->SetDisableScaling(m_appKey, m_isItemEnableScaling);
+    if (isElectronApp(m_appDesktop)) {
+        setElectronAppScaling(m_appKey, !m_isItemEnableScaling);
+    } else {
+        m_launcherInterface->SetDisableScaling(m_appKey, m_isItemEnableScaling);
+    }
 }
 
 void MenuWorker::handleToNoSandbox()

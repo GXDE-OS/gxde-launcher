@@ -118,6 +118,9 @@ private:
     bool m_isMarkLaunched;
 
     bool m_menuIsShown = false;
+
+    bool isElectronApp(const QString &desktopPath);
+    void setElectronAppScaling(const QString &appKey, bool enableScaling);
 };
 
 #endif // MENUWORKER_H
