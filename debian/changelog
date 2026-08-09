@@ -1,4 +1,4 @@
-gxde-launcher (6.0.11) UNRELEASED; urgency=medium
+gxde-launcher (6.0.12) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -26,8 +26,9 @@ gxde-launcher (6.0.11) UNRELEASED; urgency=medium
   * 修复 Wayland 下启动器全屏模式下无法正常获取壁纸的问题
   * 修复 Wayland 下启动器无法自动隐藏的问题
   * 修复 Wayland 下触屏无法点击启动应用的问题
+  * 改进禁用屏幕缩放功能，增加对 Electron 应用的支持
 
- -- gfdgd_xi <3025613752@qq.com>  Fri, 31 Jul 2026 19:16:46 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 09 Aug 2026 17:48:22 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
