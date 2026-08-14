@@ -43,6 +43,9 @@
 #include <memory>
 
 #include <QFrame>
+#include <QPointer>
+#include <QRect>
+#include <QScreen>
 #include <QScrollArea>
 #include <QPropertyAnimation>
 #include <QSettings>
@@ -107,6 +110,8 @@ private:
 
     void uninstallApp(const QString &appKey) Q_DECL_OVERRIDE;
     void uninstallApp(const QModelIndex &context);
+    void setTargetScreen(QScreen *screen,
+                         const QRect &dockGeometry) Q_DECL_OVERRIDE;
     void showLauncher() Q_DECL_OVERRIDE;
     void hideLauncher() Q_DECL_OVERRIDE;
     bool visible() Q_DECL_OVERRIDE;
@@ -122,6 +127,11 @@ private:
     void updateCurrentVisibleCategory();
     void updatePlaceholderSize();
     void updateDockPosition();
+    void updateAppViewSizes();
+
+    QScreen *targetScreen() const;
+    QRect rawDockGeometry() const;
+    QRect logicalDockGeometry() const;
 
     AppsListModel *nextCategoryModel(const AppsListModel *currentModel);
     AppsListModel *prevCategoryModel(const AppsListModel *currentModel);
@@ -220,6 +230,10 @@ private:
     QVBoxLayout *m_mainLayout;
     FocusIndex m_nextFocusIndex;
     FocusIndex m_currentFocusIndex;
+
+    QPointer<QScreen> m_targetScreen;
+    QRect m_targetDockGeometry;
+    QMetaObject::Connection m_targetGeometryConnection;
 
     DImageButton *m_togglePowerBtn;
 };

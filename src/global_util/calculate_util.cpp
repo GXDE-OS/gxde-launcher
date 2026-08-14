@@ -101,7 +101,9 @@ int CalculateUtil::displayMode() const
     return ALL_APPS;
 }
 
-void CalculateUtil::calculateAppLayout(const QSize &containerSize, const int dockPosition)
+void CalculateUtil::calculateAppLayout(const QSize &containerSize,
+                                       const int dockPosition,
+                                       QScreen *screen)
 {
     Q_UNUSED(dockPosition);
 
@@ -117,7 +119,10 @@ void CalculateUtil::calculateAppLayout(const QSize &containerSize, const int doc
         return;
     }
 
-    const QRect pr = qApp->primaryScreen()->geometry();
+    if (!screen)
+        screen = qApp->primaryScreen();
+
+    const QRect pr = screen->geometry();
     const int screenWidth = pr.width();
     const int remain_width = screenWidth - calculateBesidePadding(screenWidth) * 2;
 

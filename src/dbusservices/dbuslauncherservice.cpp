@@ -54,6 +54,18 @@ void DBusLauncherService::Show()
     emit Shown();
 }
 
+void DBusLauncherService::ShowOnScreen(const QString &screenName,
+                                       int dockX, int dockY,
+                                       uint dockWidth, uint dockHeight)
+{
+    parent()->showLauncherOnScreen(
+        screenName,
+        QRect(dockX, dockY, static_cast<int>(dockWidth),
+              static_cast<int>(dockHeight)));
+
+    emit Shown();
+}
+
 void DBusLauncherService::ShowByMode(qlonglong in0)
 {
     qDebug() << in0;
@@ -82,4 +94,3 @@ bool DBusLauncherService::IsVisible()
 {
     return parent()->visible();
 }
-

@@ -35,6 +35,8 @@
 #define GROUP_BY_CATEGORY   1
 #define SEARCH              2
 
+class QScreen;
+
 class CalculateUtil : public QObject
 {
     Q_OBJECT
@@ -64,7 +66,8 @@ public:
     inline void decreaseItemSize() { m_appItemSize -= 16; }
 
 public slots:
-    void calculateAppLayout(const QSize &containerSize, const int dockPosition);
+    void calculateAppLayout(const QSize &containerSize, const int dockPosition,
+                            QScreen *screen = nullptr);
 
 private:
     explicit CalculateUtil(QObject *parent);

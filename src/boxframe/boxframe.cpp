@@ -69,7 +69,11 @@ void BoxFrame::setBackground(const QString &url)
 }
 
 const QPixmap BoxFrame::backgroundPixmap() {
-    const QSize &size = qApp->primaryScreen()->size() * qApp->primaryScreen()->devicePixelRatio();
+    QScreen *target = screen();
+    if (!target)
+        target = qApp->primaryScreen();
+
+    const QSize size = target->size() * target->devicePixelRatio();
 
     QPixmap cache = m_pixmap.scaled(size,
                                     Qt::KeepAspectRatioByExpanding,
@@ -80,7 +84,7 @@ const QPixmap BoxFrame::backgroundPixmap() {
                    size.width(), size.height());
 
     cache = cache.copy(copyRect);
-    cache.setDevicePixelRatio(devicePixelRatioF());
+    cache.setDevicePixelRatio(target->devicePixelRatio());
 
     return cache;
 }
@@ -98,9 +102,7 @@ void BoxFrame::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
-    QScreen const *s = qApp->primaryScreen();
-    const QRect &geom = s->geometry();
-    QRect tr(QPoint(0, 0), geom.size());
+    const QRect tr = rect();
 
     painter.drawPixmap(tr,
                        m_cache,

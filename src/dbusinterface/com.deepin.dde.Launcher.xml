@@ -1,6 +1,13 @@
   <interface name="com.deepin.dde.Launcher">
     <method name="Exit"/>
     <method name="Show"/>
+    <method name="ShowOnScreen">
+      <arg name="screenName" direction="in" type="s"/>
+      <arg name="dockX" direction="in" type="i"/>
+      <arg name="dockY" direction="in" type="i"/>
+      <arg name="dockWidth" direction="in" type="u"/>
+      <arg name="dockHeight" direction="in" type="u"/>
+    </method>
     <method name="Hide"/>
     <method name="Toggle"/>
     <method name="ShowByMode">

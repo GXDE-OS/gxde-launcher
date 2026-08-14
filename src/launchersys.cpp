@@ -28,7 +28,10 @@
 #include "model/appsmanager.h"
 
 #include <dapplication.h>
+#include <QCursor>
 #include <QGSettings>
+#include <QGuiApplication>
+#include <QScreen>
 
 DWIDGET_USE_NAMESPACE
 
@@ -71,6 +74,12 @@ LauncherSys::LauncherSys(QObject *parent)
 
 void LauncherSys::showLauncher()
 {
+    showLauncherOnScreen(QString(), QRect());
+}
+
+void LauncherSys::showLauncherOnScreen(const QString &screenName,
+                                       const QRect &dockGeometry)
+{
     if (m_sessionManagerInter->locked()) {
         qDebug() << "session locked, can not show launcher";
         return;
@@ -85,7 +94,26 @@ void LauncherSys::showLauncher()
     qApp->processEvents();
 
     m_autoExitTimer->stop();
+
+    m_targetScreen = resolveScreen(screenName);
+    m_targetDockGeometry = dockGeometry;
+    m_launcherInter->setTargetScreen(m_targetScreen, m_targetDockGeometry);
     m_launcherInter->showLauncher();
+}
+
+QScreen *LauncherSys::resolveScreen(const QString &screenName) const
+{
+    if (!screenName.isEmpty()) {
+        for (QScreen *screen : qApp->screens()) {
+            if (screen->name() == screenName)
+                return screen;
+        }
+    }
+
+    if (QScreen *screen = QGuiApplication::screenAt(QCursor::pos()))
+        return screen;
+
+    return qApp->primaryScreen();
 }
 
 void LauncherSys::hideLauncher()
@@ -134,6 +162,10 @@ void LauncherSys::displayModeChanged()
     }
 
     lastLauncher = lastLauncher ? lastLauncher : m_launcherInter;
+
+    if (!m_targetScreen)
+        m_targetScreen = qApp->primaryScreen();
+    m_launcherInter->setTargetScreen(m_targetScreen, m_targetDockGeometry);
 
     if (lastLauncher->visible()) {
         m_launcherInter->showLauncher();

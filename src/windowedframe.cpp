@@ -61,22 +61,6 @@
 
 extern const QPoint widgetRelativeOffset(const QWidget * const self, const QWidget *w);
 
-inline const QPoint scaledPosition(const QPoint &xpos)
-{
-    const auto ratio = qApp->devicePixelRatio();
-    QRect g = qApp->primaryScreen()->geometry();
-    for (auto *screen : qApp->screens()) {
-        const QRect &sg = screen->geometry();
-        const QRect &rg = QRect(sg.topLeft(), sg.size() * ratio);
-        if (rg.contains(xpos)) {
-            g = rg;
-            break;
-        }
-    }
-
-    return g.topLeft() + (xpos - g.topLeft()) / ratio;
-}
-
 WindowedFrame::WindowedFrame(QWidget *parent)
     : DBlurEffectWidget(parent)
     , m_dockInter(new DBusDock(this))
@@ -241,6 +225,72 @@ WindowedFrame::~WindowedFrame()
     m_eventFilter->deleteLater();
 }
 
+void WindowedFrame::setTargetScreen(QScreen *screen,
+                                    const QRect &dockGeometry)
+{
+    if (!screen)
+        screen = qApp->primaryScreen();
+
+    if (m_targetGeometryConnection)
+        disconnect(m_targetGeometryConnection);
+
+    m_targetScreen = screen;
+    m_targetDockGeometry = dockGeometry;
+
+    if (!screen)
+        return;
+
+    setScreen(screen);
+    if (windowHandle())
+        windowHandle()->setScreen(screen);
+
+    m_targetGeometryConnection = connect(
+        screen, &QScreen::geometryChanged,
+        this, &WindowedFrame::adjustPosition);
+}
+
+QScreen *WindowedFrame::targetScreen() const
+{
+    return m_targetScreen ? m_targetScreen.data() : qApp->primaryScreen();
+}
+
+QRect WindowedFrame::rawDockGeometry() const
+{
+    return m_targetDockGeometry.isValid()
+        ? m_targetDockGeometry
+        : QRect(m_dockInter->frontendRect());
+}
+
+QRect WindowedFrame::logicalDockGeometry() const
+{
+    const QRect raw = rawDockGeometry();
+    QScreen *screen = targetScreen();
+    if (!raw.isValid() || !screen)
+        return raw;
+
+    if (!m_targetDockGeometry.isValid()) {
+        for (QScreen *candidate : qApp->screens()) {
+            const QRect geometry = candidate->geometry();
+            const QRect rawScreen(
+                geometry.topLeft(),
+                geometry.size() * candidate->devicePixelRatio());
+            if (rawScreen.contains(raw.center())) {
+                screen = candidate;
+                break;
+            }
+        }
+    }
+
+    const qreal ratio = screen->devicePixelRatio();
+    const QPoint origin = screen->geometry().topLeft();
+    const QPoint topLeft(
+        origin.x() + qRound((raw.x() - origin.x()) / ratio),
+        origin.y() + qRound((raw.y() - origin.y()) / ratio));
+    const QSize size(qRound(raw.width() / ratio),
+                     qRound(raw.height() / ratio));
+    return QRect(topLeft, size);
+}
+
 void WindowedFrame::showLauncher()
 {
     if (visible() || m_delayHideTimer->isActive())
@@ -255,6 +305,12 @@ void WindowedFrame::showLauncher()
     }
 
     adjustSize(); // right widget need calculate width based on font
+
+    if (QScreen *screen = targetScreen()) {
+        setScreen(screen);
+        if (windowHandle())
+            windowHandle()->setScreen(screen);
+    }
 
     if (DApplication::isWayland()) {
         show();
@@ -700,10 +756,8 @@ void WindowedFrame::initAnchoredCornor()
 
 void WindowedFrame::adjustPosition()
 {
-    const auto ratio = devicePixelRatioF();
     const int dockPos = m_dockInter->position();
-    const QRect &r = m_dockInter->frontendRect();
-    QRect dockRect = QRect(scaledPosition(r.topLeft()), r.size() / ratio);
+    const QRect dockRect = logicalDockGeometry();
 
     const int dockSpacing = 0;
     const int screenSpacing = 0;
@@ -712,20 +766,23 @@ void WindowedFrame::adjustPosition()
 
     // extra spacing for efficient mode
     if (m_dockInter->displayMode() == DOCK_EFFICIENT) {
-        const QRect primaryRect = qApp->primaryScreen()->geometry();
+        QScreen *screen = targetScreen();
+        const QRect screenRect = screen
+            ? screen->geometry()
+            : qApp->primaryScreen()->geometry();
 
         switch (dockPos) {
         case DOCK_TOP:
-            p = QPoint(primaryRect.left() + screenSpacing, dockRect.bottom() + dockSpacing + 1);
+            p = QPoint(screenRect.left() + screenSpacing, dockRect.bottom() + dockSpacing + 1);
             break;
         case DOCK_BOTTOM:
-            p = QPoint(primaryRect.left() + screenSpacing, dockRect.top() - s.height() - dockSpacing + 1);
+            p = QPoint(screenRect.left() + screenSpacing, dockRect.top() - s.height() - dockSpacing + 1);
             break;
         case DOCK_LEFT:
-            p = QPoint(dockRect.right() + dockSpacing + 1, primaryRect.top() + screenSpacing);
+            p = QPoint(dockRect.right() + dockSpacing + 1, screenRect.top() + screenSpacing);
             break;
         case DOCK_RIGHT:
-            p = QPoint(dockRect.left() - s.width() - dockSpacing + 1, primaryRect.top() + screenSpacing);
+            p = QPoint(dockRect.left() - s.width() - dockSpacing + 1, screenRect.top() + screenSpacing);
             break;
         default:
             Q_UNREACHABLE_IMPL();
@@ -761,8 +818,14 @@ void WindowedFrame::adjustPosition()
                 lsWin->setAnchors(anchors);
                 lsWin->setExclusiveZone(0);
                 lsWin->setLayer(LayerShellQt::Window::LayerTop);
+                lsWin->setScreenConfiguration(
+                    LayerShellQt::Window::ScreenFromQWindow);
                 lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-                lsWin->setMargins(QMargins(p.x(), p.y(), 0, 0));
+                QScreen *screen = targetScreen();
+                const QPoint local = screen
+                    ? p - screen->geometry().topLeft()
+                    : p;
+                lsWin->setMargins(QMargins(local.x(), local.y(), 0, 0));
                 return;
             }
         }
@@ -786,6 +849,8 @@ void WindowedFrame::setupLayerShell()
         lsWin->setAnchors(anchors);
         lsWin->setExclusiveZone(0);
         lsWin->setLayer(LayerShellQt::Window::LayerTop);
+        lsWin->setScreenConfiguration(
+            LayerShellQt::Window::ScreenFromQWindow);
         lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
 
         Wayland::LayerShellStyler::apply(win, 5, true);

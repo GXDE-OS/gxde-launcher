@@ -74,6 +74,20 @@ public Q_SLOTS: // METHODS
         return asyncCallWithArgumentList(QStringLiteral("Show"), argumentList);
     }
 
+    inline QDBusPendingReply<> ShowOnScreen(const QString &screenName,
+                                            int dockX, int dockY,
+                                            uint dockWidth, uint dockHeight)
+    {
+        QList<QVariant> argumentList;
+        argumentList << QVariant::fromValue(screenName)
+                     << QVariant::fromValue(dockX)
+                     << QVariant::fromValue(dockY)
+                     << QVariant::fromValue(dockWidth)
+                     << QVariant::fromValue(dockHeight);
+        return asyncCallWithArgumentList(QStringLiteral("ShowOnScreen"),
+                                         argumentList);
+    }
+
     inline QDBusPendingReply<> ShowByMode(qlonglong in0)
     {
         QList<QVariant> argumentList;

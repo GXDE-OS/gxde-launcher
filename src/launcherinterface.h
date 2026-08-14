@@ -26,10 +26,13 @@
 
 class QString;
 class QPoint;
+class QRect;
+class QScreen;
 class LauncherInterface
 {
 public:
     virtual ~LauncherInterface() {}
+    virtual void setTargetScreen(QScreen *screen, const QRect &dockGeometry) = 0;
     virtual void showLauncher() = 0;
     virtual void hideLauncher() = 0;
     virtual bool visible() = 0;

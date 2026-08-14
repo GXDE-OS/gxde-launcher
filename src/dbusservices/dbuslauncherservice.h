@@ -46,6 +46,8 @@ public Q_SLOTS:
     void Exit();
     void Hide();
     void Show();
+    void ShowOnScreen(const QString &screenName, int dockX, int dockY,
+                      uint dockWidth, uint dockHeight);
     void ShowByMode(qlonglong in0);
 #ifndef WITHOUT_UNINSTALL_APP
     void UninstallApp(const QString &appKey);

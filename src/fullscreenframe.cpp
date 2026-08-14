@@ -353,7 +353,10 @@ bool FullScreenFrame::eventFilter(QObject *o, QEvent *e)
         QMetaObject::invokeMethod(this, "refershCurrentFloatTitle", Qt::QueuedConnection);
     } else if (o == m_appsArea->viewport() && e->type() == QEvent::Resize) {
         const int pos = m_appsManager->dockPosition();
-        m_calcUtil->calculateAppLayout(static_cast<QResizeEvent *>(e)->size() - QSize(LEFT_PADDING + RIGHT_PADDING, 0), pos);
+        m_calcUtil->calculateAppLayout(
+            static_cast<QResizeEvent *>(e)->size()
+                - QSize(LEFT_PADDING + RIGHT_PADDING, 0),
+            pos, targetScreen());
         updatePlaceholderSize();
     }
 
@@ -733,9 +736,6 @@ void FullScreenFrame::initConnection()
     connect(m_appsArea, &AppListArea::increaseIcon, this, [ = ] { m_calcUtil->increaseIconSize(); emit m_appsManager->layoutChanged(AppsListModel::All); });
     connect(m_appsArea, &AppListArea::decreaseIcon, this, [ = ] { m_calcUtil->decreaseIconSize(); emit m_appsManager->layoutChanged(AppsListModel::All); });
 
-    connect(qApp, &QApplication::primaryScreenChanged, this, &FullScreenFrame::updateGeometry);
-    connect(qApp->primaryScreen(), &QScreen::geometryChanged, this, &FullScreenFrame::updateGeometry);
-
     connect(m_calcUtil, &CalculateUtil::layoutChanged, this, &FullScreenFrame::layoutChanged, Qt::QueuedConnection);
 
     connect(m_scrollAnimation, &QPropertyAnimation::valueChanged, this, &FullScreenFrame::ensureScrollToDest);
@@ -850,8 +850,40 @@ void FullScreenFrame::initConnection()
 
 void FullScreenFrame::showLauncher()
 {
+    updateGeometry();
+    updateAppViewSizes();
     show();
-    setFixedSize(qApp->primaryScreen()->geometry().size());
+}
+
+void FullScreenFrame::setTargetScreen(QScreen *screen,
+                                      const QRect &dockGeometry)
+{
+    if (!screen)
+        screen = qApp->primaryScreen();
+
+    if (m_targetGeometryConnection)
+        disconnect(m_targetGeometryConnection);
+
+    m_targetScreen = screen;
+    m_targetDockGeometry = dockGeometry;
+
+    if (!screen)
+        return;
+
+    setScreen(screen);
+    if (windowHandle())
+        windowHandle()->setScreen(screen);
+
+    m_targetGeometryConnection = connect(
+        screen, &QScreen::geometryChanged, this,
+        [this] {
+            updateGeometry();
+            updateAppViewSizes();
+            updateDockPosition();
+        });
+
+    updateGeometry();
+    updateAppViewSizes();
 }
 
 void FullScreenFrame::hideLauncher()
@@ -866,11 +898,74 @@ bool FullScreenFrame::visible()
 
 void FullScreenFrame::updateGeometry()
 {
-    const QRect rect = qApp->primaryScreen()->geometry();
+    QScreen *screen = targetScreen();
+    if (!screen)
+        return;
 
-    setGeometry(rect);
+    const QRect rect = screen->geometry();
+
+    setFixedSize(rect.size());
+    move(rect.topLeft());
 
     QFrame::updateGeometry();
+}
+
+QScreen *FullScreenFrame::targetScreen() const
+{
+    return m_targetScreen ? m_targetScreen.data() : qApp->primaryScreen();
+}
+
+QRect FullScreenFrame::rawDockGeometry() const
+{
+    return m_targetDockGeometry.isValid()
+        ? m_targetDockGeometry
+        : QRect(m_appsManager->dockGeometry());
+}
+
+QRect FullScreenFrame::logicalDockGeometry() const
+{
+    const QRect raw = rawDockGeometry();
+    QScreen *screen = targetScreen();
+    if (!raw.isValid() || !screen)
+        return raw;
+
+    if (!m_targetDockGeometry.isValid()) {
+        for (QScreen *candidate : qApp->screens()) {
+            const QRect geometry = candidate->geometry();
+            const QRect rawScreen(
+                geometry.topLeft(),
+                geometry.size() * candidate->devicePixelRatio());
+            if (rawScreen.contains(raw.center())) {
+                screen = candidate;
+                break;
+            }
+        }
+    }
+
+    const qreal ratio = screen->devicePixelRatio();
+    const QPoint origin = screen->geometry().topLeft();
+    const QPoint topLeft(
+        origin.x() + qRound((raw.x() - origin.x()) / ratio),
+        origin.y() + qRound((raw.y() - origin.y()) / ratio));
+    const QSize size(qRound(raw.width() / ratio),
+                     qRound(raw.height() / ratio));
+    return QRect(topLeft, size);
+}
+
+void FullScreenFrame::updateAppViewSizes()
+{
+    QScreen *screen = targetScreen();
+    if (!screen)
+        return;
+
+    const QSize size = screen->geometry().size();
+    const QList<AppGridView *> views {
+        m_allAppsView, m_internetView, m_chatView, m_musicView,
+        m_videoView, m_graphicsView, m_gameView, m_officeView,
+        m_readingView, m_developmentView, m_systemView, m_othersView
+    };
+    for (AppGridView *view : views)
+        view->setFixedSize(size);
 }
 
 ///
@@ -1033,7 +1128,7 @@ bool FullScreenFrame::windowDeactiveEvent()
 void FullScreenFrame::regionMonitorPoint(const QPoint &point)
 {
     if (!m_menuWorker->isMenuShown() && !m_isConfirmDialogShown && !m_delayHideTimer->isActive()) {
-        if (m_appsManager->dockGeometry().contains(point)) {
+        if (rawDockGeometry().contains(point)) {
             m_delayHideTimer->start();
             hideLauncher();
         }
@@ -1253,7 +1348,7 @@ void FullScreenFrame::updateDockPosition()
     m_navigationWidget->setFixedWidth(besidePadding);
     m_navigationWidget->setFixedHeight(height() - searchHeight);
 
-    const QRect dockGeometry = m_appsManager->dockGeometry();
+    const QRect dockGeometry = logicalDockGeometry();
 
     switch (m_appsManager->dockPosition()) {
     case DOCK_POS_TOP:
@@ -1269,7 +1364,7 @@ void FullScreenFrame::updateDockPosition()
         m_searchWidget->setRightSpacing(0);
         break;
     case DOCK_POS_LEFT:
-        m_navigationWidget->move(dockGeometry.width() / devicePixelRatioF(), searchHeight);
+        m_navigationWidget->move(dockGeometry.width(), searchHeight);
         m_searchWidget->setLeftSpacing(dockGeometry.width());
         m_searchWidget->setRightSpacing(0);
         break;
@@ -1282,8 +1377,9 @@ void FullScreenFrame::updateDockPosition()
         break;
     }
 
-    m_calcUtil->calculateAppLayout(m_appsArea->size() - QSize(LEFT_PADDING + RIGHT_PADDING, 0),
-                                   m_appsManager->dockPosition());
+    m_calcUtil->calculateAppLayout(
+        m_appsArea->size() - QSize(LEFT_PADDING + RIGHT_PADDING, 0),
+        m_appsManager->dockPosition(), targetScreen());
     setStyleSheet(getQssFromFile(":/skin/qss/fullscreenframe.qss"));
 
     QTimer::singleShot(0, this, &FullScreenFrame::updateGradient);
@@ -1460,4 +1556,3 @@ void FullScreenFrame::nextTabWidget(int key)
         }
     }
 }
-

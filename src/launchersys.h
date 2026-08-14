@@ -27,6 +27,8 @@
 #include "dbusinterface/dbuslauncher.h"
 
 #include <QObject>
+#include <QPointer>
+#include <QRect>
 #include <QTimer>
 #include <dregionmonitor.h>
 
@@ -37,6 +39,7 @@ DWIDGET_USE_NAMESPACE
 class LauncherInterface;
 class WindowedFrame;
 class FullScreenFrame;
+class QScreen;
 class LauncherSys : public QObject
 {
     Q_OBJECT
@@ -46,6 +49,8 @@ public:
 
     bool visible();
     void showLauncher();
+    void showLauncherOnScreen(const QString &screenName,
+                              const QRect &dockGeometry);
     void hideLauncher();
     void uninstallApp(const QString &appKey);
 
@@ -60,6 +65,7 @@ private slots:
     void onAutoExitTimeout();
 
 private:
+    QScreen *resolveScreen(const QString &screenName) const;
     void registerRegion();
     void unRegisterRegion();
 
@@ -74,6 +80,8 @@ private:
     QTimer *m_autoExitTimer;
     QTimer *m_ignoreRepeatVisibleChangeTimer;
     QMetaObject::Connection m_regionMonitorConnect;
+    QPointer<QScreen> m_targetScreen;
+    QRect m_targetDockGeometry;
 };
 
 #endif // LAUNCHERSYS_H

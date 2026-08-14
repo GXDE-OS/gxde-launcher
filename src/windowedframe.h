@@ -42,6 +42,9 @@
 #include <com_deepin_daemon_appearance.h>
 
 #include <QLabel>
+#include <QPointer>
+#include <QRect>
+#include <QScreen>
 #include <memory>
 
 DWIDGET_USE_NAMESPACE
@@ -82,6 +85,8 @@ signals:
     void visibleChanged(bool visible);
 
 private:
+    void setTargetScreen(QScreen *screen,
+                         const QRect &dockGeometry) Q_DECL_OVERRIDE;
     void showLauncher() Q_DECL_OVERRIDE;
     void hideLauncher() Q_DECL_OVERRIDE;
     bool visible() Q_DECL_OVERRIDE;
@@ -96,6 +101,9 @@ private:
     void switchToCategory(const QModelIndex &index);
 
     QPainterPath getCornerPath(AnchoredCornor direction);
+    QScreen *targetScreen() const;
+    QRect rawDockGeometry() const;
+    QRect logicalDockGeometry() const;
 
 protected:
     void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
@@ -152,6 +160,9 @@ private:
     AnchoredCornor m_anchoredCornor = Normal;
     QPainterPath m_cornerPath;
     FocusPosition m_focusPos;
+    QPointer<QScreen> m_targetScreen;
+    QRect m_targetDockGeometry;
+    QMetaObject::Connection m_targetGeometryConnection;
 };
 
 #endif // WINDOWEDFRAME_H
