@@ -29,6 +29,12 @@
 #include <QFile>
 #include <QTextStream>
 #include <QRegularExpression>
+#include <QGuiApplication>
+#include <QScreen>
+#include <QTimer>
+#include <LayerShellQt/Window>
+
+#include "../wayland/treeland_shell.h"
 
 static QString ChainsProxy_path = QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first()
         + "/deepin/proxychains.conf";
@@ -184,10 +190,76 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     connect(menu, &QMenu::aboutToHide, this, &MenuWorker::handleMenuClosed);
     connect(menu, &QMenu::aboutToHide, menu, &QMenu::deleteLater);
 
-    menu->move(pos);
-    m_menuIsShown = true;
-    m_menuGeometry = menu->geometry();
-    menu->exec();
+    const bool isWayland = QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive);
+    if (isWayland) {
+        menu->adjustSize();
+        menu->setFixedSize(menu->sizeHint());
+        // 在 Wayland 下，菜单的 wayland surface 会关联到 launcher（WindowedFrame）
+        // 的 layer-shell 父 surface，而它本身没有尺寸锚定，compositor 会将其撑满
+        // 全屏。这里对其 surface 应用 layer-shell 锚定 + margins，把它约束在鼠标
+        // 右键点击位置、由内容决定大小的小矩形内，与 X11 下表现一致。
+        auto applyLayer = [this, menu, pos]() -> bool {
+            QWindow *win = menu->windowHandle();
+            if (!win)
+                return false;
+            LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win);
+            if (!lsWin)
+                return false;
+            const QSize sz = menu->sizeHint();
+            QScreen *scr = QGuiApplication::screenAt(pos);
+            if (!scr)
+                scr = QGuiApplication::primaryScreen();
+            const QRect sg = scr ? scr->geometry() : QRect();
+            if (sg.isNull())
+                return false;
+            // 菜单默认出现在鼠标右下方（左上角对齐 pos），超出屏幕则翻转到
+            // 鼠标另一侧，与 X11 下 QMenu::exec(pos) 的 flip 行为一致。
+            int x = pos.x();
+            int y = pos.y();
+            const int w = sz.width();
+            const int h = sz.height();
+            if (x + w > sg.right() + 1) x = pos.x() - w;
+            if (y + h > sg.bottom() + 1) y = pos.y() - h;
+            if (x < sg.left()) x = sg.left();
+            if (y < sg.top()) y = sg.top();
+            lsWin->setLayer(LayerShellQt::Window::LayerTop);
+            // 仅锚定左上角，surface 保持 fixedSize 的内容尺寸，左上角精确定位
+            // 在 (x, y)，避免四边锚定被 compositor 拉伸/居中导致位置偏移。
+            LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
+            anchors |= LayerShellQt::Window::AnchorLeft;
+            lsWin->setAnchors(anchors);
+            lsWin->setExclusiveZone(0);
+            lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+            lsWin->setMargins(QMargins(x - sg.left(), y - sg.top(), 0, 0));
+            m_menuGeometry = menu->geometry();
+            return true;
+        };
+        menu->winId();
+        {
+            QScreen *scr = QGuiApplication::screenAt(pos);
+            if (!scr)
+                scr = QGuiApplication::primaryScreen();
+            if (scr)
+                menu->setScreen(scr);
+        }
+
+        menu->move(pos);
+
+        Wayland::TreelandDdeShell::setAutoPlacement(menu->windowHandle(), 0);
+        
+        applyLayer();
+        QTimer::singleShot(0, this, [applyLayer, menu]() {
+            Wayland::TreelandDdeShell::setAutoPlacement(menu->windowHandle(), 0);
+            applyLayer();
+        });
+        m_menuIsShown = true;
+        menu->exec();
+    } else {
+        menu->move(pos);
+        m_menuIsShown = true;
+        m_menuGeometry = menu->geometry();
+        menu->exec();
+    }
 }
 
 void MenuWorker::handleOpen()

@@ -129,7 +129,7 @@ void AppGridView::dropEvent(QDropEvent *e)
 void AppGridView::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::RightButton) {
-        QPoint rightClickPoint = mapToGlobal(e->pos());
+        const QPoint rightClickPoint = QCursor::pos();
 
         const QModelIndex &clickedIndex = QListView::indexAt(e->pos());
         if (clickedIndex.isValid())

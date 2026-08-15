@@ -194,7 +194,7 @@ void AppListView::mousePressEvent(QMouseEvent *e)
     const bool isCategoryList = qobject_cast<AppsListModel*>(model())->category() == AppsListModel::Category;
 
     if (e->button() == Qt::RightButton && !isCategoryList) {
-        const QPoint rightClickPoint = mapToGlobal(e->pos());
+        const QPoint rightClickPoint = QCursor::pos();
         const QModelIndex &clickedIndex = QListView::indexAt(e->pos());
 
         if (clickedIndex.isValid())
