@@ -40,6 +40,7 @@
 #include <LayerShellQt/Shell>
 
 #include "wayland/xsettings.h"
+#include "wayland/treeland_shell.h"
 
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
@@ -64,6 +65,7 @@ int main(int argv, char *args[])
     DApplication app(argv, args);
 
     if (DApplication::isWayland()) {
+        Wayland::TreelandDdeShell::init();
         QString iconTheme = Wayland::xsettingsString(QStringLiteral(
             "Net/IconThemeName"));
 
