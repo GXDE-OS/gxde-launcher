@@ -1,4 +1,4 @@
-gxde-launcher (6.0.13) UNRELEASED; urgency=medium
+gxde-launcher (6.0.14) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -29,8 +29,9 @@ gxde-launcher (6.0.13) UNRELEASED; urgency=medium
   * 改进禁用屏幕缩放功能，增加对 Electron 应用的支持
   * 双屏幕支持
   * 修复启动器全屏 控制中心和电源按钮的 Hover动画和其他不一致的问题（https://gitee.com/GXDE-OS/GXDE/issues/ICWOK5 ）
+  * 修复右键菜单全屏的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Sat, 15 Aug 2026 19:45:00 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 16 Aug 2026 08:26:19 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
