@@ -313,9 +313,10 @@ void WindowedFrame::showLauncher()
     }
 
     if (DApplication::isWayland()) {
-        show();
         setupLayerShell();
         adjustPosition();
+        show();
+        Wayland::LayerShellStyler::apply(windowHandle(), 5, true);
     } else {
         adjustPosition();
         show();
