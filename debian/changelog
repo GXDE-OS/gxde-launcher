@@ -1,4 +1,4 @@
-gxde-launcher (6.0.14) UNRELEASED; urgency=medium
+gxde-launcher (6.0.15) UNRELEASED; urgency=medium
 
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
@@ -30,8 +30,9 @@ gxde-launcher (6.0.14) UNRELEASED; urgency=medium
   * 双屏幕支持
   * 修复启动器全屏 控制中心和电源按钮的 Hover动画和其他不一致的问题（https://gitee.com/GXDE-OS/GXDE/issues/ICWOK5 ）
   * 修复右键菜单全屏的问题
+  * 修复在 wayland 下，首次打开 gxde-launcher ，启动器会先半屏闪烁一下再正确弹出的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 16 Aug 2026 08:26:19 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 21 Aug 2026 18:49:26 +0800
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
