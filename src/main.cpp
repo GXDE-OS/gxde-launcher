@@ -33,6 +33,7 @@
 #include <unistd.h>
 
 #include <dapplication.h>
+#include <QByteArray>
 #include <DLog>
 #include <QIcon>
 #include <QSettings>
@@ -44,6 +45,31 @@
 
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
+
+void correctStaleX11Platform() {
+    if (qgetenv("XDG_SESSION_TYPE").compare("wayland",
+                Qt::CaseInsensitive) != 0 ||
+            qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY")) {
+        return;
+    }
+
+    const QByteArray configuredPlatform = qgetenv("QT_QPA_PLATFORM");
+    const qsizetype separator = configuredPlatform.indexOf(';');
+    QByteArray primaryPlatform = configuredPlatform.left(
+        separator >= 0 ? separator : configuredPlatform.size()).trimmed();
+
+    const qsizetype optionSeparator = primaryPlatform.indexOf(':');
+    if (optionSeparator >= 0) {
+        primaryPlatform.truncate(optionSeparator);
+    }
+
+    if (primaryPlatform.compare("dxcb", Qt::CaseInsensitive) != 0 &&
+        primaryPlatform.compare("xcb", Qt::CaseInsensitive) != 0) {
+        return;
+    }
+
+    qputenv("QT_QPA_PLATFORM", QByteArrayLiteral("wayland"));
+}
 
 void dump_user_apss_preset_order_list()
 {
@@ -60,6 +86,7 @@ void dump_user_apss_preset_order_list()
 
 int main(int argv, char *args[])
 {
+    correctStaleX11Platform();
     LayerShellQt::Shell::useLayerShell();
 
     DApplication app(argv, args);
