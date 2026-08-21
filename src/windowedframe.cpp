@@ -313,6 +313,7 @@ void WindowedFrame::showLauncher()
     }
 
     if (DApplication::isWayland()) {
+        createWinId();
         setupLayerShell();
         adjustPosition();
         show();
@@ -853,8 +854,6 @@ void WindowedFrame::setupLayerShell()
         lsWin->setScreenConfiguration(
             LayerShellQt::Window::ScreenFromQWindow);
         lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-
-        Wayland::LayerShellStyler::apply(win, 5, true);
     }
 }
 
