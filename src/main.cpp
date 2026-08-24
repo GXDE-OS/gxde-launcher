@@ -166,8 +166,9 @@ int main(int argv, char *args[])
     DBusLauncherService service(&launcher);
     Q_UNUSED(service);
     QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerService("com.deepin.dde.Launcher") ||
-        !connection.registerObject("/com/deepin/dde/Launcher", &launcher))
+
+    if (!connection.registerObject("/com/deepin/dde/Launcher", &launcher) ||
+        !connection.registerService("com.deepin.dde.Launcher"))
         qWarning() << "register dbus service failed";
 
 #ifndef QT_DEBUG
