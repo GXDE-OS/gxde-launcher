@@ -29,6 +29,7 @@
 
 #include <dapplication.h>
 #include <QCursor>
+#include <QDBusMessage>
 #include <QGSettings>
 #include <QGuiApplication>
 #include <QScreen>
@@ -42,6 +43,29 @@ DWIDGET_USE_NAMESPACE
 
 #define SessionManagerService "com.deepin.SessionManager"
 #define SessionManagerPath "/com/deepin/SessionManager"
+
+namespace {
+
+constexpr auto WlcomScreenService = "top.gxde.Wlcom.Screen";
+constexpr auto WlcomScreenPath = "/top/gxde/Wlcom/Screen";
+constexpr auto WlcomScreenInterface = "top.gxde.Wlcom.Screen";
+
+QString waylandCursorOutputName()
+{
+    QDBusMessage message = QDBusMessage::createMethodCall(
+        WlcomScreenService, WlcomScreenPath, WlcomScreenInterface,
+        QStringLiteral("GetCursorOutput"));
+    const QDBusMessage reply = QDBusConnection::sessionBus().call(
+        message, QDBus::Block, 250);
+    if (reply.type() != QDBusMessage::ReplyMessage ||
+        reply.arguments().isEmpty()) {
+        return QString();
+    }
+
+    return reply.arguments().constFirst().toString();
+}
+
+} // namespace
 
 LauncherSys::LauncherSys(QObject *parent)
     : QObject(parent)
@@ -62,14 +86,31 @@ LauncherSys::LauncherSys(QObject *parent)
     m_ignoreRepeatVisibleChangeTimer->setInterval(200);
     m_ignoreRepeatVisibleChangeTimer->setSingleShot(true);
 
-    displayModeChanged();
-
-    AppsManager::instance();
-
     connect(m_dbusLauncherInter, &DBusLauncher::FullscreenChanged, this, &LauncherSys::displayModeChanged, Qt::QueuedConnection);
     connect(m_autoExitTimer, &QTimer::timeout, this, &LauncherSys::onAutoExitTimeout, Qt::QueuedConnection);
+}
+
+void LauncherSys::initialize()
+{
+    if (m_initialized)
+        return;
+
+    displayModeChanged();
+    AppsManager::instance();
+    m_initialized = true;
 
     m_autoExitTimer->start();
+
+    if (m_showPending) {
+        const QString screenName = m_pendingScreenName;
+        const QRect dockGeometry = m_pendingDockGeometry;
+        m_showPending = false;
+        m_pendingScreenName.clear();
+        m_pendingDockGeometry = QRect();
+        QTimer::singleShot(0, this, [this, screenName, dockGeometry] {
+            showLauncherOnScreen(screenName, dockGeometry);
+        });
+    }
 }
 
 void LauncherSys::showLauncher()
@@ -80,6 +121,13 @@ void LauncherSys::showLauncher()
 void LauncherSys::showLauncherOnScreen(const QString &screenName,
                                        const QRect &dockGeometry)
 {
+    if (!m_initialized || !m_launcherInter) {
+        m_showPending = true;
+        m_pendingScreenName = screenName;
+        m_pendingDockGeometry = dockGeometry;
+        return;
+    }
+
     if (m_sessionManagerInter->locked()) {
         qDebug() << "session locked, can not show launcher";
         return;
@@ -97,6 +145,11 @@ void LauncherSys::showLauncherOnScreen(const QString &screenName,
 
     m_targetScreen = resolveScreen(screenName);
     m_targetDockGeometry = dockGeometry;
+    if (!screenName.isEmpty() &&
+        (!m_targetScreen || m_targetScreen->name() != screenName)) {
+        qWarning() << "requested launcher screen is unavailable:" << screenName;
+        m_targetDockGeometry = QRect();
+    }
     m_launcherInter->setTargetScreen(m_targetScreen, m_targetDockGeometry);
     m_launcherInter->showLauncher();
 }
@@ -110,6 +163,14 @@ QScreen *LauncherSys::resolveScreen(const QString &screenName) const
         }
     }
 
+    if (DApplication::isWayland()) {
+        const QString cursorOutput = waylandCursorOutputName();
+        for (QScreen *screen : qApp->screens()) {
+            if (screen->name() == cursorOutput)
+                return screen;
+        }
+    }
+
     if (QScreen *screen = QGuiApplication::screenAt(QCursor::pos()))
         return screen;
 
@@ -118,6 +179,13 @@ QScreen *LauncherSys::resolveScreen(const QString &screenName) const
 
 void LauncherSys::hideLauncher()
 {
+    if (!m_initialized || !m_launcherInter) {
+        m_showPending = false;
+        m_pendingScreenName.clear();
+        m_pendingDockGeometry = QRect();
+        return;
+    }
+
     if (m_ignoreRepeatVisibleChangeTimer->isActive())
         return;
     m_ignoreRepeatVisibleChangeTimer->start();
@@ -135,7 +203,7 @@ void LauncherSys::uninstallApp(const QString &appKey)
 
 bool LauncherSys::visible()
 {
-    return m_launcherInter->visible();
+    return m_launcherInter && m_launcherInter->visible();
 }
 
 void LauncherSys::displayModeChanged()

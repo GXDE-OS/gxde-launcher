@@ -29,6 +29,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QRect>
+#include <QString>
 #include <QTimer>
 #include <dregionmonitor.h>
 
@@ -47,6 +48,7 @@ class LauncherSys : public QObject
 public:
     explicit LauncherSys(QObject *parent = 0);
 
+    void initialize();
     bool visible();
     void showLauncher();
     void showLauncherOnScreen(const QString &screenName,
@@ -82,6 +84,10 @@ private:
     QMetaObject::Connection m_regionMonitorConnect;
     QPointer<QScreen> m_targetScreen;
     QRect m_targetDockGeometry;
+    bool m_initialized = false;
+    bool m_showPending = false;
+    QString m_pendingScreenName;
+    QRect m_pendingDockGeometry;
 };
 
 #endif // LAUNCHERSYS_H

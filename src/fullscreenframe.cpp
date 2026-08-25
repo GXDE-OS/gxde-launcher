@@ -48,6 +48,7 @@
 #endif
 
 #include "sharedeventfilter.h"
+#include "global_util/dockgeometry.h"
 
 DTK_USE_NAMESPACE
 //DGUI_USE_NAMESPACE
@@ -917,39 +918,16 @@ QScreen *FullScreenFrame::targetScreen() const
 
 QRect FullScreenFrame::rawDockGeometry() const
 {
-    return m_targetDockGeometry.isValid()
+    return m_targetScreen && m_targetDockGeometry.isValid()
         ? m_targetDockGeometry
         : QRect(m_appsManager->dockGeometry());
 }
 
 QRect FullScreenFrame::logicalDockGeometry() const
 {
-    const QRect raw = rawDockGeometry();
-    QScreen *screen = targetScreen();
-    if (!raw.isValid() || !screen)
-        return raw;
-
-    if (!m_targetDockGeometry.isValid()) {
-        for (QScreen *candidate : qApp->screens()) {
-            const QRect geometry = candidate->geometry();
-            const QRect rawScreen(
-                geometry.topLeft(),
-                geometry.size() * candidate->devicePixelRatio());
-            if (rawScreen.contains(raw.center())) {
-                screen = candidate;
-                break;
-            }
-        }
-    }
-
-    const qreal ratio = screen->devicePixelRatio();
-    const QPoint origin = screen->geometry().topLeft();
-    const QPoint topLeft(
-        origin.x() + qRound((raw.x() - origin.x()) / ratio),
-        origin.y() + qRound((raw.y() - origin.y()) / ratio));
-    const QSize size(qRound(raw.width() / ratio),
-                     qRound(raw.height() / ratio));
-    return QRect(topLeft, size);
+    return DockGeometry::toTargetScreen(
+        rawDockGeometry(), targetScreen(), m_appsManager->dockPosition(),
+        m_targetScreen && m_targetDockGeometry.isValid());
 }
 
 void FullScreenFrame::updateAppViewSizes()
