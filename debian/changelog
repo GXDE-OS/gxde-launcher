@@ -1,5 +1,6 @@
-gxde-launcher (6.0.17) UNRELEASED; urgency=medium
+gxde-launcher (6.0.18) UNRELEASED; urgency=medium
 
+  [ gfdgd_xi ]
   * Remove scripts
   * 尝试修复缺失翻译文件的问题
   * 在 chroot 环境下不显示电源按键
@@ -34,7 +35,10 @@ gxde-launcher (6.0.17) UNRELEASED; urgency=medium
   * 在启动时清除过时/不符的环境变量
   * 修复Super键在启动后不可用的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Thu, 27 Aug 2026 16:10:08 +0800
+  [ CharOfString ]
+  * Build against both Qt 6.8 and Qt 6.10.
+
+ -- CharOfString <root@charofstring.cc>  Sun, 06 Sep 2026 17:18:42 -0500
 
 gxde-launcher (5.0.19) UNRELEASED; urgency=medium
 
