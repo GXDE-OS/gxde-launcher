@@ -47,6 +47,9 @@ file(GLOB INTERFACES "src/dbusinterface/*.h")
 # Find the library
 find_package(PkgConfig REQUIRED)
 find_package(Qt6Widgets REQUIRED)
+if(NOT TARGET Qt6::GuiPrivate)
+    find_package(Qt6GuiPrivate REQUIRED)
+endif()
 find_package(Qt6Concurrent REQUIRED)
 find_package(Qt6DBus REQUIRED)
 find_package(Qt6Svg REQUIRED)
@@ -77,6 +80,7 @@ target_link_libraries(${BIN_NAME} PRIVATE
     ${Dtk2widget_LIBRARIES}
     Dtk6::Gui
     ${Qt6Widgets_LIBRARIES}
+    Qt6::GuiPrivate
     ${Qt6Concurrent_LIBRARIES}
     ${Qt6DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
