@@ -301,7 +301,7 @@ void AppListView::dropEvent(QDropEvent *e)
 
 void AppListView::enterEvent(QEnterEvent *event)
 {
-    QListView::leaveEvent(event);
+    QListView::enterEvent(event);
 
     emit requestEnter(true);
 }

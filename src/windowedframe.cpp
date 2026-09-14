@@ -89,6 +89,9 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     m_appearanceInter->setSync(false, false);
 
     if (DApplication::isWayland()) {
+        // The launcher owns the KDE blur protocol resource so it can release
+        // it before layer-shell destroys and recreates the wl_surface.
+        setBlurEnabled(false);
         setAttribute(Qt::WA_TranslucentBackground);
     } else {
         m_windowHandle.setShadowRadius(60);
@@ -223,6 +226,9 @@ WindowedFrame::WindowedFrame(QWidget *parent)
 
 WindowedFrame::~WindowedFrame()
 {
+    if (DApplication::isWayland()) {
+        Wayland::LayerShellStyler::clear(windowHandle());
+    }
     m_eventFilter->deleteLater();
 }
 
@@ -295,7 +301,7 @@ void WindowedFrame::showLauncher()
         setupLayerShell();
         adjustPosition();
         show();
-        Wayland::LayerShellStyler::apply(windowHandle(), 5, true);
+        Wayland::LayerShellStyler::apply(windowHandle(), 5);
     } else {
         adjustPosition();
         show();
@@ -314,6 +320,9 @@ void WindowedFrame::hideLauncher()
 
     disconnect(m_dockInter, &DBusDock::FrontendRectChanged, this, &WindowedFrame::adjustPosition);
 
+    if (DApplication::isWayland()) {
+        Wayland::LayerShellStyler::clear(windowHandle());
+    }
     hide();
 
     // clean all state

@@ -1,20 +1,30 @@
 #include <QWindow>
 #include <QGuiApplication>
+#include <QHash>
 #include <qpa/qplatformnativeinterface.h>
 #include <wayland-client.h>
 
 #include "layershell_styler.h"
-#include "protocols/dde-shell-client-protocol.h"
 #include "protocols/blur-client-protocol.h"
+#include "protocols/dde-shell-client-protocol.h"
 
 namespace Wayland {
 namespace LayerShellStyler {
 
 struct BindContext {
-    wl_display *display;
     dde_shell *ddeShell = nullptr;
     org_kde_kwin_blur_manager *blurManager = nullptr;
 };
+
+struct SurfaceState {
+    wl_display *display = nullptr;
+    dde_shell *ddeShell = nullptr;
+    dde_shell_surface *shellSurface = nullptr;
+    org_kde_kwin_blur_manager *blurManager = nullptr;
+    org_kde_kwin_blur *blur = nullptr;
+};
+
+static QHash<QWindow *, SurfaceState> surfaceStates;
 
 static void registry_global(void *data, wl_registry *registry,
         uint32_t name, const char *interface, uint32_t version) {
@@ -35,7 +45,33 @@ static const wl_registry_listener registry_listener = {
     registry_global_remove,
 };
 
-void apply(QWindow *window, int radius, bool enableBlur) {
+void clear(QWindow *window) {
+    const auto it = surfaceStates.find(window);
+    if (it == surfaceStates.end()) {
+        return;
+    }
+
+    const SurfaceState state = it.value();
+    surfaceStates.erase(it);
+
+    if (state.blur) {
+        org_kde_kwin_blur_release(state.blur);
+    }
+    if (state.shellSurface) {
+        dde_shell_surface_destroy(state.shellSurface);
+    }
+    if (state.blurManager) {
+        org_kde_kwin_blur_manager_destroy(state.blurManager);
+    }
+    if (state.ddeShell) {
+        dde_shell_destroy(state.ddeShell);
+    }
+    if (state.display) {
+        wl_display_flush(state.display);
+    }
+}
+
+void apply(QWindow *window, int radius) {
     if (!window || radius < 0) {
         return;
     }
@@ -54,61 +90,61 @@ void apply(QWindow *window, int radius, bool enableBlur) {
         return;
     }
 
+    // A QWindow survives layer-shell surface recreation. Release every
+    // protocol object tied to its previous wl_surface before binding anew.
+    clear(window);
+
     wl_registry *registry = wl_display_get_registry(display);
+    if (!registry) {
+        return;
+    }
     BindContext ctx;
-    ctx.display = display;
     wl_registry_add_listener(registry, &registry_listener, &ctx);
     wl_display_roundtrip(display);
     wl_registry_destroy(registry);
 
-    if (radius > 0 && ctx.ddeShell) {
-        dde_shell_surface *shellSurface =
-            dde_shell_get_shell_surface(ctx.ddeShell, surface);
+    SurfaceState state;
+    state.display = display;
+    state.ddeShell = ctx.ddeShell;
+    state.blurManager = ctx.blurManager;
 
-        float vals[2] = { static_cast<float>(radius), static_cast<float>(radius) };
-        wl_array dataArr;
-        wl_array_init(&dataArr);
-        float *arr_data = static_cast<float *>(
-            wl_array_add(&dataArr, sizeof(float) * 2));
-        arr_data[0] = vals[0];
-        arr_data[1] = vals[1];
-        dde_shell_surface_set_property(
-            shellSurface,
-            DDE_SHELL_PROPERTY_WINDOWRADIUS,
-            &dataArr);
-        wl_array_release(&dataArr);
+    if (radius > 0 && state.ddeShell) {
+        state.shellSurface = dde_shell_get_shell_surface(state.ddeShell, surface);
+        if (state.shellSurface) {
+            float vals[2] = { static_cast<float>(radius), static_cast<float>(radius) };
+            wl_array dataArr;
+            wl_array_init(&dataArr);
+            float *arr_data = static_cast<float *>(
+                wl_array_add(&dataArr, sizeof(float) * 2));
+            arr_data[0] = vals[0];
+            arr_data[1] = vals[1];
+            dde_shell_surface_set_property(
+                state.shellSurface,
+                DDE_SHELL_PROPERTY_WINDOWRADIUS,
+                &dataArr);
+            wl_array_release(&dataArr);
 
-        wl_array emptyArr;
-        wl_array_init(&emptyArr);
-        dde_shell_surface_set_property(
-            shellSurface,
-            DDE_SHELL_PROPERTY_NOTITLEBAR,
-            &emptyArr);
-        wl_array_release(&emptyArr);
-
-        wl_display_flush(display);
+            wl_array emptyArr;
+            wl_array_init(&emptyArr);
+            dde_shell_surface_set_property(
+                state.shellSurface,
+                DDE_SHELL_PROPERTY_NOTITLEBAR,
+                &emptyArr);
+            wl_array_release(&emptyArr);
+        }
     }
 
-    if (enableBlur && ctx.blurManager) {
-        org_kde_kwin_blur *blur =
-            org_kde_kwin_blur_manager_create(ctx.blurManager, surface);
-
-        org_kde_kwin_blur_set_region(blur, nullptr);
-        org_kde_kwin_blur_commit(blur);
-        wl_display_flush(display);
-
-        org_kde_kwin_blur_destroy(blur);
+    if (state.blurManager) {
+        state.blur = org_kde_kwin_blur_manager_create(state.blurManager, surface);
+        if (state.blur) {
+            org_kde_kwin_blur_set_region(state.blur, nullptr);
+            org_kde_kwin_blur_set_strength(state.blur, 300);
+            org_kde_kwin_blur_commit(state.blur);
+        }
     }
 
-    window->setProperty("_d_wayland_has_blur", enableBlur && ctx.blurManager);
-
-    if (ctx.ddeShell) {
-        dde_shell_destroy(ctx.ddeShell);
-    }
-
-    if (ctx.blurManager) {
-        org_kde_kwin_blur_manager_destroy(ctx.blurManager);
-    }
+    surfaceStates.insert(window, state);
+    wl_display_flush(display);
 }
 
 }  // namespace LayerShellStyler

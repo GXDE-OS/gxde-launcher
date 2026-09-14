@@ -6,7 +6,8 @@ class QWindow;
 namespace Wayland {
 namespace LayerShellStyler {
 
-void apply(QWindow *window, int radius, bool enableBlur);
+void apply(QWindow *window, int radius);
+void clear(QWindow *window);
 
 }  // namespace LayerShellStyler
 }  // namespace Wayland
