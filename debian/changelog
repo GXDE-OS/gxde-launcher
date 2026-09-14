@@ -1,3 +1,9 @@
+gxde-launcher (6.0.19-1) UNRELEASED; urgency=medium
+
+  * 修复了Electron强制Wayland失效的问题
+
+ -- CharOfString <root@charofstring.cc>  Mon, 14 Sep 2026 18:15:20 -0500
+
 gxde-launcher (6.0.19) UNRELEASED; urgency=medium
 
   * 现在可以在Wayland下选择是否强制Wayland/X11启动
