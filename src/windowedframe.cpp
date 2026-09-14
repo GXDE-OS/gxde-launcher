@@ -796,7 +796,11 @@ void WindowedFrame::adjustPosition()
                 LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
                 anchors |= LayerShellQt::Window::AnchorLeft;
                 lsWin->setAnchors(anchors);
-                lsWin->setExclusiveZone(0);
+                // p is relative to the full QScreen geometry.  Ignore other
+                // layer surfaces' exclusive zones so a top panel does not
+                // shift the layer-shell origin and apply its height a second
+                // time to the launcher position.
+                lsWin->setExclusiveZone(-1);
                 lsWin->setLayer(LayerShellQt::Window::LayerTop);
                 lsWin->setScreenConfiguration(
                     LayerShellQt::Window::ScreenFromQWindow);
@@ -827,7 +831,7 @@ void WindowedFrame::setupLayerShell()
         LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
         anchors |= LayerShellQt::Window::AnchorLeft;
         lsWin->setAnchors(anchors);
-        lsWin->setExclusiveZone(0);
+        lsWin->setExclusiveZone(-1);
         lsWin->setLayer(LayerShellQt::Window::LayerTop);
         lsWin->setScreenConfiguration(
             LayerShellQt::Window::ScreenFromQWindow);
