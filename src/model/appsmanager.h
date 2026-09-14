@@ -135,7 +135,9 @@ private:
     void onSearchTimeOut();
     void refreshNotFoundIcon();
     void recordLaunch(const QString &appKey);
-    bool launchDesktopFileWithEnvironment(const QString &desktopFile, const QMap<QString, QString> &environment);
+    bool launchDesktopFileWithEnvironment(const QString &desktopFile,
+                                          const QMap<QString, QString> &environment,
+                                          const QStringList &extraArguments = QStringList());
 
 private slots:
     void onIconThemeChanged();

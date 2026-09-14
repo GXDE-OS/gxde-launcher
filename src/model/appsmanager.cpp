@@ -479,6 +479,23 @@ QMap<QString, QString> environmentForDisplayMode(AppsManager::ForcedDisplayMode 
     return env;
 }
 
+// ELECTRON_OZONE_PLATFORM_HINT is only a hint and is not supported by every
+// Electron version. Pass Chromium's Ozone switches as well so the selected
+// backend is actually enforced.
+QStringList argumentsForDisplayMode(AppsManager::ForcedDisplayMode mode) {
+    switch (mode) {
+    case AppsManager::DisplayModeWaylandOzone:
+        return {
+            QStringLiteral("--ozone-platform=wayland"),
+            QStringLiteral("--enable-features=UseOzonePlatform,WaylandWindowDecorations")
+        };
+    case AppsManager::DisplayModeX11Ozone:
+        return {QStringLiteral("--ozone-platform=x11")};
+    default:
+        return {};
+    }
+}
+
 } // namespace
 
 void AppsManager::launchApp(const QModelIndex &index) {
@@ -493,7 +510,9 @@ void AppsManager::launchApp(const QModelIndex &index) {
 
     const ForcedDisplayMode mode = forcedDisplayMode(appKey);
     if (mode != DisplayModeNone) {
-        launchDesktopFileWithEnvironment(appDesktop, environmentForDisplayMode(mode));
+        launchDesktopFileWithEnvironment(appDesktop,
+                                         environmentForDisplayMode(mode),
+                                         argumentsForDisplayMode(mode));
     } else {
         m_startManagerInter->LaunchWithTimestamp(appDesktop, 0);
     }
@@ -520,7 +539,9 @@ void AppsManager::setForcedDisplayMode(const QString &appKey, ForcedDisplayMode 
     settings.sync();
 }
 
-bool AppsManager::launchDesktopFileWithEnvironment(const QString &desktopFile, const QMap<QString, QString> &environment) {
+bool AppsManager::launchDesktopFileWithEnvironment(const QString &desktopFile,
+                                                   const QMap<QString, QString> &environment,
+                                                   const QStringList &extraArguments) {
     QFile file(desktopFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "launchDesktopFileWithEnvironment: cannot open" << desktopFile;
@@ -552,6 +573,21 @@ bool AppsManager::launchDesktopFileWithEnvironment(const QString &desktopFile, c
     }
 
     const QString program = parts.takeFirst();
+
+    // A desktop file may already specify another Ozone backend. Remove that
+    // switch before appending the user's forced choice; otherwise Electron's
+    // handling of duplicate switches depends on its Chromium version.
+    if (!extraArguments.isEmpty()) {
+        for (auto it = parts.begin(); it != parts.end();) {
+            if (it->startsWith(QLatin1String("--ozone-platform="))
+                || it->startsWith(QLatin1String("--ozone-platform-hint="))) {
+                it = parts.erase(it);
+            } else {
+                ++it;
+            }
+        }
+        parts.append(extraArguments);
+    }
 
     QProcessEnvironment processEnv = QProcessEnvironment::systemEnvironment();
     for (auto it = environment.constBegin(); it != environment.constEnd(); ++it)
