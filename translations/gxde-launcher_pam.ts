@@ -107,6 +107,38 @@
         <source>Use a proxy</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Unset preference</source>
+        <translation>Alisan ing kayluban</translation>
+    </message>
+    <message>
+        <source>Force launch in Wayland mode</source>
+        <translation>Sapilitan ing pamagpasimula king Wayland mode</translation>
+    </message>
+    <message>
+        <source>Force launch in X11 mode</source>
+        <translation>Sapilitan ing pamagpasimula king X11 mode</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>Itakda ing QT_QPA_PLATFORM</translation>
+    </message>
+    <message>
+        <source>Set GDK_BACKEND</source>
+        <translation>Itakda ing GDK_BACKEND</translation>
+    </message>
+    <message>
+        <source>Set Electron Ozone platform</source>
+        <translation>Itakda ing Electron Ozone platform</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>Itakda ing QT_QPA_PLATFORM (XCB)</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>Itakda ing QT_QPA_PLATFORM (D-XCB)</translation>
+    </message>
 </context>
 <context>
     <name>MiniCategoryWidget</name>

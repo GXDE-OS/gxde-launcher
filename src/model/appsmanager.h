@@ -71,6 +71,22 @@ public:
     void refreshAllList();
     const QPixmap getThemeIcon(const ItemInfo &itemInfo, const int size);
 
+    // 每应用「强制显示后端」开关。数值需与 MenuWorker::MenuAction 中对应的
+    // Force* 项一致，便于菜单项选中后直接保存。None 表示不强制。
+    enum ForcedDisplayMode {
+        DisplayModeNone = 0,
+        DisplayModeWaylandQt = 11,
+        DisplayModeWaylandGdk = 12,
+        DisplayModeWaylandOzone = 13,
+        DisplayModeX11QtXcb = 14,
+        DisplayModeX11QtDxcb = 15,
+        DisplayModeX11Gdk = 16,
+        DisplayModeX11Ozone = 17
+    };
+
+    ForcedDisplayMode forcedDisplayMode(const QString &appKey) const;
+    void setForcedDisplayMode(const QString &appKey, ForcedDisplayMode mode);
+
 signals:
     void itemDataChanged(const ItemInfo &info) const;
     void dataChanged(const AppsListModel::AppCategory category) const;
@@ -118,6 +134,8 @@ private:
     void refreshAppAutoStartCache(const QString &type = QString(), const QString &desktpFilePath = QString());
     void onSearchTimeOut();
     void refreshNotFoundIcon();
+    void recordLaunch(const QString &appKey);
+    bool launchDesktopFileWithEnvironment(const QString &desktopFile, const QMap<QString, QString> &environment);
 
 private slots:
     void onIconThemeChanged();

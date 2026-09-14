@@ -25,6 +25,7 @@
 
 #include <QMenu>
 #include <QSignalMapper>
+#include <QActionGroup>
 #include <QProcess>
 #include <QFile>
 #include <QTextStream>
@@ -38,6 +39,41 @@
 
 static QString ChainsProxy_path = QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first()
         + "/deepin/proxychains.conf";
+
+static bool anchorWaylandPopupAt(QMenu *menu, const QPoint &anchorPos) {
+    QWindow *win = menu->windowHandle();
+    if (!win)
+        return false;
+    LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win);
+    if (!lsWin)
+        return false;
+
+    const QSize sz = menu->sizeHint();
+    QScreen *scr = QGuiApplication::screenAt(anchorPos);
+    if (!scr)
+        scr = QGuiApplication::primaryScreen();
+    const QRect sg = scr ? scr->geometry() : QRect();
+    if (sg.isNull())
+        return false;
+
+    int x = anchorPos.x();
+    int y = anchorPos.y();
+    const int w = sz.width();
+    const int h = sz.height();
+    if (x + w > sg.right() + 1) x = anchorPos.x() - w;
+    if (y + h > sg.bottom() + 1) y = anchorPos.y() - h;
+    if (x < sg.left()) x = sg.left();
+    if (y < sg.top()) y = sg.top();
+
+    lsWin->setLayer(LayerShellQt::Window::LayerTop);
+    LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
+    anchors |= LayerShellQt::Window::AnchorLeft;
+    lsWin->setAnchors(anchors);
+    lsWin->setExclusiveZone(0);
+    lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+    lsWin->setMargins(QMargins(x - sg.left(), y - sg.top(), 0, 0));
+    return true;
+}
 
 MenuWorker::MenuWorker(QObject *parent) : QObject(parent)
 {
@@ -75,6 +111,8 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     m_isMarkLaunched = !m_currentModelIndex.data(AppsListModel::AppNewInstallRole).toBool();
 
     qDebug() << "appKey" << m_appKey;
+
+    const bool isWayland = QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive);
 
     QMenu *menu = new QMenu;
 
@@ -171,6 +209,10 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     menu->addAction(uninstall);
 #endif
 
+    if (isWayland) {
+        addForcedDisplaySubMenus(menu);
+    }
+
     connect(open, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     connect(desktop, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     connect(dock, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
@@ -190,7 +232,6 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     connect(menu, &QMenu::aboutToHide, this, &MenuWorker::handleMenuClosed);
     connect(menu, &QMenu::aboutToHide, menu, &QMenu::deleteLater);
 
-    const bool isWayland = QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive);
     if (isWayland) {
         menu->adjustSize();
         menu->setFixedSize(menu->sizeHint());
@@ -317,6 +358,7 @@ void MenuWorker::handleMenuAction(int index)
         break;
     case MarkLaunched:
         handleToMarkLaunched();
+        break;
     default:
         break;
     }
@@ -518,4 +560,117 @@ void MenuWorker::handleToMarkLaunched()
 void MenuWorker::handleToPrimeNvidia()
 {
     m_launcherInterface->SetPrimeNvidia(m_appKey, !m_isItemPrimeNvidia);
+}
+
+void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
+    QMenu *waylandMenu = menu->addMenu(tr("Force launch in Wayland mode"));
+    QMenu *x11Menu = menu->addMenu(tr("Force launch in X11 mode"));
+
+    waylandMenu->menuAction()->setCheckable(true);
+    x11Menu->menuAction()->setCheckable(true);
+
+    if (QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive)) {
+        auto setupWaylandSubMenu = [this](QMenu *subMenu) {
+            connect(subMenu, &QMenu::aboutToShow, this, [this, subMenu]() {
+                subMenu->setFixedSize(subMenu->sizeHint());
+                QTimer::singleShot(0, this, [this, subMenu]() {
+                    subMenu->winId();
+                    Wayland::TreelandDdeShell::setAutoPlacement(subMenu->windowHandle(), 0);
+                    anchorWaylandPopupAt(subMenu, subMenu->mapToGlobal(QPoint(0, 0)));
+                });
+            });
+        };
+        setupWaylandSubMenu(waylandMenu);
+        setupWaylandSubMenu(x11Menu);
+    }
+
+    auto isWaylandMode = [](AppsManager::ForcedDisplayMode mode) {
+        return mode == AppsManager::DisplayModeWaylandQt
+            || mode == AppsManager::DisplayModeWaylandGdk
+            || mode == AppsManager::DisplayModeWaylandOzone;
+    };
+    auto isX11Mode = [](AppsManager::ForcedDisplayMode mode) {
+        return mode == AppsManager::DisplayModeX11QtXcb
+            || mode == AppsManager::DisplayModeX11QtDxcb
+            || mode == AppsManager::DisplayModeX11Gdk
+            || mode == AppsManager::DisplayModeX11Ozone;
+    };
+
+    // 每个母菜单一组互斥项，组内第一个「Unset preference」作为默认/清除项。
+    QActionGroup *waylandGroup = new QActionGroup(menu);
+    waylandGroup->setExclusive(true);
+    QActionGroup *x11Group = new QActionGroup(menu);
+    x11Group->setExclusive(true);
+
+    QAction *waylandUnset = waylandMenu->addAction(tr("Unset preference"));
+    waylandUnset->setCheckable(true);
+    waylandGroup->addAction(waylandUnset);
+
+    QAction *x11Unset = x11Menu->addAction(tr("Unset preference"));
+    x11Unset->setCheckable(true);
+    x11Group->addAction(x11Unset);
+
+    // 具体后端项：点击后仅记住选择并打勾，不立即启动应用。选中一侧时把另一侧
+    // 复位到「Unset preference」，从而保持两组之间互斥。
+    auto makeForceAction = [&](QActionGroup *group, QMenu *subMenu, const QString &text, AppsManager::ForcedDisplayMode mode) {
+        QAction *action = subMenu->addAction(text);
+        action->setCheckable(true);
+        group->addAction(action);
+        connect(action, &QAction::triggered, this, [this, mode, waylandMenu, x11Menu, waylandUnset, x11Unset, isWaylandMode, isX11Mode]() {
+            m_appManager->setForcedDisplayMode(m_appKey, mode);
+            if (isWaylandMode(mode))
+                x11Unset->setChecked(true);
+            else
+                waylandUnset->setChecked(true);
+            waylandMenu->menuAction()->setChecked(isWaylandMode(mode));
+            x11Menu->menuAction()->setChecked(isX11Mode(mode));
+        });
+        return action;
+    };
+
+    QAction *waylandQt = makeForceAction(waylandGroup, waylandMenu, tr("Set QT_QPA_PLATFORM"), AppsManager::DisplayModeWaylandQt);
+    QAction *waylandGdk = makeForceAction(waylandGroup, waylandMenu, tr("Set GDK_BACKEND"), AppsManager::DisplayModeWaylandGdk);
+    QAction *waylandOzone = makeForceAction(waylandGroup, waylandMenu, tr("Set Electron Ozone platform"), AppsManager::DisplayModeWaylandOzone);
+
+    QAction *x11QtXcb = makeForceAction(x11Group, x11Menu, tr("Set QT_QPA_PLATFORM (XCB)"), AppsManager::DisplayModeX11QtXcb);
+    QAction *x11QtDxcb = makeForceAction(x11Group, x11Menu, tr("Set QT_QPA_PLATFORM (D-XCB)"), AppsManager::DisplayModeX11QtDxcb);
+    QAction *x11Gdk = makeForceAction(x11Group, x11Menu, tr("Set GDK_BACKEND"), AppsManager::DisplayModeX11Gdk);
+    QAction *x11Ozone = makeForceAction(x11Group, x11Menu, tr("Set Electron Ozone platform"), AppsManager::DisplayModeX11Ozone);
+
+    // 两个「Unset preference」语义相同：清除整个强制后端设置，回到默认启动。
+    auto unsetForcedMode = [this, waylandMenu, x11Menu, waylandUnset, x11Unset]() {
+        m_appManager->setForcedDisplayMode(m_appKey, AppsManager::DisplayModeNone);
+        waylandUnset->setChecked(true);
+        x11Unset->setChecked(true);
+        waylandMenu->menuAction()->setChecked(false);
+        x11Menu->menuAction()->setChecked(false);
+    };
+    connect(waylandUnset, &QAction::triggered, this, unsetForcedMode);
+    connect(x11Unset, &QAction::triggered, this, unsetForcedMode);
+
+    // 反映当前已保存的选择
+    const AppsManager::ForcedDisplayMode mode = m_appManager->forcedDisplayMode(m_appKey);
+    QAction *checkedWayland = nullptr;
+    QAction *checkedX11 = nullptr;
+    switch (mode) {
+    case AppsManager::DisplayModeWaylandQt:    checkedWayland = waylandQt;    break;
+    case AppsManager::DisplayModeWaylandGdk:   checkedWayland = waylandGdk;   break;
+    case AppsManager::DisplayModeWaylandOzone: checkedWayland = waylandOzone; break;
+    case AppsManager::DisplayModeX11QtXcb:     checkedX11 = x11QtXcb;         break;
+    case AppsManager::DisplayModeX11QtDxcb:    checkedX11 = x11QtDxcb;        break;
+    case AppsManager::DisplayModeX11Gdk:       checkedX11 = x11Gdk;           break;
+    case AppsManager::DisplayModeX11Ozone:     checkedX11 = x11Ozone;         break;
+    default: break;
+    }
+    if (checkedWayland)
+        checkedWayland->setChecked(true);
+    else
+        waylandUnset->setChecked(true);
+    if (checkedX11)
+        checkedX11->setChecked(true);
+    else
+        x11Unset->setChecked(true);
+
+    waylandMenu->menuAction()->setChecked(isWaylandMode(mode));
+    x11Menu->menuAction()->setChecked(isX11Mode(mode));
 }

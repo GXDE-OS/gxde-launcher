@@ -41,6 +41,8 @@
 #include "src/model/appsmanager.h"
 #include "src/model/appslistmodel.h"
 
+class QMenu;
+
 class MenuWorker : public QObject
 {
     Q_OBJECT
@@ -121,6 +123,7 @@ private:
 
     bool isElectronApp(const QString &desktopPath);
     void setElectronAppScaling(const QString &appKey, bool enableScaling);
+    void addForcedDisplaySubMenus(QMenu *menu);
 };
 
 #endif // MENUWORKER_H

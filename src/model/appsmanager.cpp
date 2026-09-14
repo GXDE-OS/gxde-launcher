@@ -45,7 +45,10 @@
 #include <QScopedPointer>
 
 #include <QProcess>
+#include <QProcessEnvironment>
 #include <QGuiApplication>
+#include <QFile>
+#include <QTextStream>
 
 DWIDGET_USE_NAMESPACE
 
@@ -386,12 +389,8 @@ void AppsManager::searchApp(const QString &keywords)
     m_searchText = keywords;
 }
 
-void AppsManager::launchApp(const QModelIndex &index)
+void AppsManager::recordLaunch(const QString &appKey)
 {
-    const QString appDesktop = index.data(AppsListModel::AppDesktopRole).toString();
-    qDebug() << appDesktop;
-    QString appKey = index.data(AppsListModel::AppKeyRole).toString();
-    qDebug() << appKey;
     markLaunched(appKey);
 
     for (ItemInfo &info : m_userSortedList) {
@@ -411,9 +410,166 @@ void AppsManager::launchApp(const QModelIndex &index)
     }
 
     refreshUserInfoList();
+}
 
-    if (!appDesktop.isEmpty())
+namespace {
+
+QString stripExecFieldCodes(const QString &exec) {
+    QString result;
+    result.reserve(exec.size());
+
+    for (int i = 0; i < exec.size(); ++i) {
+        const QChar ch = exec.at(i);
+        if (ch != QLatin1Char('%')) {
+            result.append(ch);
+            continue;
+        }
+
+        if (i + 1 >= exec.size()) {
+            result.append(ch);
+            break;
+        }
+
+        const QChar next = exec.at(i + 1);
+        if (next == QLatin1Char('%')) {
+            result.append(QLatin1Char('%'));
+            ++i;
+            continue;
+        }
+
+        if (QStringLiteral("fFuUdDnNickvm").contains(next)) {
+            ++i; // drop the field code entirely
+            continue;
+        }
+
+        result.append(ch);
+    }
+
+    return result;
+}
+
+// 把「强制显示后端」枚举转换为需要注入到子进程的环境变量。
+QMap<QString, QString> environmentForDisplayMode(AppsManager::ForcedDisplayMode mode) {
+    QMap<QString, QString> env;
+    switch (mode) {
+    case AppsManager::DisplayModeWaylandQt:
+        env.insert(QStringLiteral("QT_QPA_PLATFORM"), QStringLiteral("wayland"));
+        break;
+    case AppsManager::DisplayModeWaylandGdk:
+        env.insert(QStringLiteral("GDK_BACKEND"), QStringLiteral("wayland"));
+        break;
+    case AppsManager::DisplayModeWaylandOzone:
+        env.insert(QStringLiteral("ELECTRON_OZONE_PLATFORM_HINT"), QStringLiteral("wayland"));
+        break;
+    case AppsManager::DisplayModeX11QtXcb:
+        env.insert(QStringLiteral("QT_QPA_PLATFORM"), QStringLiteral("xcb"));
+        break;
+    case AppsManager::DisplayModeX11QtDxcb:
+        env.insert(QStringLiteral("QT_QPA_PLATFORM"), QStringLiteral("dxcb"));
+        break;
+    case AppsManager::DisplayModeX11Gdk:
+        env.insert(QStringLiteral("GDK_BACKEND"), QStringLiteral("x11"));
+        break;
+    case AppsManager::DisplayModeX11Ozone:
+        env.insert(QStringLiteral("ELECTRON_OZONE_PLATFORM_HINT"), QStringLiteral("x11"));
+        break;
+    default:
+        break;
+    }
+    return env;
+}
+
+} // namespace
+
+void AppsManager::launchApp(const QModelIndex &index) {
+    const QString appDesktop = index.data(AppsListModel::AppDesktopRole).toString();
+    const QString appKey = index.data(AppsListModel::AppKeyRole).toString();
+    qDebug() << appDesktop << appKey;
+
+    recordLaunch(appKey);
+
+    if (appDesktop.isEmpty())
+        return;
+
+    const ForcedDisplayMode mode = forcedDisplayMode(appKey);
+    if (mode != DisplayModeNone) {
+        launchDesktopFileWithEnvironment(appDesktop, environmentForDisplayMode(mode));
+    } else {
         m_startManagerInter->LaunchWithTimestamp(appDesktop, 0);
+    }
+}
+
+AppsManager::ForcedDisplayMode AppsManager::forcedDisplayMode(const QString &appKey) const {
+    if (appKey.isEmpty())
+        return DisplayModeNone;
+
+    QSettings settings(QSettings::IniFormat, QSettings::UserScope,
+                       QStringLiteral("deepin"), QStringLiteral("gxde-launcher-forced-display-mode"));
+    settings.beginGroup(QStringLiteral("ForcedDisplayMode"));
+    return static_cast<ForcedDisplayMode>(settings.value(appKey, DisplayModeNone).toInt());
+}
+
+void AppsManager::setForcedDisplayMode(const QString &appKey, ForcedDisplayMode mode) {
+    if (appKey.isEmpty())
+        return;
+
+    QSettings settings(QSettings::IniFormat, QSettings::UserScope,
+                       QStringLiteral("deepin"), QStringLiteral("gxde-launcher-forced-display-mode"));
+    settings.beginGroup(QStringLiteral("ForcedDisplayMode"));
+    settings.setValue(appKey, static_cast<int>(mode));
+    settings.sync();
+}
+
+bool AppsManager::launchDesktopFileWithEnvironment(const QString &desktopFile, const QMap<QString, QString> &environment) {
+    QFile file(desktopFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "launchDesktopFileWithEnvironment: cannot open" << desktopFile;
+        return false;
+    }
+
+    QString execLine;
+    QString workingDir;
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        const QString line = in.readLine();
+        if (line.startsWith(QLatin1String("Exec="))) {
+            execLine = line.mid(5);
+        } else if (line.startsWith(QLatin1String("Path="))) {
+            workingDir = line.mid(5);
+        }
+    }
+    file.close();
+
+    if (execLine.trimmed().isEmpty()) {
+        qWarning() << "launchDesktopFileWithEnvironment: empty Exec in" << desktopFile;
+        return false;
+    }
+
+    QStringList parts = QProcess::splitCommand(stripExecFieldCodes(execLine));
+    if (parts.isEmpty()) {
+        qWarning() << "launchDesktopFileWithEnvironment: cannot parse Exec in" << desktopFile;
+        return false;
+    }
+
+    const QString program = parts.takeFirst();
+
+    QProcessEnvironment processEnv = QProcessEnvironment::systemEnvironment();
+    for (auto it = environment.constBegin(); it != environment.constEnd(); ++it)
+        processEnv.insert(it.key(), it.value());
+
+    QProcess *process = new QProcess(this);
+    process->setProgram(program);
+    process->setArguments(parts);
+    if (!workingDir.isEmpty())
+        process->setWorkingDirectory(workingDir);
+    process->setProcessEnvironment(processEnv);
+
+    const bool started = process->startDetached();
+    if (!started)
+        qWarning() << "launchDesktopFileWithEnvironment: failed to launch" << program << process->errorString();
+    process->deleteLater();
+
+    return started;
 }
 
 void AppsManager::uninstallAppWithUninstaller(const QString &appKey)

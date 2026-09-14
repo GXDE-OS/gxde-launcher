@@ -4,62 +4,62 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="854"/>
+        <location filename="../src/model/appsmanager.cpp" line="1021"/>
         <source>No search results</source>
         <translation>검색결과가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="159"/>
+        <location filename="../src/model/appsmanager.cpp" line="162"/>
         <source>Internet</source>
         <translation>인터넷</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="160"/>
+        <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Chat</source>
         <translation>채팅</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="161"/>
+        <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Music</source>
         <translation>음악</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="162"/>
+        <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Video</source>
         <translation>비디오</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="163"/>
+        <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Graphics</source>
         <translation>그래픽</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="165"/>
+        <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>Office</source>
         <translation>오피스</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="166"/>
+        <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Reading</source>
         <translation>읽기</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="167"/>
+        <location filename="../src/model/appsmanager.cpp" line="170"/>
         <source>Development</source>
         <translation>개발</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="168"/>
+        <location filename="../src/model/appsmanager.cpp" line="171"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="164"/>
+        <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Games</source>
         <translation>게임</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="169"/>
+        <location filename="../src/model/appsmanager.cpp" line="172"/>
         <source>Other</source>
         <translation>기타</translation>
     </message>
@@ -79,7 +79,7 @@
         <translation type="vanished">%1을(를) 제거하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="564"/>
+        <location filename="../src/fullscreenframe.cpp" line="571"/>
         <source>GXDE Launcher</source>
         <translation>GXDE 런처</translation>
     </message>
@@ -87,67 +87,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="91"/>
+        <location filename="../src/worker/menuworker.cpp" line="142"/>
         <source>Remove from desktop</source>
         <translation>바탕 화면에서 제거</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="96"/>
+        <location filename="../src/worker/menuworker.cpp" line="147"/>
         <source>Remove from dock</source>
         <translation>도크(dock)에서 제거</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="106"/>
+        <location filename="../src/worker/menuworker.cpp" line="157"/>
         <source>Uninstall</source>
         <translation>제거</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="136"/>
+        <location filename="../src/worker/menuworker.cpp" line="187"/>
         <source>Disable display scaling</source>
         <translation>디스플레이 크기 조정 해제하기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="84"/>
+        <location filename="../src/worker/menuworker.cpp" line="135"/>
         <source>Open</source>
         <translation>열기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="86"/>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
         <source>Use Nvidia Only</source>
         <translation>Nvidia 전용 사용</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="92"/>
+        <location filename="../src/worker/menuworker.cpp" line="143"/>
         <source>Send to desktop</source>
         <translation>바탕화면으로 보내기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="97"/>
+        <location filename="../src/worker/menuworker.cpp" line="148"/>
         <source>Send to dock</source>
         <translation>도크(dock)로 보내기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="101"/>
+        <location filename="../src/worker/menuworker.cpp" line="152"/>
         <source>Remove from startup</source>
         <translation>시작에서 제거하기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="102"/>
+        <location filename="../src/worker/menuworker.cpp" line="153"/>
         <source>Add to startup</source>
         <translation>시작에 추가하기</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="126"/>
+        <location filename="../src/worker/menuworker.cpp" line="177"/>
         <source>Use a proxy</source>
         <translation>프록시 사용</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="88"/>
+        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <source>Force launch in Wayland mode</source>
+        <translation>Wayland 모드로 강제 실행</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <source>Force launch in X11 mode</source>
+        <translation>X11 모드로 강제 실행</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="613"/>
+        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <source>Unset preference</source>
+        <translation>설정 해제</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>QT_QPA_PLATFORM 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="640"/>
+        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <source>Set GDK_BACKEND</source>
+        <translation>GDK_BACKEND 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="641"/>
+        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <source>Set Electron Ozone platform</source>
+        <translation>Electron Ozone 플랫폼 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>QT_QPA_PLATFORM (XCB) 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>QT_QPA_PLATFORM (D-XCB) 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Disable App Sandbox</source>
         <translation>앱 샌드박스 비활성화</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="110"/>
+        <location filename="../src/worker/menuworker.cpp" line="161"/>
         <source>Mark Launched</source>
         <translation>
 시작 표시</translation>
@@ -161,78 +204,78 @@
         <translation>모든 앱</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="118"/>
-        <location filename="../src/fullscreenframe.cpp" line="119"/>
+        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="121"/>
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
         <translation>인터넷</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="122"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
         <translation>채팅</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="121"/>
+        <location filename="../src/fullscreenframe.cpp" line="123"/>
         <location filename="../src/widgets/categorybutton.cpp" line="141"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="49"/>
         <source>Music</source>
         <translation>음악</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="122"/>
+        <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="144"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="50"/>
         <source>Video</source>
         <translation>비디오</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="123"/>
+        <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
         <translation>그래픽</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="124"/>
+        <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
         <translation>게임</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="125"/>
+        <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
         <translation>오피스</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="126"/>
+        <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
         <translation>읽기</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="127"/>
+        <location filename="../src/fullscreenframe.cpp" line="129"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
         <translation>개발</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="128"/>
+        <location filename="../src/fullscreenframe.cpp" line="130"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="129"/>
+        <location filename="../src/fullscreenframe.cpp" line="131"/>
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>

@@ -4,62 +4,62 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="854"/>
+        <location filename="../src/model/appsmanager.cpp" line="1021"/>
         <source>No search results</source>
         <translation>ھېچقانداق ئىزدەش نەتىجىسى تىپىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="159"/>
+        <location filename="../src/model/appsmanager.cpp" line="162"/>
         <source>Internet</source>
         <translation>ئىنتىرنېت تورى</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="160"/>
+        <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Chat</source>
         <translation>ئالاقە</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="161"/>
+        <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Music</source>
         <translation>مۇزىكا</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="162"/>
+        <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Video</source>
         <translation>سىن</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="163"/>
+        <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Graphics</source>
         <translation>گىرافىك</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="165"/>
+        <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>Office</source>
         <translation>ئىشخانا</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="166"/>
+        <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Reading</source>
         <translation>ئوقۇشلۇق</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="167"/>
+        <location filename="../src/model/appsmanager.cpp" line="170"/>
         <source>Development</source>
         <translation>پىروگرامما</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="168"/>
+        <location filename="../src/model/appsmanager.cpp" line="171"/>
         <source>System</source>
         <translation>سېستىما</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="164"/>
+        <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Games</source>
         <translation>ئويۇنچا</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="169"/>
+        <location filename="../src/model/appsmanager.cpp" line="172"/>
         <source>Other</source>
         <translation>باشقا</translation>
     </message>
@@ -75,7 +75,7 @@
         <translation type="vanished">جەزىملەشتۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="564"/>
+        <location filename="../src/fullscreenframe.cpp" line="571"/>
         <source>GXDE Launcher</source>
         <translation>GXDE لاۋنچەر</translation>
     </message>
@@ -83,67 +83,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="91"/>
+        <location filename="../src/worker/menuworker.cpp" line="142"/>
         <source>Remove from desktop</source>
         <translation>Desktoptan azal</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="96"/>
+        <location filename="../src/worker/menuworker.cpp" line="147"/>
         <source>Remove from dock</source>
         <translation>Docktan azal</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="106"/>
+        <location filename="../src/worker/menuworker.cpp" line="157"/>
         <source>Uninstall</source>
         <translation>Qurmaq</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="136"/>
+        <location filename="../src/worker/menuworker.cpp" line="187"/>
         <source>Disable display scaling</source>
         <translation>Koʻrsatish miqyosini o`chirish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="84"/>
+        <location filename="../src/worker/menuworker.cpp" line="135"/>
         <source>Open</source>
         <translation>ئوچۇق</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="86"/>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
         <source>Use Nvidia Only</source>
         <translation>Faqat Nvidia dan foydalanish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="92"/>
+        <location filename="../src/worker/menuworker.cpp" line="143"/>
         <source>Send to desktop</source>
         <translation>Desktonga yuborish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="97"/>
+        <location filename="../src/worker/menuworker.cpp" line="148"/>
         <source>Send to dock</source>
         <translation>Dockga yuborish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="101"/>
+        <location filename="../src/worker/menuworker.cpp" line="152"/>
         <source>Remove from startup</source>
         <translation>Startdan azal</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="102"/>
+        <location filename="../src/worker/menuworker.cpp" line="153"/>
         <source>Add to startup</source>
         <translation>Startga qo`shish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="126"/>
+        <location filename="../src/worker/menuworker.cpp" line="177"/>
         <source>Use a proxy</source>
         <translation>Proxy dan foydalanish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="88"/>
+        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <source>Force launch in Wayland mode</source>
+        <translation>Wayland ھالىتىدە مەجبۇرىي قوزغىتىش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <source>Force launch in X11 mode</source>
+        <translation>X11 ھالىتىدە مەجبۇرىي قوزغىتىش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="613"/>
+        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <source>Unset preference</source>
+        <translation>تەڭشەكنى بىكار قىلىش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>QT_QPA_PLATFORM تەڭشەش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="640"/>
+        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <source>Set GDK_BACKEND</source>
+        <translation>GDK_BACKEND تەڭشەش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="641"/>
+        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <source>Set Electron Ozone platform</source>
+        <translation>Electron Ozone سۇپىسىنى تەڭشەش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>QT_QPA_PLATFORM (XCB) تەڭشەش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>QT_QPA_PLATFORM (D-XCB) تەڭشەش</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Disable App Sandbox</source>
         <translation>App Sandboxni o`chirish</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="110"/>
+        <location filename="../src/worker/menuworker.cpp" line="161"/>
         <source>Mark Launched</source>
         <translation>Ishga tushganini belgilash</translation>
     </message>
@@ -156,78 +199,78 @@
         <translation>بەتەر قۇرغۇچلار</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="118"/>
-        <location filename="../src/fullscreenframe.cpp" line="119"/>
+        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="121"/>
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
         <translation>ئىنتىرنېت تورى</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="122"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
         <translation>ئالاقە</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="121"/>
+        <location filename="../src/fullscreenframe.cpp" line="123"/>
         <location filename="../src/widgets/categorybutton.cpp" line="141"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="49"/>
         <source>Music</source>
         <translation>مۇزىكا</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="122"/>
+        <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="144"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="50"/>
         <source>Video</source>
         <translation>سىن</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="123"/>
+        <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
         <translation>گىرافىك</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="124"/>
+        <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
         <translation>ئويۇن</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="125"/>
+        <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
         <translation>ئىشخانا</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="126"/>
+        <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
         <translation>ئوقۇشلۇق</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="127"/>
+        <location filename="../src/fullscreenframe.cpp" line="129"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
         <translation>پىروگرامما</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="128"/>
+        <location filename="../src/fullscreenframe.cpp" line="130"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
         <translation>سىستېما</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="129"/>
+        <location filename="../src/fullscreenframe.cpp" line="131"/>
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>

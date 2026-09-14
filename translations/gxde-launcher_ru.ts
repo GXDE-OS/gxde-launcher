@@ -4,62 +4,62 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="854"/>
+        <location filename="../src/model/appsmanager.cpp" line="1021"/>
         <source>No search results</source>
         <translation>Ничего не найдено</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="159"/>
+        <location filename="../src/model/appsmanager.cpp" line="162"/>
         <source>Internet</source>
         <translation>Интернет</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="160"/>
+        <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Chat</source>
         <translation>Общение</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="161"/>
+        <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Music</source>
         <translation>Музыка</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="162"/>
+        <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="163"/>
+        <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Graphics</source>
         <translation>Графика</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="165"/>
+        <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>Office</source>
         <translation>Офис</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="166"/>
+        <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Reading</source>
         <translation>Чтение</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="167"/>
+        <location filename="../src/model/appsmanager.cpp" line="170"/>
         <source>Development</source>
         <translation>Разработка</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="168"/>
+        <location filename="../src/model/appsmanager.cpp" line="171"/>
         <source>System</source>
         <translation>Система</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="164"/>
+        <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Games</source>
         <translation>Игры</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="169"/>
+        <location filename="../src/model/appsmanager.cpp" line="172"/>
         <source>Other</source>
         <translation>Другое</translation>
     </message>
@@ -79,7 +79,7 @@
         <translation type="vanished">Уверены, что хотите удалить %1 ?</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="564"/>
+        <location filename="../src/fullscreenframe.cpp" line="571"/>
         <source>GXDE Launcher</source>
         <translation>Запуск GXDE</translation>
     </message>
@@ -87,67 +87,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="91"/>
+        <location filename="../src/worker/menuworker.cpp" line="142"/>
         <source>Remove from desktop</source>
         <translation>Удалить с рабочего стола</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="96"/>
+        <location filename="../src/worker/menuworker.cpp" line="147"/>
         <source>Remove from dock</source>
         <translation>Убрать из дока</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="106"/>
+        <location filename="../src/worker/menuworker.cpp" line="157"/>
         <source>Uninstall</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="136"/>
+        <location filename="../src/worker/menuworker.cpp" line="187"/>
         <source>Disable display scaling</source>
         <translation>Отключить масштабирование дисплея</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="84"/>
+        <location filename="../src/worker/menuworker.cpp" line="135"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="86"/>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
         <source>Use Nvidia Only</source>
         <translation>Использовать только Nvidia</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="92"/>
+        <location filename="../src/worker/menuworker.cpp" line="143"/>
         <source>Send to desktop</source>
         <translation>Отправить на рабочий стол</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="97"/>
+        <location filename="../src/worker/menuworker.cpp" line="148"/>
         <source>Send to dock</source>
         <translation>Отправить в док</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="101"/>
+        <location filename="../src/worker/menuworker.cpp" line="152"/>
         <source>Remove from startup</source>
         <translation>Удалить из автозагрузки</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="102"/>
+        <location filename="../src/worker/menuworker.cpp" line="153"/>
         <source>Add to startup</source>
         <translation>Добавить в автозагрузку</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="126"/>
+        <location filename="../src/worker/menuworker.cpp" line="177"/>
         <source>Use a proxy</source>
         <translation>Использовать прокси</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="88"/>
+        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <source>Force launch in Wayland mode</source>
+        <translation>Принудительный запуск в режиме Wayland</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <source>Force launch in X11 mode</source>
+        <translation>Принудительный запуск в режиме X11</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="613"/>
+        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <source>Unset preference</source>
+        <translation>Отменить настройку</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>Задать QT_QPA_PLATFORM</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="640"/>
+        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <source>Set GDK_BACKEND</source>
+        <translation>Задать GDK_BACKEND</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="641"/>
+        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <source>Set Electron Ozone platform</source>
+        <translation>Задать платформу Electron Ozone</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>Задать QT_QPA_PLATFORM (XCB)</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>Задать QT_QPA_PLATFORM (D-XCB)</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Disable App Sandbox</source>
         <translation>Отключить песочницу приложения</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="110"/>
+        <location filename="../src/worker/menuworker.cpp" line="161"/>
         <source>Mark Launched</source>
         <translation>Пометить как запущенный</translation>
     </message>
@@ -160,78 +203,78 @@
         <translation>Все Приложения</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="118"/>
-        <location filename="../src/fullscreenframe.cpp" line="119"/>
+        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="121"/>
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
         <translation>Интернет</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="122"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
         <translation>Чат</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="121"/>
+        <location filename="../src/fullscreenframe.cpp" line="123"/>
         <location filename="../src/widgets/categorybutton.cpp" line="141"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="49"/>
         <source>Music</source>
         <translation>Музыка</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="122"/>
+        <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="144"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="50"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="123"/>
+        <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
         <translation>Графика</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="124"/>
+        <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
         <translation>Игры</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="125"/>
+        <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
         <translation>Офис</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="126"/>
+        <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
         <translation>Чтение</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="127"/>
+        <location filename="../src/fullscreenframe.cpp" line="129"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
         <translation>Разработка</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="128"/>
+        <location filename="../src/fullscreenframe.cpp" line="130"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
         <translation>Система</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="129"/>
+        <location filename="../src/fullscreenframe.cpp" line="131"/>
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>

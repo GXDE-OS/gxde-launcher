@@ -107,6 +107,38 @@
         <source>Use a proxy</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Unset preference</source>
+        <translation>Desaniciar preferencia</translation>
+    </message>
+    <message>
+        <source>Force launch in Wayland mode</source>
+        <translation>Forzar l&apos;arranque en mou Wayland</translation>
+    </message>
+    <message>
+        <source>Force launch in X11 mode</source>
+        <translation>Forzar l&apos;arranque en mou X11</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>Afitar QT_QPA_PLATFORM</translation>
+    </message>
+    <message>
+        <source>Set GDK_BACKEND</source>
+        <translation>Afitar GDK_BACKEND</translation>
+    </message>
+    <message>
+        <source>Set Electron Ozone platform</source>
+        <translation>Afitar plataforma Electron Ozone</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>Afitar QT_QPA_PLATFORM (XCB)</translation>
+    </message>
+    <message>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>Afitar QT_QPA_PLATFORM (D-XCB)</translation>
+    </message>
 </context>
 <context>
     <name>MiniCategoryWidget</name>

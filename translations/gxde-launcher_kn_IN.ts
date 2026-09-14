@@ -4,62 +4,62 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="854"/>
+        <location filename="../src/model/appsmanager.cpp" line="1021"/>
         <source>No search results</source>
         <translation>ಹುಡುಕಾಟದ ಫಲಿತಾಂಶಗಳು ಇಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="159"/>
+        <location filename="../src/model/appsmanager.cpp" line="162"/>
         <source>Internet</source>
         <translation>ಇಂಟರ್ನೆಟ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="160"/>
+        <location filename="../src/model/appsmanager.cpp" line="163"/>
         <source>Chat</source>
         <translation>ಚಾಟ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="161"/>
+        <location filename="../src/model/appsmanager.cpp" line="164"/>
         <source>Music</source>
         <translation>ಸಂಗೀತ</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="162"/>
+        <location filename="../src/model/appsmanager.cpp" line="165"/>
         <source>Video</source>
         <translation>ವೀಡಿಯೋ</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="163"/>
+        <location filename="../src/model/appsmanager.cpp" line="166"/>
         <source>Graphics</source>
         <translation>ಗ್ರಾಫಿಕ್ಸ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="165"/>
+        <location filename="../src/model/appsmanager.cpp" line="168"/>
         <source>Office</source>
         <translation>ಓಫಿಸ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="166"/>
+        <location filename="../src/model/appsmanager.cpp" line="169"/>
         <source>Reading</source>
         <translation>ವಾಚನ</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="167"/>
+        <location filename="../src/model/appsmanager.cpp" line="170"/>
         <source>Development</source>
         <translation>ವಿಕಾಸ</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="168"/>
+        <location filename="../src/model/appsmanager.cpp" line="171"/>
         <source>System</source>
         <translation>ಸಿಸ್ಟಮ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="164"/>
+        <location filename="../src/model/appsmanager.cpp" line="167"/>
         <source>Games</source>
         <translation>ಗೇಮ್ಸ್</translation>
     </message>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="169"/>
+        <location filename="../src/model/appsmanager.cpp" line="172"/>
         <source>Other</source>
         <translation>ಇತರೆ</translation>
     </message>
@@ -67,7 +67,7 @@
 <context>
     <name>FullScreenFrame</name>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="564"/>
+        <location filename="../src/fullscreenframe.cpp" line="571"/>
         <source>GXDE Launcher</source>
         <translation>ಜಿಎಕ್ಸ್ಡಿಇ ಲಾಂಚರ್</translation>
     </message>
@@ -75,67 +75,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="91"/>
+        <location filename="../src/worker/menuworker.cpp" line="142"/>
         <source>Remove from desktop</source>
         <translation>ಡೆಸ್ಕ್ಟಾಪ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="96"/>
+        <location filename="../src/worker/menuworker.cpp" line="147"/>
         <source>Remove from dock</source>
         <translation>ಡಾಕ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="106"/>
+        <location filename="../src/worker/menuworker.cpp" line="157"/>
         <source>Uninstall</source>
         <translation>ಅನಿಸ್ಟಾಲ್</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="136"/>
+        <location filename="../src/worker/menuworker.cpp" line="187"/>
         <source>Disable display scaling</source>
         <translation>ಡಿಸ್ಪ್ಲೇ ಸ್ಕೇಲಿಂಗ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="84"/>
+        <location filename="../src/worker/menuworker.cpp" line="135"/>
         <source>Open</source>
         <translation>ತೆರೆಯಿರಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="86"/>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
         <source>Use Nvidia Only</source>
         <translation>ನಿವಿಡಿಯಾ ಮಾತ್ರ ಬಳಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="92"/>
+        <location filename="../src/worker/menuworker.cpp" line="143"/>
         <source>Send to desktop</source>
         <translation>ಡೆಸ್ಕ್ಟಾಪ್ ಗೆ ಕಳುಹಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="97"/>
+        <location filename="../src/worker/menuworker.cpp" line="148"/>
         <source>Send to dock</source>
         <translation>ಡಾಕ್ ಗೆ ಕಳುಹಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="101"/>
+        <location filename="../src/worker/menuworker.cpp" line="152"/>
         <source>Remove from startup</source>
         <translation>ಸ್ಟಾರ್ಟ್ ಅಪ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="102"/>
+        <location filename="../src/worker/menuworker.cpp" line="153"/>
         <source>Add to startup</source>
         <translation>ಸ್ಟಾರ್ಟ್ ಅಪ್ ಗೆ ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="126"/>
+        <location filename="../src/worker/menuworker.cpp" line="177"/>
         <source>Use a proxy</source>
         <translation>ಪ್ರಾಕ್ಸಿ ಬಳಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="88"/>
+        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <source>Force launch in Wayland mode</source>
+        <translation>Wayland ಮೋಡ್‌ನಲ್ಲಿ ಬಲವಂತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <source>Force launch in X11 mode</source>
+        <translation>X11 ಮೋಡ್‌ನಲ್ಲಿ ಬಲವಂತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="613"/>
+        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <source>Unset preference</source>
+        <translation>ಆದ್ಯತೆ ತೆಗೆದುಹಾಕಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <source>Set QT_QPA_PLATFORM</source>
+        <translation>QT_QPA_PLATFORM ಹೊಂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="640"/>
+        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <source>Set GDK_BACKEND</source>
+        <translation>GDK_BACKEND ಹೊಂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="641"/>
+        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <source>Set Electron Ozone platform</source>
+        <translation>Electron Ozone ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಹೊಂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <source>Set QT_QPA_PLATFORM (XCB)</source>
+        <translation>QT_QPA_PLATFORM (XCB) ಹೊಂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <source>Set QT_QPA_PLATFORM (D-XCB)</source>
+        <translation>QT_QPA_PLATFORM (D-XCB) ಹೊಂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Disable App Sandbox</source>
         <translation>ಅಪ್ಲಿಕೇಶನ್ ಸ್ಯಾಂಡ್‌ಬಾಕ್ಸ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="110"/>
+        <location filename="../src/worker/menuworker.cpp" line="161"/>
         <source>Mark Launched</source>
         <translation>ಮಾರ್ಕ್ ಲಾಂಚ್ಡ್</translation>
     </message>
@@ -148,78 +191,78 @@
         <translation>ಎಲ್ಲಾ ಅಪ್ಲಿಕೇಶನ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="118"/>
-        <location filename="../src/fullscreenframe.cpp" line="119"/>
+        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="121"/>
         <location filename="../src/widgets/categorybutton.cpp" line="135"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="47"/>
         <source>Internet</source>
         <translation>ಇಂಟರ್ನೆಟ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="120"/>
+        <location filename="../src/fullscreenframe.cpp" line="122"/>
         <location filename="../src/widgets/categorybutton.cpp" line="138"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="48"/>
         <source>Chat</source>
         <translation>ಚಾಟ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="121"/>
+        <location filename="../src/fullscreenframe.cpp" line="123"/>
         <location filename="../src/widgets/categorybutton.cpp" line="141"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="49"/>
         <source>Music</source>
         <translation>ಸಂಗೀತ</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="122"/>
+        <location filename="../src/fullscreenframe.cpp" line="124"/>
         <location filename="../src/widgets/categorybutton.cpp" line="144"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="50"/>
         <source>Video</source>
         <translation>ವೀಡಿಯೋ</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="123"/>
+        <location filename="../src/fullscreenframe.cpp" line="125"/>
         <location filename="../src/widgets/categorybutton.cpp" line="147"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="51"/>
         <source>Graphics</source>
         <translation>ಗ್ರಾಫಿಕ್ಸ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="124"/>
+        <location filename="../src/fullscreenframe.cpp" line="126"/>
         <location filename="../src/widgets/categorybutton.cpp" line="150"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="52"/>
         <source>Game</source>
         <translation>ಗೇಮ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="125"/>
+        <location filename="../src/fullscreenframe.cpp" line="127"/>
         <location filename="../src/widgets/categorybutton.cpp" line="153"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="53"/>
         <source>Office</source>
         <translation>ಓಫಿಸ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="126"/>
+        <location filename="../src/fullscreenframe.cpp" line="128"/>
         <location filename="../src/widgets/categorybutton.cpp" line="156"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="54"/>
         <source>Reading</source>
         <translation>ವಾಚನ</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="127"/>
+        <location filename="../src/fullscreenframe.cpp" line="129"/>
         <location filename="../src/widgets/categorybutton.cpp" line="159"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="55"/>
         <source>Development</source>
         <translation>ವಿಕಾಸ</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="128"/>
+        <location filename="../src/fullscreenframe.cpp" line="130"/>
         <location filename="../src/widgets/categorybutton.cpp" line="162"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="56"/>
         <source>System</source>
         <translation>ಸಿಸ್ಟಮ್</translation>
     </message>
     <message>
-        <location filename="../src/fullscreenframe.cpp" line="129"/>
+        <location filename="../src/fullscreenframe.cpp" line="131"/>
         <location filename="../src/widgets/categorybutton.cpp" line="166"/>
         <location filename="../src/widgets/minicategorywidget.cpp" line="57"/>
         <source>Others</source>
