@@ -1,3 +1,11 @@
+gxde-launcher (6.0.19) UNRELEASED; urgency=medium
+
+  * 现在可以在Wayland下选择是否强制Wayland/X11启动
+  * 修复了弹出菜单定位错误的问题
+  * 修复了菜单中同一块区域会被重复应用毛玻璃效果的问题
+
+ -- CharOfString <root@charofstring.cc>  Mon, 14 Sep 2026 15:15:15 -0500
+
 gxde-launcher (6.0.18-1) UNRELEASED; urgency=medium
 
   * 修复了Wayland下在顶栏存在时popup位置不正确的问题
