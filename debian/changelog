@@ -1,3 +1,9 @@
+gxde-launcher (6.0.18-1) UNRELEASED; urgency=medium
+
+  * 修复了Wayland下在顶栏存在时popup位置不正确的问题
+
+ -- CharOfString <root@charofstring.cc>  Mon, 14 Sep 2026 08:18:32 -0500
+
 gxde-launcher (6.0.18) UNRELEASED; urgency=medium
 
   [ gfdgd_xi ]
