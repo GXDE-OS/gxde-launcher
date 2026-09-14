@@ -123,7 +123,8 @@ private:
 
     void updateGeometry();
     void checkCategoryVisible();
-    void showPopupMenu(const QPoint &pos, const QModelIndex &context);
+    void showPopupMenu(const QPoint &globalPos, const QPoint &surfacePos,
+                       const QModelIndex &context);
     void updateCurrentVisibleCategory();
     void updatePlaceholderSize();
     void updateDockPosition();

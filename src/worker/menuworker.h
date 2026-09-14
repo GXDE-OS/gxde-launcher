@@ -42,6 +42,7 @@
 #include "src/model/appslistmodel.h"
 
 class QMenu;
+class QWidget;
 
 class MenuWorker : public QObject
 {
@@ -49,7 +50,7 @@ class MenuWorker : public QObject
 
 public:
 
-    explicit MenuWorker(QObject *parent = 0);
+    explicit MenuWorker(QWidget *parent = nullptr);
     ~MenuWorker();
 
     enum MenuAction {
@@ -78,7 +79,8 @@ signals:
     void unInstallApp(const QModelIndex &index);
 
 public slots:
-    void showMenuByAppItem(QPoint pos, const QModelIndex &index);
+    void showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
+                           const QModelIndex &index);
 
     void handleOpen();
     void handleToDesktop();

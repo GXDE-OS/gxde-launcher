@@ -195,10 +195,11 @@ void AppListView::mousePressEvent(QMouseEvent *e)
 
     if (e->button() == Qt::RightButton && !isCategoryList) {
         const QPoint rightClickPoint = QCursor::pos();
+        const QPoint surfacePoint = mapTo(window(), e->pos());
         const QModelIndex &clickedIndex = QListView::indexAt(e->pos());
 
         if (clickedIndex.isValid())
-            emit popupMenuRequested(rightClickPoint, clickedIndex);
+            emit popupMenuRequested(rightClickPoint, surfacePoint, clickedIndex);
     }
 
     if (e->button() == Qt::LeftButton) {

@@ -65,7 +65,7 @@ extern const QPoint widgetRelativeOffset(const QWidget * const self, const QWidg
 WindowedFrame::WindowedFrame(QWidget *parent)
     : DBlurEffectWidget(parent)
     , m_dockInter(new DBusDock(this))
-    , m_menuWorker(new MenuWorker)
+    , m_menuWorker(new MenuWorker(this))
     , m_eventFilter(new SharedEventFilter(this))
     , m_windowHandle(this, this)
     , m_wmHelper(DWindowManagerHelper::instance())

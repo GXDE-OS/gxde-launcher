@@ -31,51 +31,12 @@
 #include <QTextStream>
 #include <QRegularExpression>
 #include <QGuiApplication>
-#include <QScreen>
-#include <QTimer>
-#include <LayerShellQt/Window>
-
-#include "../wayland/treeland_shell.h"
+#include <QWindow>
 
 static QString ChainsProxy_path = QStandardPaths::standardLocations(QStandardPaths::ConfigLocation).first()
         + "/deepin/proxychains.conf";
 
-static bool anchorWaylandPopupAt(QMenu *menu, const QPoint &anchorPos) {
-    QWindow *win = menu->windowHandle();
-    if (!win)
-        return false;
-    LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win);
-    if (!lsWin)
-        return false;
-
-    const QSize sz = menu->sizeHint();
-    QScreen *scr = QGuiApplication::screenAt(anchorPos);
-    if (!scr)
-        scr = QGuiApplication::primaryScreen();
-    const QRect sg = scr ? scr->geometry() : QRect();
-    if (sg.isNull())
-        return false;
-
-    int x = anchorPos.x();
-    int y = anchorPos.y();
-    const int w = sz.width();
-    const int h = sz.height();
-    if (x + w > sg.right() + 1) x = anchorPos.x() - w;
-    if (y + h > sg.bottom() + 1) y = anchorPos.y() - h;
-    if (x < sg.left()) x = sg.left();
-    if (y < sg.top()) y = sg.top();
-
-    lsWin->setLayer(LayerShellQt::Window::LayerTop);
-    LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
-    anchors |= LayerShellQt::Window::AnchorLeft;
-    lsWin->setAnchors(anchors);
-    lsWin->setExclusiveZone(0);
-    lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-    lsWin->setMargins(QMargins(x - sg.left(), y - sg.top(), 0, 0));
-    return true;
-}
-
-MenuWorker::MenuWorker(QObject *parent) : QObject(parent)
+MenuWorker::MenuWorker(QWidget *parent) : QObject(parent)
 {
     m_xsettings = new QGSettings("com.deepin.xsettings", QByteArray(), this);
     m_dockAppManagerInterface = new DBusDock(this);
@@ -95,7 +56,8 @@ MenuWorker::~MenuWorker()
 {
 }
 
-void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
+void MenuWorker::showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
+                                   const QModelIndex &index) {
     setCurrentModelIndex(index);
 
     m_appKey = m_currentModelIndex.data(AppsListModel::AppKeyRole).toString();
@@ -114,7 +76,10 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
 
     const bool isWayland = QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive);
 
-    QMenu *menu = new QMenu;
+    // Give the popup an explicit transient parent.  The launcher window uses
+    // layer-shell, while QMenu must stay on the default xdg-shell integration;
+    // Qt will then attach the xdg_popup to the layer surface via get_popup.
+    QMenu *menu = new QMenu(qobject_cast<QWidget *>(parent()));
 
     QSignalMapper *signalMapper = new QSignalMapper(menu);
 
@@ -235,68 +200,25 @@ void MenuWorker::showMenuByAppItem(QPoint pos, const QModelIndex &index) {
     if (isWayland) {
         menu->adjustSize();
         menu->setFixedSize(menu->sizeHint());
-        // 在 Wayland 下，菜单的 wayland surface 会关联到 launcher（WindowedFrame）
-        // 的 layer-shell 父 surface，而它本身没有尺寸锚定，compositor 会将其撑满
-        // 全屏。这里对其 surface 应用 layer-shell 锚定 + margins，把它约束在鼠标
-        // 右键点击位置、由内容决定大小的小矩形内，与 X11 下表现一致。
-        auto applyLayer = [this, menu, pos]() -> bool {
-            QWindow *win = menu->windowHandle();
-            if (!win)
-                return false;
-            LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win);
-            if (!lsWin)
-                return false;
-            const QSize sz = menu->sizeHint();
-            QScreen *scr = QGuiApplication::screenAt(pos);
-            if (!scr)
-                scr = QGuiApplication::primaryScreen();
-            const QRect sg = scr ? scr->geometry() : QRect();
-            if (sg.isNull())
-                return false;
-            // 菜单默认出现在鼠标右下方（左上角对齐 pos），超出屏幕则翻转到
-            // 鼠标另一侧，与 X11 下 QMenu::exec(pos) 的 flip 行为一致。
-            int x = pos.x();
-            int y = pos.y();
-            const int w = sz.width();
-            const int h = sz.height();
-            if (x + w > sg.right() + 1) x = pos.x() - w;
-            if (y + h > sg.bottom() + 1) y = pos.y() - h;
-            if (x < sg.left()) x = sg.left();
-            if (y < sg.top()) y = sg.top();
-            lsWin->setLayer(LayerShellQt::Window::LayerTop);
-            // 仅锚定左上角，surface 保持 fixedSize 的内容尺寸，左上角精确定位
-            // 在 (x, y)，避免四边锚定被 compositor 拉伸/居中导致位置偏移。
-            LayerShellQt::Window::Anchors anchors(LayerShellQt::Window::AnchorTop);
-            anchors |= LayerShellQt::Window::AnchorLeft;
-            lsWin->setAnchors(anchors);
-            lsWin->setExclusiveZone(0);
-            lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-            lsWin->setMargins(QMargins(x - sg.left(), y - sg.top(), 0, 0));
-            m_menuGeometry = menu->geometry();
-            return true;
-        };
+
+        // xdg_popup coordinates are relative to its layer-surface parent.  A
+        // layer window is positioned by margins, so its QWindow geometry does
+        // not necessarily describe the compositor-side global position.  Use
+        // the click's surface-local position and construct a Qt geometry that
+        // cancels out the parent's recorded origin in QWayland's positioner.
+        QWidget *owner = qobject_cast<QWidget *>(parent());
+        QWindow *ownerWindow = owner ? owner->windowHandle() : nullptr;
+        const QPoint recordedOrigin = ownerWindow
+            ? ownerWindow->geometry().topLeft()
+            : globalPos - surfacePos;
+        menu->move(recordedOrigin + surfacePos);
         menu->winId();
-        {
-            QScreen *scr = QGuiApplication::screenAt(pos);
-            if (!scr)
-                scr = QGuiApplication::primaryScreen();
-            if (scr)
-                menu->setScreen(scr);
-        }
 
-        menu->move(pos);
-
-        Wayland::TreelandDdeShell::setAutoPlacement(menu->windowHandle(), 0);
-        
-        applyLayer();
-        QTimer::singleShot(0, this, [applyLayer, menu]() {
-            Wayland::TreelandDdeShell::setAutoPlacement(menu->windowHandle(), 0);
-            applyLayer();
-        });
+        m_menuGeometry = QRect(globalPos, menu->sizeHint());
         m_menuIsShown = true;
         menu->exec();
     } else {
-        menu->move(pos);
+        menu->move(globalPos);
         m_menuIsShown = true;
         m_menuGeometry = menu->geometry();
         menu->exec();
@@ -568,21 +490,6 @@ void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
 
     waylandMenu->menuAction()->setCheckable(true);
     x11Menu->menuAction()->setCheckable(true);
-
-    if (QGuiApplication::platformName().startsWith("wayland", Qt::CaseInsensitive)) {
-        auto setupWaylandSubMenu = [this](QMenu *subMenu) {
-            connect(subMenu, &QMenu::aboutToShow, this, [this, subMenu]() {
-                subMenu->setFixedSize(subMenu->sizeHint());
-                QTimer::singleShot(0, this, [this, subMenu]() {
-                    subMenu->winId();
-                    Wayland::TreelandDdeShell::setAutoPlacement(subMenu->windowHandle(), 0);
-                    anchorWaylandPopupAt(subMenu, subMenu->mapToGlobal(QPoint(0, 0)));
-                });
-            });
-        };
-        setupWaylandSubMenu(waylandMenu);
-        setupWaylandSubMenu(x11Menu);
-    }
 
     auto isWaylandMode = [](AppsManager::ForcedDisplayMode mode) {
         return mode == AppsManager::DisplayModeWaylandQt

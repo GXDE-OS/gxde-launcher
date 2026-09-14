@@ -71,7 +71,7 @@ const QPoint widgetRelativeOffset(const QWidget *const self, const QWidget *w)
 
 FullScreenFrame::FullScreenFrame(QWidget *parent) :
     BoxFrame(parent),
-    m_menuWorker(new MenuWorker),
+    m_menuWorker(new MenuWorker(this)),
     m_eventFilter(new SharedEventFilter(this)),
 
     m_calcUtil(CalculateUtil::instance()),
@@ -1131,12 +1131,14 @@ void FullScreenFrame::checkCategoryVisible()
     emit categoryAppNumsChanged(AppsListModel::Others, m_appsManager->appNums(AppsListModel::Others));
 }
 
-void FullScreenFrame::showPopupMenu(const QPoint &pos, const QModelIndex &context)
+void FullScreenFrame::showPopupMenu(const QPoint &globalPos,
+                                    const QPoint &surfacePos,
+                                    const QModelIndex &context)
 {
-    qDebug() << "show menu" << pos << context << context.data(AppsListModel::AppNameRole).toString()
+    qDebug() << "show menu" << globalPos << context << context.data(AppsListModel::AppNameRole).toString()
              << "app key:" << context.data(AppsListModel::AppKeyRole).toString();
 
-    m_menuWorker->showMenuByAppItem(pos, context);
+    m_menuWorker->showMenuByAppItem(globalPos, surfacePos, context);
 }
 
 void FullScreenFrame::uninstallApp(const QString &appKey)
