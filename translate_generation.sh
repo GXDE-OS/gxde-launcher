@@ -1,11 +1,10 @@
 #!/bin/bash
 # this file is used to auto-generate .qm file from .ts file.
 # author: shibowen at linuxdeepin.com
+set -e
 
-ts_list=(`ls translations/*.ts`)
-
-for ts in "${ts_list[@]}"
+for ts in translations/*.ts
 do
-    printf "\nprocess ${ts}\n"
+    printf '\nprocess %s\n' "$ts"
     /usr/lib/qt6/bin/lrelease "${ts}"
 done

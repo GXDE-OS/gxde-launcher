@@ -4,7 +4,7 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="1021"/>
+        <location filename="../src/model/appsmanager.cpp" line="1010"/>
         <source>No search results</source>
         <translation>لا توجد نتائج للبحث</translation>
     </message>
@@ -83,110 +83,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="142"/>
+        <location filename="../src/worker/menuworker.cpp" line="104"/>
         <source>Remove from desktop</source>
         <translation>حذف من سطح المكتب</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="147"/>
+        <location filename="../src/worker/menuworker.cpp" line="109"/>
         <source>Remove from dock</source>
         <translation>حذف من شريط الإرساء</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="157"/>
+        <location filename="../src/worker/menuworker.cpp" line="119"/>
         <source>Uninstall</source>
         <translation>إلغاء التثبيت</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="187"/>
+        <location filename="../src/worker/menuworker.cpp" line="149"/>
         <source>Disable display scaling</source>
         <translation>تعطيل تحجيم العرض</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="135"/>
+        <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Open</source>
         <translation>فتح</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <location filename="../src/worker/menuworker.cpp" line="99"/>
         <source>Use Nvidia Only</source>
         <translation>استخدام Nvidia فقط</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="143"/>
+        <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation>إرسال إلى سطح المكتب</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="148"/>
+        <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Send to dock</source>
         <translation>إرسال إلى شريط الإرساء</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="152"/>
+        <location filename="../src/worker/menuworker.cpp" line="114"/>
         <source>Remove from startup</source>
         <translation>حذف من بدء التشغيل</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="153"/>
+        <location filename="../src/worker/menuworker.cpp" line="115"/>
         <source>Add to startup</source>
         <translation> إضافة إلى بدء التشغيل</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="177"/>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Use a proxy</source>
         <translation>استخدام بروكسي</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <location filename="../src/worker/menuworker.cpp" line="488"/>
         <source>Force launch in Wayland mode</source>
         <translation>فرض التشغيل في وضع Wayland</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <location filename="../src/worker/menuworker.cpp" line="489"/>
         <source>Force launch in X11 mode</source>
         <translation>فرض التشغيل في وضع X11</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="613"/>
-        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <location filename="../src/worker/menuworker.cpp" line="512"/>
+        <location filename="../src/worker/menuworker.cpp" line="516"/>
         <source>Unset preference</source>
         <translation>إلغاء التفضيل</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <location filename="../src/worker/menuworker.cpp" line="538"/>
         <source>Set QT_QPA_PLATFORM</source>
         <translation>تعيين QT_QPA_PLATFORM</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="640"/>
-        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <location filename="../src/worker/menuworker.cpp" line="539"/>
+        <location filename="../src/worker/menuworker.cpp" line="544"/>
         <source>Set GDK_BACKEND</source>
         <translation>تعيين GDK_BACKEND</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="641"/>
-        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <location filename="../src/worker/menuworker.cpp" line="540"/>
+        <location filename="../src/worker/menuworker.cpp" line="545"/>
         <source>Set Electron Ozone platform</source>
         <translation>تعيين منصة Electron Ozone</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <location filename="../src/worker/menuworker.cpp" line="542"/>
         <source>Set QT_QPA_PLATFORM (XCB)</source>
         <translation>تعيين QT_QPA_PLATFORM (XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <location filename="../src/worker/menuworker.cpp" line="543"/>
         <source>Set QT_QPA_PLATFORM (D-XCB)</source>
         <translation>تعيين QT_QPA_PLATFORM (D-XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="139"/>
+        <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Disable App Sandbox</source>
         <translation>تعطيل صندوق الرمل للتطبيق</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="161"/>
+        <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation>علامة إطلاق</translation>
     </message>

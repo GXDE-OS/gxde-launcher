@@ -4,7 +4,7 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="1021"/>
+        <location filename="../src/model/appsmanager.cpp" line="1010"/>
         <source>No search results</source>
         <translation>Không có kết quả tìm kiếm nào</translation>
     </message>
@@ -83,110 +83,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="142"/>
+        <location filename="../src/worker/menuworker.cpp" line="104"/>
         <source>Remove from desktop</source>
         <translation>Xóa khỏi cửa sổ trang đầu.</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="147"/>
+        <location filename="../src/worker/menuworker.cpp" line="109"/>
         <source>Remove from dock</source>
         <translation>Xóa khỏi trạm</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="157"/>
+        <location filename="../src/worker/menuworker.cpp" line="119"/>
         <source>Uninstall</source>
         <translation>Gỡ bỏ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="187"/>
+        <location filename="../src/worker/menuworker.cpp" line="149"/>
         <source>Disable display scaling</source>
         <translation>Vô hiệu hóa việc thay đổi kích thước hiển thị</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="135"/>
+        <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Open</source>
         <translation>Mở</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <location filename="../src/worker/menuworker.cpp" line="99"/>
         <source>Use Nvidia Only</source>
         <translation>Chỉ sử dụng Nvidia</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="143"/>
+        <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation>Gửi đến desktop</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="148"/>
+        <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Send to dock</source>
         <translation>Gửi đến dock</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="152"/>
+        <location filename="../src/worker/menuworker.cpp" line="114"/>
         <source>Remove from startup</source>
         <translation>Xóa khỏi khởi động</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="153"/>
+        <location filename="../src/worker/menuworker.cpp" line="115"/>
         <source>Add to startup</source>
         <translation>Thêm vào khởi động</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="177"/>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Use a proxy</source>
         <translation>Sử dụng proxy</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <location filename="../src/worker/menuworker.cpp" line="488"/>
         <source>Force launch in Wayland mode</source>
         <translation>Buộc khởi chạy ở chế độ Wayland</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <location filename="../src/worker/menuworker.cpp" line="489"/>
         <source>Force launch in X11 mode</source>
         <translation>Buộc khởi chạy ở chế độ X11</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="613"/>
-        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <location filename="../src/worker/menuworker.cpp" line="512"/>
+        <location filename="../src/worker/menuworker.cpp" line="516"/>
         <source>Unset preference</source>
         <translation>Bỏ tùy chọn</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <location filename="../src/worker/menuworker.cpp" line="538"/>
         <source>Set QT_QPA_PLATFORM</source>
         <translation>Đặt QT_QPA_PLATFORM</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="640"/>
-        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <location filename="../src/worker/menuworker.cpp" line="539"/>
+        <location filename="../src/worker/menuworker.cpp" line="544"/>
         <source>Set GDK_BACKEND</source>
         <translation>Đặt GDK_BACKEND</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="641"/>
-        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <location filename="../src/worker/menuworker.cpp" line="540"/>
+        <location filename="../src/worker/menuworker.cpp" line="545"/>
         <source>Set Electron Ozone platform</source>
         <translation>Đặt nền tảng Electron Ozone</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <location filename="../src/worker/menuworker.cpp" line="542"/>
         <source>Set QT_QPA_PLATFORM (XCB)</source>
         <translation>Đặt QT_QPA_PLATFORM (XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <location filename="../src/worker/menuworker.cpp" line="543"/>
         <source>Set QT_QPA_PLATFORM (D-XCB)</source>
         <translation>Đặt QT_QPA_PLATFORM (D-XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="139"/>
+        <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Disable App Sandbox</source>
         <translation>Vô hiệu hóa App Sandbox</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="161"/>
+        <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation>Đánh dấu đã khởi động</translation>
     </message>

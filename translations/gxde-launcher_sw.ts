@@ -4,7 +4,7 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="1021"/>
+        <location filename="../src/model/appsmanager.cpp" line="1010"/>
         <source>No search results</source>
         <translation>Hakuna matokeo ya utafutaji</translation>
     </message>
@@ -87,110 +87,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="142"/>
+        <location filename="../src/worker/menuworker.cpp" line="104"/>
         <source>Remove from desktop</source>
         <translation>Toa kwa eneo la kazi</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="147"/>
+        <location filename="../src/worker/menuworker.cpp" line="109"/>
         <source>Remove from dock</source>
         <translation>Toa kwa mwambaa wa kazi</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="157"/>
+        <location filename="../src/worker/menuworker.cpp" line="119"/>
         <source>Uninstall</source>
         <translation>sakinusha</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="187"/>
+        <location filename="../src/worker/menuworker.cpp" line="149"/>
         <source>Disable display scaling</source>
         <translation>Haribu ukadiriwa wa kuonyesha</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="135"/>
+        <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Open</source>
         <translation>Fungua</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <location filename="../src/worker/menuworker.cpp" line="99"/>
         <source>Use Nvidia Only</source>
         <translation>Tumia Nvidia Pekee</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="143"/>
+        <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation>Peleka kwa eneo la kazi</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="148"/>
+        <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Send to dock</source>
         <translation>Peleka kwa mwambaa wa kazi</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="152"/>
+        <location filename="../src/worker/menuworker.cpp" line="114"/>
         <source>Remove from startup</source>
         <translation>Ondoa kutoka kwa kuanzia</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="153"/>
+        <location filename="../src/worker/menuworker.cpp" line="115"/>
         <source>Add to startup</source>
         <translation>Ongeza kuanzia</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="177"/>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Use a proxy</source>
         <translation>Tumia mwakilishi</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <location filename="../src/worker/menuworker.cpp" line="488"/>
         <source>Force launch in Wayland mode</source>
         <translation>Lazimisha uanzishaji katika hali ya Wayland</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <location filename="../src/worker/menuworker.cpp" line="489"/>
         <source>Force launch in X11 mode</source>
         <translation>Lazimisha uanzishaji katika hali ya X11</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="613"/>
-        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <location filename="../src/worker/menuworker.cpp" line="512"/>
+        <location filename="../src/worker/menuworker.cpp" line="516"/>
         <source>Unset preference</source>
         <translation>Ondoa upendeleo</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <location filename="../src/worker/menuworker.cpp" line="538"/>
         <source>Set QT_QPA_PLATFORM</source>
         <translation>Weka QT_QPA_PLATFORM</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="640"/>
-        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <location filename="../src/worker/menuworker.cpp" line="539"/>
+        <location filename="../src/worker/menuworker.cpp" line="544"/>
         <source>Set GDK_BACKEND</source>
         <translation>Weka GDK_BACKEND</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="641"/>
-        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <location filename="../src/worker/menuworker.cpp" line="540"/>
+        <location filename="../src/worker/menuworker.cpp" line="545"/>
         <source>Set Electron Ozone platform</source>
         <translation>Weka jukwaa la Electron Ozone</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <location filename="../src/worker/menuworker.cpp" line="542"/>
         <source>Set QT_QPA_PLATFORM (XCB)</source>
         <translation>Weka QT_QPA_PLATFORM (XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <location filename="../src/worker/menuworker.cpp" line="543"/>
         <source>Set QT_QPA_PLATFORM (D-XCB)</source>
         <translation>Weka QT_QPA_PLATFORM (D-XCB)</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="139"/>
+        <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Disable App Sandbox</source>
         <translation>Haribu Sandbox ya Programu</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="161"/>
+        <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation>Alama Imeanzishwa</translation>
     </message>

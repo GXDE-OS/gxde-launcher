@@ -4,7 +4,7 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="1021"/>
+        <location filename="../src/model/appsmanager.cpp" line="1010"/>
         <source>No search results</source>
         <translation>ಹುಡುಕಾಟದ ಫಲಿತಾಂಶಗಳು ಇಲ್ಲ</translation>
     </message>
@@ -75,110 +75,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="142"/>
+        <location filename="../src/worker/menuworker.cpp" line="104"/>
         <source>Remove from desktop</source>
         <translation>ಡೆಸ್ಕ್ಟಾಪ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="147"/>
+        <location filename="../src/worker/menuworker.cpp" line="109"/>
         <source>Remove from dock</source>
         <translation>ಡಾಕ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="157"/>
+        <location filename="../src/worker/menuworker.cpp" line="119"/>
         <source>Uninstall</source>
         <translation>ಅನಿಸ್ಟಾಲ್</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="187"/>
+        <location filename="../src/worker/menuworker.cpp" line="149"/>
         <source>Disable display scaling</source>
         <translation>ಡಿಸ್ಪ್ಲೇ ಸ್ಕೇಲಿಂಗ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="135"/>
+        <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Open</source>
         <translation>ತೆರೆಯಿರಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <location filename="../src/worker/menuworker.cpp" line="99"/>
         <source>Use Nvidia Only</source>
         <translation>ನಿವಿಡಿಯಾ ಮಾತ್ರ ಬಳಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="143"/>
+        <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation>ಡೆಸ್ಕ್ಟಾಪ್ ಗೆ ಕಳುಹಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="148"/>
+        <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Send to dock</source>
         <translation>ಡಾಕ್ ಗೆ ಕಳುಹಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="152"/>
+        <location filename="../src/worker/menuworker.cpp" line="114"/>
         <source>Remove from startup</source>
         <translation>ಸ್ಟಾರ್ಟ್ ಅಪ್ ನಿಂದ ತೆಗೆಯಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="153"/>
+        <location filename="../src/worker/menuworker.cpp" line="115"/>
         <source>Add to startup</source>
         <translation>ಸ್ಟಾರ್ಟ್ ಅಪ್ ಗೆ ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="177"/>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Use a proxy</source>
         <translation>ಪ್ರಾಕ್ಸಿ ಬಳಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <location filename="../src/worker/menuworker.cpp" line="488"/>
         <source>Force launch in Wayland mode</source>
         <translation>Wayland ಮೋಡ್‌ನಲ್ಲಿ ಬಲವಂತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <location filename="../src/worker/menuworker.cpp" line="489"/>
         <source>Force launch in X11 mode</source>
         <translation>X11 ಮೋಡ್‌ನಲ್ಲಿ ಬಲವಂತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="613"/>
-        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <location filename="../src/worker/menuworker.cpp" line="512"/>
+        <location filename="../src/worker/menuworker.cpp" line="516"/>
         <source>Unset preference</source>
         <translation>ಆದ್ಯತೆ ತೆಗೆದುಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <location filename="../src/worker/menuworker.cpp" line="538"/>
         <source>Set QT_QPA_PLATFORM</source>
         <translation>QT_QPA_PLATFORM ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="640"/>
-        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <location filename="../src/worker/menuworker.cpp" line="539"/>
+        <location filename="../src/worker/menuworker.cpp" line="544"/>
         <source>Set GDK_BACKEND</source>
         <translation>GDK_BACKEND ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="641"/>
-        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <location filename="../src/worker/menuworker.cpp" line="540"/>
+        <location filename="../src/worker/menuworker.cpp" line="545"/>
         <source>Set Electron Ozone platform</source>
         <translation>Electron Ozone ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <location filename="../src/worker/menuworker.cpp" line="542"/>
         <source>Set QT_QPA_PLATFORM (XCB)</source>
         <translation>QT_QPA_PLATFORM (XCB) ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <location filename="../src/worker/menuworker.cpp" line="543"/>
         <source>Set QT_QPA_PLATFORM (D-XCB)</source>
         <translation>QT_QPA_PLATFORM (D-XCB) ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="139"/>
+        <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Disable App Sandbox</source>
         <translation>ಅಪ್ಲಿಕೇಶನ್ ಸ್ಯಾಂಡ್‌ಬಾಕ್ಸ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="161"/>
+        <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation>ಮಾರ್ಕ್ ಲಾಂಚ್ಡ್</translation>
     </message>

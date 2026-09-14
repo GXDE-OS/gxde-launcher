@@ -4,7 +4,7 @@
 <context>
     <name>AppsManager</name>
     <message>
-        <location filename="../src/model/appsmanager.cpp" line="1021"/>
+        <location filename="../src/model/appsmanager.cpp" line="1010"/>
         <source>No search results</source>
         <translation>অনুসন্ধানের কোন ফলাফল নেই</translation>
     </message>
@@ -87,110 +87,110 @@
 <context>
     <name>MenuWorker</name>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="142"/>
+        <location filename="../src/worker/menuworker.cpp" line="104"/>
         <source>Remove from desktop</source>
         <translation>ডেস্কটপ হতে সরিয়ে ফেলুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="147"/>
+        <location filename="../src/worker/menuworker.cpp" line="109"/>
         <source>Remove from dock</source>
         <translation>ডক হতে সরিয়ে ফেলুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="157"/>
+        <location filename="../src/worker/menuworker.cpp" line="119"/>
         <source>Uninstall</source>
         <translation>আনইনস্টল করে দিন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="187"/>
+        <location filename="../src/worker/menuworker.cpp" line="149"/>
         <source>Disable display scaling</source>
         <translation>ডিসপ্লে স্কেলিং বন্ধ করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="135"/>
+        <location filename="../src/worker/menuworker.cpp" line="97"/>
         <source>Open</source>
         <translation>খুলুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <location filename="../src/worker/menuworker.cpp" line="99"/>
         <source>Use Nvidia Only</source>
         <translation>শুধুমাত্র এনভিডিয়া ব্যবহার করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="143"/>
+        <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation>ডেস্কটপে পাঠান</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="148"/>
+        <location filename="../src/worker/menuworker.cpp" line="110"/>
         <source>Send to dock</source>
         <translation>ডকে পাঠান</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="152"/>
+        <location filename="../src/worker/menuworker.cpp" line="114"/>
         <source>Remove from startup</source>
         <translation>স্টার্টআপ থেকে সরান</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="153"/>
+        <location filename="../src/worker/menuworker.cpp" line="115"/>
         <source>Add to startup</source>
         <translation>স্টার্টআপে যোগ করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="177"/>
+        <location filename="../src/worker/menuworker.cpp" line="139"/>
         <source>Use a proxy</source>
         <translation>একটি প্রক্সি ব্যাবহার করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="571"/>
+        <location filename="../src/worker/menuworker.cpp" line="488"/>
         <source>Force launch in Wayland mode</source>
         <translation>Wayland মোডে জোরপূর্বক চালু করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="572"/>
+        <location filename="../src/worker/menuworker.cpp" line="489"/>
         <source>Force launch in X11 mode</source>
         <translation>X11 মোডে জোরপূর্বক চালু করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="613"/>
-        <location filename="../src/worker/menuworker.cpp" line="617"/>
+        <location filename="../src/worker/menuworker.cpp" line="512"/>
+        <location filename="../src/worker/menuworker.cpp" line="516"/>
         <source>Unset preference</source>
         <translation>পছন্দ মুছুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="639"/>
+        <location filename="../src/worker/menuworker.cpp" line="538"/>
         <source>Set QT_QPA_PLATFORM</source>
         <translation>QT_QPA_PLATFORM সেট করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="640"/>
-        <location filename="../src/worker/menuworker.cpp" line="645"/>
+        <location filename="../src/worker/menuworker.cpp" line="539"/>
+        <location filename="../src/worker/menuworker.cpp" line="544"/>
         <source>Set GDK_BACKEND</source>
         <translation>GDK_BACKEND সেট করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="641"/>
-        <location filename="../src/worker/menuworker.cpp" line="646"/>
+        <location filename="../src/worker/menuworker.cpp" line="540"/>
+        <location filename="../src/worker/menuworker.cpp" line="545"/>
         <source>Set Electron Ozone platform</source>
         <translation>Electron Ozone প্ল্যাটফর্ম সেট করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="643"/>
+        <location filename="../src/worker/menuworker.cpp" line="542"/>
         <source>Set QT_QPA_PLATFORM (XCB)</source>
         <translation>QT_QPA_PLATFORM (XCB) সেট করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="644"/>
+        <location filename="../src/worker/menuworker.cpp" line="543"/>
         <source>Set QT_QPA_PLATFORM (D-XCB)</source>
         <translation>QT_QPA_PLATFORM (D-XCB) সেট করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="139"/>
+        <location filename="../src/worker/menuworker.cpp" line="101"/>
         <source>Disable App Sandbox</source>
         <translation>অ্যাপ স্যান্ডবক্স বন্ধ করুন</translation>
     </message>
     <message>
-        <location filename="../src/worker/menuworker.cpp" line="161"/>
+        <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation>লঞ্চ করা চিহ্নিত করুন</translation>
     </message>
