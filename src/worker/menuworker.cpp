@@ -130,9 +130,16 @@ void MenuWorker::showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
     menu->addAction(desktop);
     menu->addAction(dock);
     menu->addSeparator();
-    menu->addAction(noSandboxOption);
     menu->addAction(primeNvidiaOption);
     menu->addAction(startup);
+
+    // 应用兼容模式：把「禁用浏览器沙箱」「强制 Wayland 模式」「强制 X11 模式」等兼容相关选项归入同一子菜单。
+    QMenu *compatMenu = menu->addMenu(tr("Application Compatibility Mode"));
+    compatMenu->addAction(noSandboxOption);
+    if (isWayland) {
+        addForcedDisplaySubMenus(compatMenu);
+    }
+
     menu->addAction(markLaunched);
 
     if (QFile::exists(ChainsProxy_path)) {
@@ -173,10 +180,6 @@ void MenuWorker::showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
 #ifndef WITHOUT_UNINSTALL_APP
     menu->addAction(uninstall);
 #endif
-
-    if (isWayland) {
-        addForcedDisplaySubMenus(menu);
-    }
 
     connect(open, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     connect(desktop, &QAction::triggered, signalMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
@@ -540,11 +543,11 @@ void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
     QAction *waylandGdk = makeForceAction(waylandGroup, waylandMenu, tr("Set GDK_BACKEND"), AppsManager::DisplayModeWaylandGdk);
     QAction *waylandOzone = makeForceAction(waylandGroup, waylandMenu, tr("Set Electron Ozone platform"), AppsManager::DisplayModeWaylandOzone);
 
+    QAction *x11XdgSessionType = makeForceAction(x11Group, x11Menu, tr("Set XDG_SESSION_TYPE (x11)"), AppsManager::DisplayModeX11XdgSessionType);
     QAction *x11QtXcb = makeForceAction(x11Group, x11Menu, tr("Set QT_QPA_PLATFORM (XCB)"), AppsManager::DisplayModeX11QtXcb);
     QAction *x11QtDxcb = makeForceAction(x11Group, x11Menu, tr("Set QT_QPA_PLATFORM (D-XCB)"), AppsManager::DisplayModeX11QtDxcb);
     QAction *x11Gdk = makeForceAction(x11Group, x11Menu, tr("Set GDK_BACKEND"), AppsManager::DisplayModeX11Gdk);
     QAction *x11Ozone = makeForceAction(x11Group, x11Menu, tr("Set Electron Ozone platform"), AppsManager::DisplayModeX11Ozone);
-    QAction *x11XdgSessionType = makeForceAction(x11Group, x11Menu, tr("Set XDG_SESSION_TYPE (x11)"), AppsManager::DisplayModeX11XdgSessionType);
 
     // 两个「Unset preference」语义相同：清除整个强制后端设置，回到默认启动。
     auto unsetForcedMode = [this, waylandMenu, x11Menu, waylandUnset, x11Unset]() {
