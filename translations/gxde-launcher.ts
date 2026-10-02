@@ -110,6 +110,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <source>Application Compatibility Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="546"/>
+        <source>Set XDG_SESSION_TYPE (x11)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/worker/menuworker.cpp" line="105"/>
         <source>Send to desktop</source>
         <translation type="unfinished"></translation>

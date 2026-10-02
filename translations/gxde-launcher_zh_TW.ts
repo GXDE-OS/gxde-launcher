@@ -190,6 +190,16 @@
         <translation type="unfinished">禁用瀏覽器沙箱</translation>
     </message>
     <message>
+        <location filename="../src/worker/menuworker.cpp" line="137"/>
+        <source>Application Compatibility Mode</source>
+        <translation>應用相容模式</translation>
+    </message>
+    <message>
+        <location filename="../src/worker/menuworker.cpp" line="546"/>
+        <source>Set XDG_SESSION_TYPE (x11)</source>
+        <translation>設定 XDG_SESSION_TYPE (x11)</translation>
+    </message>
+    <message>
         <location filename="../src/worker/menuworker.cpp" line="123"/>
         <source>Mark Launched</source>
         <translation type="unfinished"></translation>

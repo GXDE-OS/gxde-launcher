@@ -1,8 +1,13 @@
-gxde-launcher (6.0.19-1) UNRELEASED; urgency=medium
+gxde-launcher (6.0.20) UNRELEASED; urgency=medium
 
+  [ CharOfString ]
   * 修复了Electron强制Wayland失效的问题
 
- -- CharOfString <root@charofstring.cc>  Mon, 14 Sep 2026 18:15:20 -0500
+  [ gfdgd_xi ]
+  * 支持在设置下设置 XDG_SESSION_TYPE 值至 x11
+  * 整合选项至应用兼容模式条目内
+
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 02 Oct 2026 23:41:14 +0800
 
 gxde-launcher (6.0.19) UNRELEASED; urgency=medium
 
