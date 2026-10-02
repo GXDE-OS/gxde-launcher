@@ -473,6 +473,9 @@ QMap<QString, QString> environmentForDisplayMode(AppsManager::ForcedDisplayMode 
     case AppsManager::DisplayModeX11Ozone:
         env.insert(QStringLiteral("ELECTRON_OZONE_PLATFORM_HINT"), QStringLiteral("x11"));
         break;
+    case AppsManager::DisplayModeX11XdgSessionType:
+        env.insert(QStringLiteral("XDG_SESSION_TYPE"), QStringLiteral("x11"));
+        break;
     default:
         break;
     }

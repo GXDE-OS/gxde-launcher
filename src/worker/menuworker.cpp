@@ -500,7 +500,8 @@ void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
         return mode == AppsManager::DisplayModeX11QtXcb
             || mode == AppsManager::DisplayModeX11QtDxcb
             || mode == AppsManager::DisplayModeX11Gdk
-            || mode == AppsManager::DisplayModeX11Ozone;
+            || mode == AppsManager::DisplayModeX11Ozone
+            || mode == AppsManager::DisplayModeX11XdgSessionType;
     };
 
     // 每个母菜单一组互斥项，组内第一个「Unset preference」作为默认/清除项。
@@ -543,6 +544,7 @@ void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
     QAction *x11QtDxcb = makeForceAction(x11Group, x11Menu, tr("Set QT_QPA_PLATFORM (D-XCB)"), AppsManager::DisplayModeX11QtDxcb);
     QAction *x11Gdk = makeForceAction(x11Group, x11Menu, tr("Set GDK_BACKEND"), AppsManager::DisplayModeX11Gdk);
     QAction *x11Ozone = makeForceAction(x11Group, x11Menu, tr("Set Electron Ozone platform"), AppsManager::DisplayModeX11Ozone);
+    QAction *x11XdgSessionType = makeForceAction(x11Group, x11Menu, tr("Set XDG_SESSION_TYPE (x11)"), AppsManager::DisplayModeX11XdgSessionType);
 
     // 两个「Unset preference」语义相同：清除整个强制后端设置，回到默认启动。
     auto unsetForcedMode = [this, waylandMenu, x11Menu, waylandUnset, x11Unset]() {
@@ -567,6 +569,7 @@ void MenuWorker::addForcedDisplaySubMenus(QMenu *menu) {
     case AppsManager::DisplayModeX11QtDxcb:    checkedX11 = x11QtDxcb;        break;
     case AppsManager::DisplayModeX11Gdk:       checkedX11 = x11Gdk;           break;
     case AppsManager::DisplayModeX11Ozone:     checkedX11 = x11Ozone;         break;
+    case AppsManager::DisplayModeX11XdgSessionType: checkedX11 = x11XdgSessionType; break;
     default: break;
     }
     if (checkedWayland)

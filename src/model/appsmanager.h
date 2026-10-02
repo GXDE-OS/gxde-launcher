@@ -81,7 +81,8 @@ public:
         DisplayModeX11QtXcb = 14,
         DisplayModeX11QtDxcb = 15,
         DisplayModeX11Gdk = 16,
-        DisplayModeX11Ozone = 17
+        DisplayModeX11Ozone = 17,
+        DisplayModeX11XdgSessionType = 18
     };
 
     ForcedDisplayMode forcedDisplayMode(const QString &appKey) const;
