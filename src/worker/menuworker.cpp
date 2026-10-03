@@ -133,11 +133,14 @@ void MenuWorker::showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
     menu->addAction(primeNvidiaOption);
     menu->addAction(startup);
 
-    // 应用兼容模式：把「禁用浏览器沙箱」「强制 Wayland 模式」「强制 X11 模式」等兼容相关选项归入同一子菜单。
-    QMenu *compatMenu = menu->addMenu(tr("Application Compatibility Mode"));
-    compatMenu->addAction(noSandboxOption);
+    // 应用兼容模式：仅在 Wayland 会话下显示，聚合「禁用浏览器沙箱」「强制 Wayland 模式」「强制 X11 模式」。
     if (isWayland) {
+        QMenu *compatMenu = menu->addMenu(tr("Application Compatibility Mode"));
+        compatMenu->addAction(noSandboxOption);
         addForcedDisplaySubMenus(compatMenu);
+    } else {
+        // X11 会话下不显示「应用兼容模式」，将「禁用浏览器沙箱」直接放到「使用 N 卡运行」下方。
+        menu->insertAction(startup, noSandboxOption);
     }
 
     menu->addAction(markLaunched);
