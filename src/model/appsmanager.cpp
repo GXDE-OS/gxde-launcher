@@ -27,6 +27,7 @@
 #include "src/global_util/util.h"
 #include "src/global_util/constants.h"
 #include "src/global_util/calculate_util.h"
+#include "src/global_util/dockgeometry.h"
 
 #include <algorithm>
 #include <QDebug>
@@ -342,12 +343,15 @@ int AppsManager::dockPosition() const
 
 int AppsManager::dockWidth() const
 {
-    return QRect(m_dockInter->frontendRect()).width();
+    return dockGeometry().width();
 }
 
 QRect AppsManager::dockGeometry() const
 {
-    return std::move(m_dockInter->frontendRect());
+    QRect rect = QRect(m_dockInter->frontendRect());
+    if (!rect.isValid())
+        rect = DockGeometry::currentDockGeometry();
+    return rect;
 }
 
 bool AppsManager::isVaild()

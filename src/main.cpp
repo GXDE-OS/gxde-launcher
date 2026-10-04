@@ -22,12 +22,11 @@
  */
 
 #include "fullscreenframe.h"
+#include "src/dbusinterface/dbuslauncherframe.h"
 #include "model/appsmanager.h"
 #include "dbusservices/dbuslauncherservice.h"
 
 #include <QCommandLineParser>
-#include <QDBusError>
-#include <QDBusMessage>
 #include <QTranslator>
 #include <QDebug>
 
@@ -39,33 +38,13 @@
 #include <QIcon>
 #include <QSettings>
 
+#include <LayerShellQt/Shell>
+
 #include "wayland/xsettings.h"
+#include "wayland/treeland_shell.h"
 
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
-
-namespace {
-
-constexpr auto LauncherService = "com.deepin.dde.Launcher";
-constexpr auto LauncherPath = "/com/deepin/dde/Launcher";
-constexpr auto LauncherInterface = "com.deepin.dde.Launcher";
-
-bool callRunningLauncher(const QString &method)
-{
-    QDBusMessage message = QDBusMessage::createMethodCall(
-        LauncherService, LauncherPath, LauncherInterface, method);
-    const QDBusMessage reply = QDBusConnection::sessionBus().call(message);
-
-    if (reply.type() == QDBusMessage::ErrorMessage) {
-        qWarning() << "failed to call launcher" << method << ':'
-                   << reply.errorName() << reply.errorMessage();
-        return false;
-    }
-
-    return true;
-}
-
-} // namespace
 
 void correctStaleX11Platform() {
     if (qgetenv("XDG_SESSION_TYPE").compare("wayland",
@@ -108,10 +87,12 @@ void dump_user_apss_preset_order_list()
 int main(int argv, char *args[])
 {
     correctStaleX11Platform();
+    LayerShellQt::Shell::useLayerShell();
 
     DApplication app(argv, args);
 
     if (DApplication::isWayland()) {
+        Wayland::TreelandDdeShell::init();
         QString iconTheme = Wayland::xsettingsString(QStringLiteral(
             "Net/IconThemeName"));
 
@@ -162,10 +143,26 @@ int main(int argv, char *args[])
 
     if (quit)
     {
+        DBusLauncherFrame launcherFrame;
+
+        if (!launcherFrame.isValid()) {
+            qWarning() << "launcher is not running";
+            return 1;
+        }
+
+        QDBusPendingReply<> reply;
         if (cmdParser.isSet(toggleOption))
-            return callRunningLauncher(QStringLiteral("Toggle")) ? 0 : 1;
-        if (cmdParser.isSet(showOption))
-            return callRunningLauncher(QStringLiteral("Show")) ? 0 : 1;
+            reply = launcherFrame.Toggle();
+        else if (cmdParser.isSet(showOption))
+            reply = launcherFrame.Show();
+        else
+            return 0;
+
+        // Block until the request is dispatched and the reply arrives;
+        // otherwise the process would exit before the call reaches the bus.
+        reply.waitForFinished();
+        if (reply.isError())
+            qWarning() << "failed to call launcher:" << reply.error();
 
         return 0;
     }
@@ -176,19 +173,11 @@ int main(int argv, char *args[])
     LauncherSys launcher;
     DBusLauncherService service(&launcher);
     Q_UNUSED(service);
-
     QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerObject(LauncherPath, &launcher)) {
-        qCritical() << "failed to register launcher dbus object:"
-                    << connection.lastError();
-        return 1;
-    }
-    if (!connection.registerService(LauncherService)) {
-        qCritical() << "failed to register launcher dbus service:"
-                    << connection.lastError();
-        connection.unregisterObject(LauncherPath);
-        return 1;
-    }
+
+    if (!connection.registerObject("/com/deepin/dde/Launcher", &launcher) ||
+        !connection.registerService("com.deepin.dde.Launcher"))
+        qWarning() << "register dbus service failed";
 
     launcher.initialize();
 

@@ -263,9 +263,13 @@ QScreen *WindowedFrame::targetScreen() const
 
 QRect WindowedFrame::rawDockGeometry() const
 {
-    return m_targetScreen && m_targetDockGeometry.isValid()
-        ? m_targetDockGeometry
-        : QRect(m_dockInter->frontendRect());
+    if (m_targetScreen && m_targetDockGeometry.isValid())
+        return m_targetDockGeometry;
+
+    QRect rect = QRect(m_dockInter->frontendRect());
+    if (!rect.isValid())
+        rect = DockGeometry::currentDockGeometry();
+    return rect;
 }
 
 QRect WindowedFrame::logicalDockGeometry() const

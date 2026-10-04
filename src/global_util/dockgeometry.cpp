@@ -3,6 +3,10 @@
 #include <QGuiApplication>
 #include <QScreen>
 
+#include <QDBusInterface>
+#include <QDBusReply>
+#include <QDBusVariant>
+
 namespace {
 
 constexpr int DockTop = 0;
@@ -88,6 +92,36 @@ QRect toTargetScreen(const QRect &rawGeometry, QScreen *targetScreen,
     }
 
     return QRect(topLeft, size);
+}
+
+QRect currentDockGeometry()
+{
+    // The dock may be registered under different service/path/interface names
+    // depending on the desktop environment.  Try the known ones and read the
+    // "geometry" property (a (iiii) struct QRect understands natively).
+    struct {
+        const char *service;
+        const char *path;
+        const char *interface;
+    } const candidates[] = {
+        {"com.deepin.dde.Dock", "/com/deepin/dde/Dock", "com.deepin.dde.Dock"},
+        {"top.gxde.daemon.dock", "/top/gxde/daemon/dock", "top.gxde.daemon.dock"},
+    };
+
+    for (const auto &c : candidates) {
+        QDBusInterface dock(c.service, c.path, "org.freedesktop.DBus.Properties",
+                            QDBusConnection::sessionBus());
+        if (!dock.isValid())
+            continue;
+
+        for (const char *prop : {"geometry", "FrontendWindowRect"}) {
+            QDBusReply<QDBusVariant> reply = dock.call("Get", c.interface, prop);
+            if (reply.isValid())
+                return qdbus_cast<QRect>(reply.value().variant());
+        }
+    }
+
+    return QRect();
 }
 
 } // namespace DockGeometry
