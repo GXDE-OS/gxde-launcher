@@ -1,0 +1,33 @@
+# Maintainer: CharOfString <root@charofstring.cc>
+pkgname=gxde-launcher-git
+pkgver=6.0.23
+pkgrel=1
+pkgdesc='GXDE application launcher'
+arch=('x86_64' 'aarch64')
+url="https://github.com/GXDE-OS/gxde-launcher"
+license=('GPL-3.0-or-later')
+depends=('gxde-shell-tools-git' 'gxde-desktop-schemas-git' 'gxde-app-uninstaller-git' 'hicolor-icon-theme'
+         'dtk2widget-qt6-git' 'dtk6gui-git' 'dtk6core-git' 'dframework-dbus-qt6-git' 'gsettings-qt6'
+         'layer-shell-qt' 'qt6-base' 'qt6-svg' 'wayland' 'libx11' 'libxcb' 'xcb-util-wm'
+         'libgcc' 'libstdc++' 'glibc')
+makedepends=('git' 'cmake' 'ninja' 'qt6-tools')
+provides=('gxde-launcher' 'deepin-launcher')
+conflicts=('gxde-launcher' 'deepin-launcher')
+source=()
+sha512sums=()
+
+# 直接使用 PKGBUILD 所在的 git 仓库作为源码 ・ Build from the git checkout this PKGBUILD lives in.
+_srcroot() {
+  git -C "$startdir" rev-parse --show-toplevel
+}
+
+build() {
+  cmake -B build -S "$(_srcroot)" -GNinja \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr
+  ninja -C build
+}
+
+package() {
+  DESTDIR="$pkgdir" ninja -C build install
+}
