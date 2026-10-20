@@ -73,7 +73,11 @@ const QPixmap BoxFrame::backgroundPixmap() {
     if (!target)
         target = qApp->primaryScreen();
 
-    const QSize size = target->size() * target->devicePixelRatio();
+    // On HDPI screens there the wallpapers are teared into parts.
+    // This is due to the launcher background have no HDPI support
+    // TO fix this, we need a device pixel ratio
+    const qreal ratio = devicePixelRatioF();
+    const QSize size = target->size() * ratio;
 
     QPixmap cache = m_pixmap.scaled(size,
                                     Qt::KeepAspectRatioByExpanding,
@@ -84,9 +88,19 @@ const QPixmap BoxFrame::backgroundPixmap() {
                    size.width(), size.height());
 
     cache = cache.copy(copyRect);
-    cache.setDevicePixelRatio(target->devicePixelRatio());
+    cache.setDevicePixelRatio(ratio);
 
     return cache;
+}
+
+bool BoxFrame::event(QEvent *event) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+    // Update wallper background by screen scale.
+    if (event->type() == QEvent::DevicePixelRatioChange && !m_pixmap.isNull())
+        updateBackground();
+#endif
+
+    return QLabel::event(event);
 }
 
 void BoxFrame::updateBackground()
