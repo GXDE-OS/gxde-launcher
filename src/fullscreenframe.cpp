@@ -25,6 +25,7 @@
 #include "global_util/constants.h"
 #include "global_util/xcb_misc.h"
 #include "src/boxframe/backgroundmanager.h"
+#include "src/widgets/viewtransition.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -198,6 +199,7 @@ void FullScreenFrame::scrollToCategory(const AppsListModel::AppCategory &categor
     // scroll to destination
     //    m_appsArea->verticalScrollBar()->setValue(dest->pos().y());
     m_scrollDest = dest;
+    m_appsArea->stopScrolling();
     m_scrollAnimation->stop();
     m_scrollAnimation->setStartValue(m_appsArea->verticalScrollBar()->value());
     m_scrollAnimation->setEndValue(dest->y());
@@ -566,7 +568,8 @@ void FullScreenFrame::initUI()
 
     // animation
     m_scrollAnimation = new QPropertyAnimation(m_appsArea->verticalScrollBar(), "value");
-    m_scrollAnimation->setEasingCurve(QEasingCurve::OutQuad);
+    m_scrollAnimation->setEasingCurve(QEasingCurve::OutCubic);
+    m_scrollAnimation->setDuration(400);
 
     setWindowTitle(tr("GXDE Launcher"));
 }
@@ -740,6 +743,8 @@ void FullScreenFrame::initConnection()
     connect(m_calcUtil, &CalculateUtil::layoutChanged, this, &FullScreenFrame::layoutChanged, Qt::QueuedConnection);
 
     connect(m_scrollAnimation, &QPropertyAnimation::valueChanged, this, &FullScreenFrame::ensureScrollToDest);
+    // 用户开始滚动时放弃跳转到分类的动画，避免两个动画抢同一个滚动条
+    connect(m_appsArea, &AppListArea::scrollStarted, m_scrollAnimation, &QPropertyAnimation::stop);
     connect(m_scrollAnimation, &QPropertyAnimation::finished, this, &FullScreenFrame::refershCurrentFloatTitle, Qt::QueuedConnection);
     connect(m_navigationWidget, &NavigationWidget::scrollToCategory, this, &FullScreenFrame::scrollToCategory);
     connect(this, &FullScreenFrame::currentVisibleCategoryChanged, m_navigationWidget, &NavigationWidget::setCurrentCategory);
@@ -840,7 +845,18 @@ void FullScreenFrame::initConnection()
     connect(m_searchWidget, &SearchWidget::toggleMode, [this] {
         m_searchWidget->clearFocus();
         m_searchWidget->clearSearchContent();
-        updateDisplayMode(m_displayMode == GROUP_BY_CATEGORY ? ALL_APPS : GROUP_BY_CATEGORY);
+
+        const int mode = m_displayMode == GROUP_BY_CATEGORY ? ALL_APPS : GROUP_BY_CATEGORY;
+        ViewTransition::run(m_appsArea, ViewTransition::Fade, [this, mode] {
+            updateDisplayMode(mode);
+        }, [this] {
+            // 切到分类模式会滚动到当前分类，直接定位到终点，让截图和动画结束后的画面一致
+            if (m_scrollAnimation->state() == QPropertyAnimation::Running) {
+                m_scrollAnimation->stop();
+                m_appsArea->verticalScrollBar()->setValue(m_scrollDest->y());
+                refershCurrentFloatTitle();
+            }
+        });
     });
 
     connect(m_appsManager, &AppsManager::categoryListChanged, this, &FullScreenFrame::checkCategoryVisible);
@@ -854,6 +870,13 @@ void FullScreenFrame::showLauncher()
     updateGeometry();
     updateAppViewSizes();
     show();
+}
+
+void FullScreenFrame::playEnterAnimation()
+{
+    ViewTransition::enter(m_searchWidget);
+    ViewTransition::enter(m_appsArea);
+    ViewTransition::enter(m_navigationWidget);
 }
 
 void FullScreenFrame::setTargetScreen(QScreen *screen,

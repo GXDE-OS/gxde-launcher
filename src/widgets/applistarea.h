@@ -27,6 +27,8 @@
 #include <QScrollArea>
 #include <QSet>
 
+class SmoothScroller;
+
 class AppListArea : public QScrollArea
 {
     Q_OBJECT
@@ -34,11 +36,13 @@ class AppListArea : public QScrollArea
 public:
     explicit AppListArea(QWidget *parent = 0);
     void addWidget(QWidget * view);
+    void stopScrolling();
 
 signals:
     void mouseEntered();
     void increaseIcon();
     void decreaseIcon();
+    void scrollStarted();
 
 protected:
     void wheelEvent(QWheelEvent *e) override;
@@ -50,6 +54,7 @@ private:
     QPoint m_lastTouchBeginPos;
     int touchTapDistance = -1;
     QSet<QWidget*> m_views;
+    SmoothScroller *m_scroller;
 };
 
 #endif // APPLISTAREA_H

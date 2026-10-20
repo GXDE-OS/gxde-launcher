@@ -25,6 +25,7 @@
 #include "src/global_util/constants.h"
 #include "src/delegate/applistdelegate.h"
 #include "src/model/appslistmodel.h"
+#include "src/widgets/smoothscroller.h"
 
 #include <QStyleOptionViewItem>
 #include <QPropertyAnimation>
@@ -37,19 +38,34 @@
 #include <QDebug>
 #include <QDrag>
 #include <QScroller>
+#include <QVariantAnimation>
 #include <private/qguiapplication_p.h>
 #include <qpa/qplatformtheme.h>
 
 AppListView::AppListView(QWidget *parent)
     : QListView(parent)
     , m_dropThresholdTimer(new QTimer(this))
-    , m_scrollAni(new QPropertyAnimation(verticalScrollBar(), "value"))
+    , m_scroller(new SmoothScroller(this, [this](int offset) { setViewportMargins(0, offset, 0, -offset); }))
+    , m_highlightMoveAni(new QVariantAnimation(this))
+    , m_highlightFadeAni(new QVariantAnimation(this))
     , m_opacityEffect(new QGraphicsOpacityEffect(this))
     , m_wmHelper(DWindowManagerHelper::instance())
     , m_updateEnableSelectionByMouseTimer(nullptr)
 {
-    m_scrollAni->setEasingCurve(QEasingCurve::OutQuint);
-    m_scrollAni->setDuration(800);
+    m_scroller->setWheelStep(m_speedTime);
+
+    m_highlightMoveAni->setDuration(160);
+    m_highlightMoveAni->setEasingCurve(QEasingCurve::OutCubic);
+    connect(m_highlightMoveAni, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
+        m_highlightRect = value.toRectF();
+        viewport()->update();
+    });
+
+    m_highlightFadeAni->setEasingCurve(QEasingCurve::OutCubic);
+    connect(m_highlightFadeAni, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
+        m_highlightOpacity = value.toReal();
+        viewport()->update();
+    });
 
     horizontalScrollBar()->setEnabled(false);
     setFocusPolicy(Qt::NoFocus);
@@ -93,8 +109,8 @@ AppListView::AppListView(QWidget *parent)
     touchTapDistance = QGuiApplicationPrivate::platformTheme()->themeHint(QPlatformTheme::TouchDoubleTapDistance).toInt();
 #endif
 
-    connect(m_scrollAni, &QPropertyAnimation::valueChanged, this, &AppListView::handleScrollValueChanged);
-    connect(m_scrollAni, &QPropertyAnimation::finished, this, &AppListView::handleScrollFinished);
+    connect(m_scroller, &SmoothScroller::scrolled, this, &AppListView::handleScrollValueChanged);
+    connect(m_scroller, &SmoothScroller::scrollFinished, this, &AppListView::handleScrollFinished);
 }
 
 const QModelIndex AppListView::indexAt(const int index) const
@@ -102,14 +118,102 @@ const QModelIndex AppListView::indexAt(const int index) const
     return model()->index(index, 0, QModelIndex());
 }
 
+void AppListView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
+{
+    QListView::currentChanged(current, previous);
+
+    syncHighlight();
+}
+
+void AppListView::dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QList<int> &roles)
+{
+    QListView::dataChanged(topLeft, bottomRight, roles);
+
+    // 鼠标移入移出时模型会切换 DrawBackgroundRole，高亮随之淡入淡出
+    syncHighlight();
+}
+
+void AppListView::reset()
+{
+    QListView::reset();
+
+    // 模型重置后条目全部换掉，直接隐藏高亮，不从旧位置滑过去
+    m_highlightMoveAni->stop();
+    m_highlightFadeAni->stop();
+    m_highlightOpacity = 0;
+}
+
+void AppListView::paintEvent(QPaintEvent *e)
+{
+    const QModelIndex current = currentIndex();
+
+    // 没有在滑动时，让高亮贴合当前条目，避免布局变化后错位
+    if (m_highlightMoveAni->state() != QAbstractAnimation::Running && current.isValid())
+        m_highlightRect = highlightRect(current);
+
+    if (m_highlightOpacity > 0) {
+        QPainter painter(viewport());
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setPen(Qt::NoPen);
+        painter.setBrush(QColor(255, 255, 255, qRound(255 * .1 * m_highlightOpacity)));
+        painter.drawRoundedRect(m_highlightRect.translated(0, -verticalOffset()), 4, 4);
+    }
+
+    QListView::paintEvent(e);
+}
+
+void AppListView::syncHighlight()
+{
+    const QModelIndex current = currentIndex();
+    const bool visible = current.isValid() && current.data(AppsListModel::DrawBackgroundRole).toBool();
+
+    if (visible) {
+        const QRectF target = highlightRect(current);
+
+        if (qFuzzyIsNull(m_highlightOpacity)) {
+            // 从无到有时直接出现在目标位置再淡入，不从上一次的位置滑过来
+            m_highlightMoveAni->stop();
+            m_highlightRect = target;
+        } else if (target != m_highlightRect
+                   && !(m_highlightMoveAni->state() == QAbstractAnimation::Running
+                        && m_highlightMoveAni->endValue().toRectF() == target)) {
+            m_highlightMoveAni->stop();
+            m_highlightMoveAni->setStartValue(m_highlightRect);
+            m_highlightMoveAni->setEndValue(target);
+            m_highlightMoveAni->start();
+        }
+    }
+
+    fadeHighlight(visible ? 1 : 0);
+}
+
+void AppListView::fadeHighlight(qreal opacity)
+{
+    const bool running = m_highlightFadeAni->state() == QAbstractAnimation::Running;
+    if (running ? qFuzzyCompare(m_highlightFadeAni->endValue().toReal(), opacity)
+                : qFuzzyCompare(m_highlightOpacity + 1, opacity + 1))
+        return;
+
+    m_highlightFadeAni->stop();
+    m_highlightFadeAni->setDuration(opacity > m_highlightOpacity ? 120 : 200);
+    m_highlightFadeAni->setStartValue(m_highlightOpacity);
+    m_highlightFadeAni->setEndValue(opacity);
+    m_highlightFadeAni->start();
+}
+
+QRectF AppListView::highlightRect(const QModelIndex &index) const
+{
+    return QRectF(visualRect(index).marginsRemoved(QMargins(1, 1, 1, 1))).translated(0, verticalOffset());
+}
+
+void AppListView::stopScrolling()
+{
+    m_scroller->stop();
+}
+
 void AppListView::wheelEvent(QWheelEvent *e)
 {
-    int offset = -e->angleDelta().y();
-
-    m_scrollAni->stop();
-    m_scrollAni->setStartValue(verticalScrollBar()->value());
-    m_scrollAni->setEndValue(verticalScrollBar()->value() + offset * m_speedTime);
-    m_scrollAni->start();
+    m_scroller->handleWheel(e);
 }
 
 void AppListView::mouseMoveEvent(QMouseEvent *e)
@@ -125,7 +229,7 @@ void AppListView::mouseMoveEvent(QMouseEvent *e)
                 QScroller::grabGesture(this);
                 QScroller *scroller = QScroller::scroller(this);
                 QScrollerProperties sp;
-                sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+                sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootWhenScrollable);
                 scroller->setScrollerProperties(sp);
 
                 scroller->handleInput(QScroller::InputPress, e->localPos(), e->timestamp());
@@ -167,6 +271,9 @@ void AppListView::mouseMoveEvent(QMouseEvent *e)
 
 void AppListView::mousePressEvent(QMouseEvent *e)
 {
+    // 拖动滚动由 QScroller 接管，先停掉滚轮滚动并清掉越界偏移，避免两者同时移动 viewport
+    m_scroller->stop();
+
     if (e->source() == Qt::MouseEventSynthesizedByQt) {
         m_lastTouchBeginPos = e->pos();
 
@@ -479,8 +586,8 @@ void AppListView::createFakeAnimation(const int pos, const bool moveNext, const 
 
     animation->setStartValue(visualRect(index).topLeft());
     animation->setEndValue(visualRect(indexAt(moveNext ? pos - 1 : pos + 1)).topLeft());
-    animation->setEasingCurve(QEasingCurve::OutQuad);
-    animation->setDuration(200);
+    animation->setEasingCurve(QEasingCurve::OutCubic);
+    animation->setDuration(250);
 
     connect(animation, &QPropertyAnimation::finished, floatLabel, &QLabel::deleteLater);
 

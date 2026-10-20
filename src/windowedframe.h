@@ -88,6 +88,7 @@ private:
     void setTargetScreen(QScreen *screen,
                          const QRect &dockGeometry) Q_DECL_OVERRIDE;
     void showLauncher() Q_DECL_OVERRIDE;
+    void playEnterAnimation() Q_DECL_OVERRIDE;
     void hideLauncher() Q_DECL_OVERRIDE;
     bool visible() Q_DECL_OVERRIDE;
 

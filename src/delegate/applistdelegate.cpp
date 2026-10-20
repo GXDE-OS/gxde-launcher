@@ -76,10 +76,8 @@ void AppListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::NoPen);
 
-    if (option.state.testFlag(QStyle::State_Selected)) {
-        // hover background color.
-        painter->setBrush(QColor(255, 255, 255, 255 * .1));
-    } else if (isDragItem) {
+    // hover background is drawn by AppListView, so that it can slide between items.
+    if (isDragItem) {
         // drag item background color.
         painter->setBrush(QColor(255, 255, 255, 255 * 0.4));
         painter->setPen(QColor(0, 0, 0, 255 * 0.05));

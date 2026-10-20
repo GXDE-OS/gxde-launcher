@@ -91,7 +91,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 #ifndef ARCH_MIPSEL
     m_floatAni = new QPropertyAnimation(m_floatWidget, "pos", this);
     m_floatAni->setDuration(260);
-    m_floatAni->setEasingCurve(QEasingCurve::OutQuad);
+    m_floatAni->setEasingCurve(QEasingCurve::OutCubic);
 
     connect(m_floatAni, &QPropertyAnimation::finished, this, static_cast<void (SearchLineEdit::*)()>(&SearchLineEdit::update), Qt::QueuedConnection);
     connect(m_floatAni, &QPropertyAnimation::finished, this, &SearchLineEdit::moveFloatWidget, Qt::QueuedConnection);

@@ -30,6 +30,8 @@
 #include <QWidget>
 #include <QButtonGroup>
 
+class QPropertyAnimation;
+
 class NavigationWidget : public QFrame
 {
     Q_OBJECT
@@ -64,11 +66,13 @@ private:
     void initConnection();
 
     void buttonClicked();
+    void animateZoomLevel(const qreal zoomLevel);
     CategoryButton *button(const AppsListModel::AppCategory category) const;
 
 private:
     CalculateUtil *m_calcUtil;
     QButtonGroup *m_categoryGroup;
+    QPropertyAnimation *m_zoomAnimation;
     CategoryButton *m_internetBtn;
     CategoryButton* m_chatBtn;
     CategoryButton *m_musicBtn;

@@ -44,6 +44,9 @@ public:
     virtual bool windowDeactiveEvent() = 0;
 
     virtual void uninstallApp(const QString &appKey) = 0;
+
+    // 从另一种显示模式切换过来时播放的入场动画
+    virtual void playEnterAnimation() {}
 };
 
 

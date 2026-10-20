@@ -65,7 +65,8 @@ CategoryButton::CategoryButton(const AppsListModel::AppCategory category, QWidge
     updateState(Normal);
     addTextShadow();
 
-    m_opacityAnimation->setDuration(300);
+    m_opacityAnimation->setDuration(250);
+    m_opacityAnimation->setEasingCurve(QEasingCurve::OutCubic);
 
     connect(this, &CategoryButton::toggled, this, &CategoryButton::setChecked);
     connect(m_calcUtil, &CalculateUtil::layoutChanged, this, &CategoryButton::relayout);
@@ -116,6 +117,7 @@ void CategoryButton::setTextVisible(bool visible, const bool animation)
         m_textLabel->setVisible(visible);
     } else {
         m_textLabel->setVisible(true);
+        m_opacityAnimation->stop();
         if (visible) {
             m_opacityAnimation->setStartValue(titleOpacity());
             m_opacityAnimation->setEndValue(1);

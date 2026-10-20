@@ -26,10 +26,12 @@
 
 #include <QAbstractItemDelegate>
 #include <QModelIndex>
+#include <QPersistentModelIndex>
 #include <QStyleOptionViewItem>
 #include <QPainter>
 
 class CalculateUtil;
+class QVariantAnimation;
 class AppItemDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
@@ -56,6 +58,11 @@ private:
     CalculateUtil *m_calcUtil;
     QPixmap m_blueDotPixmap;
     QPixmap m_autoStartPixmap;
+
+    // 当前项高亮淡入、上一项高亮淡出
+    QVariantAnimation *m_highlightAnimation;
+    QPersistentModelIndex m_previousIndex;
+    qreal m_highlightProgress = 1;
 
     static QModelIndex CurrentIndex;
 };

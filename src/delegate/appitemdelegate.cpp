@@ -31,6 +31,7 @@
 #include <QPixmap>
 #include <QVariant>
 #include <QApplication>
+#include <QVariantAnimation>
 
 #include <DSvgRenderer>
 
@@ -41,8 +42,19 @@ QModelIndex AppItemDelegate::CurrentIndex = QModelIndex();
 
 AppItemDelegate::AppItemDelegate(QObject *parent) :
     QAbstractItemDelegate(parent),
-    m_calcUtil(CalculateUtil::instance())
+    m_calcUtil(CalculateUtil::instance()),
+    m_highlightAnimation(new QVariantAnimation(this))
 {
+    m_highlightAnimation->setStartValue(0.0);
+    m_highlightAnimation->setEndValue(1.0);
+    m_highlightAnimation->setDuration(160);
+    m_highlightAnimation->setEasingCurve(QEasingCurve::OutCubic);
+    connect(m_highlightAnimation, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
+        m_highlightProgress = value.toReal();
+        emit requestUpdate(m_previousIndex);
+        emit requestUpdate(CurrentIndex);
+    });
+
     m_autoStartPixmap = QIcon(":/skin/images/emblem-autostart.svg").pixmap(QSize(24, 24));
     m_blueDotPixmap = QIcon(":/skin/images/new_install_indicator.svg").pixmap(QSize(10, 10));
 }
@@ -54,6 +66,11 @@ void AppItemDelegate::setCurrentIndex(const QModelIndex &index)
 
     const QModelIndex previousIndex = CurrentIndex;
     CurrentIndex = index;
+
+    m_previousIndex = previousIndex;
+    m_highlightAnimation->stop();
+    m_highlightProgress = 0;
+    m_highlightAnimation->start();
 
     emit requestUpdate(previousIndex);
     emit requestUpdate(CurrentIndex);
@@ -129,10 +146,16 @@ void AppItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
 //    painter->fillRect(iconRect, Qt::magenta);
 
     // draw focus background
-   if (is_current && !(option.features & QStyleOptionViewItem::HasDisplay))
+    qreal highlight = 0;
+    if (is_current)
+        highlight = m_highlightProgress;
+    else if (m_previousIndex.isValid() && m_previousIndex == index)
+        highlight = 1 - m_highlightProgress;
+
+   if (highlight > 0 && !(option.features & QStyleOptionViewItem::HasDisplay))
     {
         const int radius = 10;
-        const QColor brushColor(0, 0, 0, 105);
+        const QColor brushColor(0, 0, 0, qRound(105 * highlight));
 
         painter->setPen(Qt::transparent);
         painter->setBrush(brushColor);

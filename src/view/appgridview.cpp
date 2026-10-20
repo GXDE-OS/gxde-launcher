@@ -380,7 +380,7 @@ void AppGridView::createFakeAnimation(const int pos, const bool moveNext, const 
 
     ani->setStartValue(indexRect(index).topLeft());
     ani->setEndValue(indexRect(indexAt(moveNext ? pos - 1 : pos + 1)).topLeft());
-    ani->setEasingCurve(QEasingCurve::OutQuad);
+    ani->setEasingCurve(QEasingCurve::OutCubic);
     ani->setDuration(300);
 
     connect(ani, &QPropertyAnimation::finished, floatLabel, &QLabel::deleteLater);

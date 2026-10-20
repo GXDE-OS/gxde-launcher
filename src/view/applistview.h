@@ -31,6 +31,9 @@
 
 #define DRAG_SCROLL_THRESHOLD 25
 
+class SmoothScroller;
+class QVariantAnimation;
+
 DWIDGET_USE_NAMESPACE
 //DGUI_USE_NAMESPACE
 DCORE_USE_NAMESPACE
@@ -44,6 +47,7 @@ public:
 
     using QListView::indexAt;
     const QModelIndex indexAt(const int index) const;
+    void stopScrolling();
 
 signals:
     void popupMenuRequested(const QPoint &globalPos, const QPoint &surfacePos,
@@ -55,6 +59,11 @@ signals:
     void requestEnter(bool enter) const;
 
 protected:
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
+    void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight,
+                     const QList<int> &roles = QList<int>()) override;
+    void reset() override;
+    void paintEvent(QPaintEvent *e) override;
     void wheelEvent(QWheelEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
@@ -68,6 +77,9 @@ protected:
     void startDrag(const QModelIndex &index);
 
 private:
+    void syncHighlight();
+    void fadeHighlight(qreal opacity);
+    QRectF highlightRect(const QModelIndex &index) const;
     void handleScrollValueChanged();
     void handleScrollFinished();
     void prepareDropSwap();
@@ -82,7 +94,12 @@ private:
     bool m_enableDropInside = false;
 
     QPropertyAnimation *m_lastFakeAni = nullptr;
-    QPropertyAnimation *m_scrollAni;
+    SmoothScroller *m_scroller;
+    // 悬停高亮由视图绘制，在条目之间滑动；位置使用内容坐标，滚动时跟随内容
+    QVariantAnimation *m_highlightMoveAni;
+    QVariantAnimation *m_highlightFadeAni;
+    QRectF m_highlightRect;
+    qreal m_highlightOpacity = 0;
     QGraphicsOpacityEffect *m_opacityEffect;
     DWindowManagerHelper *m_wmHelper;
     double m_speedTime = 2.0;

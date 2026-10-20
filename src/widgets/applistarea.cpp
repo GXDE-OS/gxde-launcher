@@ -22,6 +22,7 @@
  */
 
 #include "applistarea.h"
+#include "smoothscroller.h"
 
 #include <QDebug>
 #include <QWheelEvent>
@@ -33,7 +34,10 @@
 AppListArea::AppListArea(QWidget *parent)
     : QScrollArea(parent)
     , m_updateEnableSelectionByMouseTimer(nullptr)
+    , m_scroller(new SmoothScroller(this, [this](int offset) { setViewportMargins(0, offset, 0, -offset); }))
 {
+    connect(m_scroller, &SmoothScroller::scrollStarted, this, &AppListArea::scrollStarted);
+
 #if QT_VERSION < QT_VERSION_CHECK(5,9,0)
     touchTapDistance = 15;
 #else
@@ -51,6 +55,11 @@ void AppListArea::addWidget(QWidget * view) {
     m_views << view;
 }
 
+void AppListArea::stopScrolling()
+{
+    m_scroller->stop();
+}
+
 void AppListArea::wheelEvent(QWheelEvent *e)
 {
     if (e->modifiers().testFlag(Qt::ControlModifier))
@@ -62,7 +71,7 @@ void AppListArea::wheelEvent(QWheelEvent *e)
         else
             emit decreaseIcon();
     } else {
-        QScrollArea::wheelEvent(e);
+        m_scroller->handleWheel(e);
     }
 }
 
@@ -79,6 +88,10 @@ bool AppListArea::eventFilter(QObject *watched, QEvent *e)
     QMouseEvent *event = static_cast<QMouseEvent *>(e);
 
     if (view && m_views.contains(view) && event) {
+        // 拖动滚动由 QScroller 接管，先停掉滚轮滚动并清掉越界偏移，避免两者同时移动 viewport
+        if (e->type() == QEvent::MouseButtonPress)
+            m_scroller->stop();
+
         if (event->source() == Qt::MouseEventSynthesizedByQt) {
             switch (event->type()) {
                 case QMouseEvent::MouseButtonPress:

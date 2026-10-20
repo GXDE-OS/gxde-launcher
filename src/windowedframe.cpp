@@ -21,6 +21,7 @@
 
 #include "windowedframe.h"
 #include "widgets/hseparator.h"
+#include "widgets/viewtransition.h"
 #include "global_util/util.h"
 
 #if (DTK_VERSION >= DTK_VERSION_CHECK(2, 0, 8, 0))
@@ -314,6 +315,12 @@ void WindowedFrame::showLauncher()
     connect(m_dockInter, &DBusDock::FrontendRectChanged, this, &WindowedFrame::adjustPosition, Qt::UniqueConnection);
 }
 
+void WindowedFrame::playEnterAnimation()
+{
+    ViewTransition::enter(m_leftWidget);
+    ViewTransition::enter(m_rightBar);
+}
+
 void WindowedFrame::hideLauncher()
 {
     if (!visible()) {
@@ -531,9 +538,14 @@ bool WindowedFrame::windowDeactiveEvent()
 
 void WindowedFrame::switchToCategory(const QModelIndex &index)
 {
-    m_appsView->setModel(m_appsModel);
-    m_appsView->setCurrentIndex(QModelIndex());
-    m_appsModel->setCategory(index.data(AppsListModel::AppCategoryRole).value<AppsListModel::AppCategory>());
+    const AppsListModel::AppCategory category = index.data(AppsListModel::AppCategoryRole).value<AppsListModel::AppCategory>();
+
+    m_appsView->stopScrolling();
+    ViewTransition::run(m_appsView, ViewTransition::Forward, [this, category] {
+        m_appsView->setModel(m_appsModel);
+        m_appsView->setCurrentIndex(QModelIndex());
+        m_appsModel->setCategory(category);
+    });
 }
 
 QPainterPath WindowedFrame::getCornerPath(AnchoredCornor direction)
@@ -877,20 +889,27 @@ void WindowedFrame::onToggleFullScreen()
 
 void WindowedFrame::onSwitchBtnClicked()
 {
-    if (m_displayMode == All) {
-        m_appsModel->setCategory(AppsListModel::Category);
-        m_displayMode = Category;
-    }
-    else if (m_displayMode == Category && m_appsModel->category() != AppsListModel::Category) {
-        m_appsModel->setCategory(AppsListModel::Category);
-    }
-    else {
-        m_displayMode = All;
-        m_appsModel->setCategory(AppsListModel::Custom);
-    }
+    // 常用 -> 所有分类是进入下一级，从具体分类或所有分类返回则是回到上一级
+    const ViewTransition::Direction direction = m_displayMode == All ? ViewTransition::Forward
+                                                                     : ViewTransition::Backward;
 
-    m_switchBtn->updateStatus(m_displayMode);
-    m_appsView->setModel(m_appsModel);
+    m_appsView->stopScrolling();
+    ViewTransition::run(m_appsView, direction, [this] {
+        if (m_displayMode == All) {
+            m_appsModel->setCategory(AppsListModel::Category);
+            m_displayMode = Category;
+        }
+        else if (m_displayMode == Category && m_appsModel->category() != AppsListModel::Category) {
+            m_appsModel->setCategory(AppsListModel::Category);
+        }
+        else {
+            m_displayMode = All;
+            m_appsModel->setCategory(AppsListModel::Custom);
+        }
+
+        m_switchBtn->updateStatus(m_displayMode);
+        m_appsView->setModel(m_appsModel);
+    });
 
     // each time press "switch btn" must hide tips label.
     hideTips();

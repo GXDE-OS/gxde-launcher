@@ -237,6 +237,8 @@ void LauncherSys::displayModeChanged()
 
     if (lastLauncher->visible()) {
         m_launcherInter->showLauncher();
+        if (lastLauncher != m_launcherInter)
+            m_launcherInter->playEnterAnimation();
     }
     else {
         m_launcherInter->hideLauncher();

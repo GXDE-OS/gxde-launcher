@@ -48,7 +48,8 @@ CategoryTitleWidget::CategoryTitleWidget(const QString &title, QWidget *parent) 
 
     setText(title);
     setTitleOpacity(1);  // update the style of this widget by force.
-    m_opacityAnimation->setDuration(300);
+    m_opacityAnimation->setDuration(250);
+    m_opacityAnimation->setEasingCurve(QEasingCurve::OutCubic);
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(m_title);

@@ -31,6 +31,7 @@ NavigationWidget::NavigationWidget(QWidget *parent) :
     QFrame(parent),
     m_calcUtil(CalculateUtil::instance()),
     m_categoryGroup(new QButtonGroup(this)),
+    m_zoomAnimation(new QPropertyAnimation(this, "zoomLevel", this)),
     m_internetBtn(new CategoryButton(AppsListModel::Internet, this)),
     m_chatBtn(new CategoryButton(AppsListModel::Chat, this)),
     m_musicBtn(new CategoryButton(AppsListModel::Music, this)),
@@ -43,6 +44,9 @@ NavigationWidget::NavigationWidget(QWidget *parent) :
     m_systemBtn(new CategoryButton(AppsListModel::System, this)),
     m_othersBtn(new CategoryButton(AppsListModel::Others, this))
 {
+    m_zoomAnimation->setDuration(250);
+    m_zoomAnimation->setEasingCurve(QEasingCurve::OutCubic);
+
     initUI();
     initConnection();
 }
@@ -210,11 +214,7 @@ void NavigationWidget::enterEvent(QEnterEvent *e)
 {
     QFrame::enterEvent(e);
 
-    QPropertyAnimation * ani = new QPropertyAnimation(this, "zoomLevel");
-    ani->setDuration(300);
-    ani->setStartValue(zoomLevel());
-    ani->setEndValue(1.2);
-    ani->start(QPropertyAnimation::DeleteWhenStopped);
+    animateZoomLevel(1.2);
 
     emit mouseEntered();
 }
@@ -223,11 +223,15 @@ void NavigationWidget::leaveEvent(QEvent *e)
 {
     QFrame::leaveEvent(e);
 
-    QPropertyAnimation * ani = new QPropertyAnimation(this, "zoomLevel");
-    ani->setDuration(300);
-    ani->setEndValue(zoomLevel());
-    ani->setEndValue(1);
-    ani->start(QPropertyAnimation::DeleteWhenStopped);
+    animateZoomLevel(1);
+}
+
+void NavigationWidget::animateZoomLevel(const qreal zoomLevel)
+{
+    m_zoomAnimation->stop();
+    m_zoomAnimation->setStartValue(this->zoomLevel());
+    m_zoomAnimation->setEndValue(zoomLevel);
+    m_zoomAnimation->start();
 }
 
 void NavigationWidget::showEvent(QShowEvent *e)
