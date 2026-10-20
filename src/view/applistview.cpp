@@ -62,7 +62,7 @@ AppListView::AppListView(QWidget *parent)
     setContentsMargins(0, 0, 0, 0);
     setMouseTracking(true);
     setFixedWidth(300);
-    setStyleSheet("background-color: rgba(255, 255, 255, 0);");  // 任务栏启动程序时不会出现阴影
+    setStyleSheet("AppListView, #qt_scrollarea_viewport { background-color: rgba(255, 255, 255, 0); }");
     verticalScrollBar()->setContextMenuPolicy(Qt::NoContextMenu);
 
     // support drag and drop.
