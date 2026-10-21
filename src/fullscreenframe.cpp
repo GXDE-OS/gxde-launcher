@@ -29,6 +29,7 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <LayerShellQt/Window>
 #include <QScreen>
 #include <QHBoxLayout>
 #include <QDebug>
@@ -869,7 +870,34 @@ void FullScreenFrame::showLauncher()
 {
     updateGeometry();
     updateAppViewSizes();
+
+    if (DApplication::isWayland()) {
+        // Fix round corner issue -- they're NOT supposed to be here...
+        createWinId();
+        setupLayerShell();
+    }
+
     show();
+}
+
+void FullScreenFrame::setupLayerShell() {
+    QWindow *win = windowHandle();
+    if (!win) {
+        return;
+    }
+
+    if (LayerShellQt::Window *lsWin = LayerShellQt::Window::get(win)) {
+        lsWin->setAnchors(LayerShellQt::Window::Anchors(
+                LayerShellQt::Window::AnchorTop) |
+            LayerShellQt::Window::AnchorLeft
+        );
+
+        lsWin->setScope(QStringLiteral("gxde-launcher"));
+        lsWin->setExclusiveZone(-1);
+        lsWin->setLayer(LayerShellQt::Window::LayerTop);
+        lsWin->setScreenConfiguration(LayerShellQt::Window::ScreenFromQWindow);
+        lsWin->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+    }
 }
 
 void FullScreenFrame::playEnterAnimation()

@@ -176,20 +176,35 @@ void CategoryButton::updateState(const CategoryButton::State state)
         return;
     m_state = state;
 
+    updateIcon();
+    updateTextColor();
+}
+
+void CategoryButton::updateIcon()
+{
     QString picState;
-    switch (state)
+    switch (m_state)
     {
     case Checked:   picState = "active";    break;
     case Hover:     picState = "hover";     break;
     default:        picState = "normal";    break;
     }
 
-    const auto ratio = devicePixelRatioF();
-    QPixmap categoryPix = loadSvg(QString(":/icons/skin/icons/%1_%2_22px.svg").arg(m_iconName).arg(picState), 22 * ratio);
-    categoryPix.setDevicePixelRatio(qApp->devicePixelRatio());
+    const qreal ratio = devicePixelRatioF();
+    const int size = qRound(22 * ratio);
+    QPixmap categoryPix = loadSvg(QString(":/icons/skin/icons/%1_%2_22px.svg").arg(m_iconName).arg(picState), size);
+    categoryPix.setDevicePixelRatio(ratio);
     m_iconLabel->setPixmap(categoryPix);
+}
 
-    updateTextColor();
+// Fix HDPI screen issue under Qt6.
+bool CategoryButton::event(QEvent *e) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+    if (e->type() == QEvent::DevicePixelRatioChange)
+        updateIcon();
+#endif
+
+    return QAbstractButton::event(e);
 }
 
 void CategoryButton::updateTextColor()

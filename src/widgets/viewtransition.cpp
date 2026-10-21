@@ -15,6 +15,15 @@ namespace {
 
 const char *const OverlayProperty = "_launcher_view_transition";
 
+QPixmap snapshot(QWidget *widget) {
+    const qreal ratio = widget->devicePixelRatioF();
+    QPixmap pixmap(widget->size() * ratio);
+    pixmap.setDevicePixelRatio(ratio);
+    pixmap.fill(Qt::transparent);
+    widget->render(&pixmap, QPoint(), QRegion(), QWidget::DrawChildren);
+    return pixmap;
+}
+
 class TransitionOverlay : public QWidget
 {
 public:
@@ -166,7 +175,7 @@ void run(QWidget *target, Direction direction, const std::function<void()> &chan
     if (TransitionOverlay *overlay = dynamic_cast<TransitionOverlay *>(previous))
         overlay->finish();
 
-    const QPixmap from = target->grab();
+    const QPixmap from = snapshot(target);
 
     change();
 
@@ -177,7 +186,7 @@ void run(QWidget *target, Direction direction, const std::function<void()> &chan
     if (settle)
         settle();
 
-    const QPixmap to = target->grab();
+    const QPixmap to = snapshot(target);
 
     new TransitionOverlay(target, from, to, direction);
 }
@@ -192,7 +201,7 @@ void enter(QWidget *target)
         overlay->finish();
 
     QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
-    new TransitionOverlay(target, QPixmap(), target->grab(), ZoomIn);
+    new TransitionOverlay(target, QPixmap(), snapshot(target), ZoomIn);
 }
 
 }  // namespace ViewTransition

@@ -123,6 +123,7 @@ private:
     void regionMonitorPoint(const QPoint &point) Q_DECL_OVERRIDE;
 
     void updateGeometry();
+    void setupLayerShell();
     void checkCategoryVisible();
     void showPopupMenu(const QPoint &globalPos, const QPoint &surfacePos,
                        const QModelIndex &context);

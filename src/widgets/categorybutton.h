@@ -61,6 +61,7 @@ public slots:
     AppsListModel::AppCategory category() const;
 
 protected:
+    bool event(QEvent *e) override;
     void paintEvent(QPaintEvent *e);
     void enterEvent(QEnterEvent *e);
     void leaveEvent(QEvent *e);
@@ -68,6 +69,7 @@ protected:
 private:
     void setInfoByCategory();
     void updateState(const State state);
+    void updateIcon();
     void updateTextColor();
     void addTextShadow();
 
