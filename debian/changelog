@@ -1,3 +1,11 @@
+gxde-launcher (6.0.24) UNRELEASED; urgency=medium
+
+  * 修复了HDPI下全屏启动器的壁纸撕裂问题
+  * 优化滚动效果
+  * 优化动画效果
+
+ -- CharOfString <root@charofstring.cc>  Tue, 20 Oct 2026 22:23:02 -0500
+
 gxde-launcher (6.0.23) UNRELEASED; urgency=medium
 
   [ CharOfString ]
