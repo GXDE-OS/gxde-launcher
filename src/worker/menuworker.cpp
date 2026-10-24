@@ -218,7 +218,6 @@ void MenuWorker::showMenuByAppItem(QPoint globalPos, QPoint surfacePos,
             ? ownerWindow->geometry().topLeft()
             : globalPos - surfacePos;
         menu->move(recordedOrigin + surfacePos);
-        menu->winId();
 
         m_menuGeometry = QRect(globalPos, menu->sizeHint());
         m_menuIsShown = true;
