@@ -151,7 +151,12 @@ void LauncherSys::showLauncherOnScreen(const QString &screenName,
         m_targetDockGeometry = QRect();
     }
     m_launcherInter->setTargetScreen(m_targetScreen, m_targetDockGeometry);
+
+    const bool wasVisible = m_launcherInter->visible();
     m_launcherInter->showLauncher();
+    if (!wasVisible && m_launcherInter->visible()) {
+        m_launcherInter->playEnterAnimation();
+    }
 }
 
 QScreen *LauncherSys::resolveScreen(const QString &screenName) const

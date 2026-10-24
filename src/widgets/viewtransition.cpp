@@ -2,6 +2,7 @@
 
 #include <QAbstractItemView>
 #include <QCoreApplication>
+#include <QDebug>
 #include <QEvent>
 #include <QGraphicsOpacityEffect>
 #include <QPainter>
@@ -20,7 +21,20 @@ QPixmap snapshot(QWidget *widget) {
     QPixmap pixmap(widget->size() * ratio);
     pixmap.setDevicePixelRatio(ratio);
     pixmap.fill(Qt::transparent);
+
+    QList<QGraphicsOpacityEffect *> effects;
+    for (QWidget *child : widget->findChildren<QWidget *>()) {
+        auto *effect = qobject_cast<QGraphicsOpacityEffect *>(child->graphicsEffect());
+        if (effect && effect->isEnabled() && effect->opacity() >= 1) {
+            effect->setEnabled(false);
+            effects << effect;
+        }
+    }
     widget->render(&pixmap, QPoint(), QRegion(), QWidget::DrawChildren);
+    for (QGraphicsOpacityEffect *effect : effects) {
+        effect->setEnabled(true);
+    }
+
     return pixmap;
 }
 
@@ -201,7 +215,13 @@ void enter(QWidget *target)
         overlay->finish();
 
     QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
-    new TransitionOverlay(target, QPixmap(), snapshot(target), ZoomIn);
+    for (QAbstractItemView *view : target->findChildren<QAbstractItemView *>()) {
+        view->doItemsLayout();
+    }
+
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
+    const QPixmap TMPDBG_shot = snapshot(target);
+    new TransitionOverlay(target, QPixmap(), TMPDBG_shot, ZoomIn);
 }
 
 }  // namespace ViewTransition
