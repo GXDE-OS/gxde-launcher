@@ -106,6 +106,13 @@ private:
     QRect rawDockGeometry() const;
     QRect logicalDockGeometry() const;
 
+    void updateFlyoutStyle();
+    bool flyoutTranslucent() const;
+    int flyoutMargin() const;
+    QRect flyoutPanelRect() const;
+    void applyFlyoutBlur();
+    void paintFlyout();
+
 protected:
     void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
     void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
@@ -158,6 +165,8 @@ private:
 
     int m_autoScrollStep = DLauncher::APPS_AREA_AUTO_SCROLL_STEP;
     int m_radius = 10;
+    bool m_flyout = false;
+    QImage m_flyoutShadow;
     AnchoredCornor m_anchoredCornor = Normal;
     QPainterPath m_cornerPath;
     FocusPosition m_focusPos;

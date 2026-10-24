@@ -40,6 +40,7 @@
 #include <QKeyEvent>
 #include <QResizeEvent>
 #include <QPainter>
+#include <QPainterPath>
 #include <QScreen>
 #include <QEvent>
 #include <QTimer>
@@ -61,7 +62,24 @@
 #define DOCK_FASHION    0
 #define DOCK_EFFICIENT  1
 
+#define FRAME_HEIGHT    502
+
 extern const QPoint widgetRelativeOffset(const QWidget * const self, const QWidget *w);
+
+QT_BEGIN_NAMESPACE
+void qt_blurImage(QPainter *painter, QImage &image, qreal radius, bool quality,
+                  bool alphaOnly, int transposed = 0);
+QT_END_NAMESPACE
+
+namespace {
+// the dark dock flyouts of the V23 and V20 modes: a rounded panel with a
+// shadow around it, kept off the dock and the screen edges
+constexpr int kFlyoutShadowMargin = 10;
+constexpr int kFlyoutShadowBlur = 6;
+constexpr int kFlyoutShadowOffset = 2;
+constexpr int kFlyoutRadius = 8;
+constexpr int kFlyoutGap = 10;
+}
 
 WindowedFrame::WindowedFrame(QWidget *parent)
     : DBlurEffectWidget(parent)
@@ -167,7 +185,7 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_InputMethodEnabled, true);
     setFocusPolicy(Qt::ClickFocus);
-    setFixedHeight(502);
+    setFixedHeight(FRAME_HEIGHT);
     setObjectName("MiniFrame");
     setStyleSheet(getQssFromFile(":/skin/qss/miniframe.qss"));
 
@@ -293,6 +311,7 @@ void WindowedFrame::showLauncher()
         m_appsManager->refreshAllList();
     }
 
+    updateFlyoutStyle();
     adjustSize(); // right widget need calculate width based on font
 
     if (QScreen *screen = targetScreen()) {
@@ -306,10 +325,11 @@ void WindowedFrame::showLauncher()
         setupLayerShell();
         adjustPosition();
         show();
-        Wayland::LayerShellStyler::apply(windowHandle(), 5);
+        applyFlyoutBlur();
     } else {
         adjustPosition();
         show();
+        applyFlyoutBlur();
     }
 
     connect(m_dockInter, &DBusDock::FrontendRectChanged, this, &WindowedFrame::adjustPosition, Qt::UniqueConnection);
@@ -656,6 +676,11 @@ void WindowedFrame::enterEvent(QEnterEvent *e)
 
 void WindowedFrame::paintEvent(QPaintEvent *e)
 {
+    if (m_flyout) {
+        paintFlyout();
+        return;
+    }
+
     if (DApplication::isWayland()) {
         QPainter p(this);
         p.setRenderHint(QPainter::Antialiasing);
@@ -714,7 +739,9 @@ void WindowedFrame::regionMonitorPoint(const QPoint &point)
 
 bool WindowedFrame::eventFilter(QObject *watched, QEvent *event) {
     if (watched == m_rightBar && event->type() == QEvent::Resize) {
-        setFixedSize(m_leftWidget->width() + m_rightBar->width(), 502);
+        const int margin = flyoutMargin();
+        setFixedSize(m_leftWidget->width() + m_rightBar->width() + margin * 2,
+                     FRAME_HEIGHT + margin * 2);
     }
 
     return QWidget::eventFilter(watched, event);
@@ -724,6 +751,11 @@ void WindowedFrame::resizeEvent(QResizeEvent *event)
 {
     QTimer::singleShot(0, this, [=] {
         initAnchoredCornor();
+        if (m_flyout) {
+            if (isVisible())
+                applyFlyoutBlur();
+            return;
+        }
         m_cornerPath = getCornerPath(m_anchoredCornor);
         m_windowHandle.setClipPath(m_cornerPath);
     });
@@ -769,8 +801,34 @@ void WindowedFrame::adjustPosition()
     const auto &s = size();
     QPoint p;
 
+    if (m_flyout) {
+        // the panel lies kFlyoutGap off the dock, and off the screen edge
+        // that the launcher item is at, like a dock flyout
+        QScreen *screen = targetScreen();
+        const QRect screenRect = screen
+            ? screen->geometry()
+            : qApp->primaryScreen()->geometry();
+        const int offset = kFlyoutGap - flyoutMargin();
+
+        switch (dockPos) {
+        case DOCK_TOP:
+            p = QPoint(screenRect.left() + offset, dockRect.bottom() + offset + 1);
+            break;
+        case DOCK_BOTTOM:
+            p = QPoint(screenRect.left() + offset, dockRect.top() - s.height() - offset);
+            break;
+        case DOCK_LEFT:
+            p = QPoint(dockRect.right() + offset + 1, screenRect.top() + offset);
+            break;
+        case DOCK_RIGHT:
+            p = QPoint(dockRect.left() - s.width() - offset, screenRect.top() + offset);
+            break;
+        default:
+            Q_UNREACHABLE_IMPL();
+        }
+    }
     // extra spacing for efficient mode
-    if (m_dockInter->displayMode() == DOCK_EFFICIENT) {
+    else if (m_dockInter->displayMode() == DOCK_EFFICIENT) {
         QScreen *screen = targetScreen();
         const QRect screenRect = screen
             ? screen->geometry()
@@ -925,6 +983,152 @@ void WindowedFrame::onWMCompositeChanged()
         m_windowHandle.setWindowRadius(0);
         m_windowHandle.setBorderColor(QColor("#2C3238"));
     }
+
+    // the flyout gains or loses its shadow margin
+    updateFlyoutStyle();
+    if (visible()) {
+        adjustPosition();
+        applyFlyoutBlur();
+    }
+}
+
+void WindowedFrame::updateFlyoutStyle()
+{
+    const bool wasFlyout = m_flyout;
+    m_flyout = isDockV23Mode();
+    m_flyoutShadow = QImage();
+
+    const int margin = flyoutMargin();
+    layout()->setContentsMargins(margin, margin, margin, margin);
+    setFixedSize(m_leftWidget->width() + m_rightBar->width() + margin * 2,
+                 FRAME_HEIGHT + margin * 2);
+    update();
+
+    if (DApplication::isWayland())
+        return;
+
+    if (m_flyout) {
+        // the dxcb frame has no room for the shadow, nor a frame we want:
+        // the shadow is painted in the window, around a WM blurred panel
+        m_windowHandle.setShadowRadius(0);
+        m_windowHandle.setWindowRadius(0);
+        m_windowHandle.setEnableBlurWindow(false);
+        m_windowHandle.setTranslucentBackground(true);
+        m_windowHandle.setClipPath(QPainterPath());
+    } else if (wasFlyout) {
+        // back to the frame set up in the constructor
+        DPlatformWindowHandle::setWindowBlurAreaByWM(this, QVector<DPlatformWindowHandle::WMBlurArea>());
+        m_windowHandle.setShadowRadius(60);
+        m_windowHandle.setWindowRadius(m_wmHelper->hasComposite() ? 5 : 0);
+        m_windowHandle.setEnableBlurWindow(true);
+        m_windowHandle.setTranslucentBackground(false);
+    }
+}
+
+bool WindowedFrame::flyoutTranslucent() const
+{
+    return DApplication::isWayland() || m_wmHelper->hasComposite();
+}
+
+int WindowedFrame::flyoutMargin() const
+{
+    return m_flyout && flyoutTranslucent() ? kFlyoutShadowMargin : 0;
+}
+
+QRect WindowedFrame::flyoutPanelRect() const
+{
+    const int margin = flyoutMargin();
+    return rect().marginsRemoved(QMargins(margin, margin, margin, margin));
+}
+
+void WindowedFrame::applyFlyoutBlur()
+{
+    const QRect panel = flyoutPanelRect();
+
+    if (DApplication::isWayland()) {
+        QWindow *win = windowHandle();
+        if (!win)
+            return;
+
+        if (m_flyout) {
+            // clicks on the shadow go to the windows below
+            win->setMask(QRegion(panel));
+            Wayland::LayerShellStyler::apply(win, kFlyoutRadius,
+                Wayland::LayerShellStyler::roundedRegion(panel, kFlyoutRadius));
+            return;
+        }
+
+        if (!win->mask().isEmpty())
+            win->setMask(QRegion());
+        Wayland::LayerShellStyler::apply(win, 5);
+        return;
+    }
+
+    if (!m_flyout || !m_wmHelper->hasComposite())
+        return;
+
+    DPlatformWindowHandle::WMBlurArea area;
+    area.x = panel.x();
+    area.y = panel.y();
+    area.width = panel.width();
+    area.height = panel.height();
+    area.xRadius = kFlyoutRadius;
+    area.yRaduis = kFlyoutRadius;
+    DPlatformWindowHandle::setWindowBlurAreaByWM(this, QVector<DPlatformWindowHandle::WMBlurArea>() << area);
+}
+
+void WindowedFrame::paintFlyout()
+{
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect(), Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+    const QRectF panel = flyoutPanelRect();
+
+    if (!flyoutTranslucent()) {
+        // X11 without a compositor shows no alpha: an opaque, square panel
+        painter.fillRect(panel, QColor(36, 36, 36));
+        painter.setPen(QPen(QColor(0, 0, 0, 255 * 0.5), 1));
+        painter.drawRect(panel.adjusted(.5, .5, -.5, -.5));
+        return;
+    }
+
+    QPainterPath path;
+    path.addRoundedRect(panel, kFlyoutRadius, kFlyoutRadius);
+
+    if (m_flyoutShadow.size() != size()) {
+        QImage shadow(size(), QImage::Format_ARGB32_Premultiplied);
+        shadow.fill(Qt::transparent);
+        {
+            QPainter shadowPainter(&shadow);
+            shadowPainter.setRenderHint(QPainter::Antialiasing, true);
+            shadowPainter.fillPath(path.translated(0, kFlyoutShadowOffset), Qt::black);
+        }
+
+        m_flyoutShadow = QImage(size(), QImage::Format_ARGB32_Premultiplied);
+        m_flyoutShadow.fill(Qt::transparent);
+        QPainter cachePainter(&m_flyoutShadow);
+        qt_blurImage(&cachePainter, shadow, kFlyoutShadowBlur * 2.0, true, true);
+    }
+
+    QPainterPath outside;
+    outside.addRect(rect());
+    outside = outside.subtracted(path);
+    painter.save();
+    painter.setClipPath(outside);
+    painter.setOpacity(0.5);
+    painter.drawImage(0, 0, m_flyoutShadow);
+    painter.restore();
+
+    // the blend color of the dark dock flyouts over the compositor blur
+    painter.fillPath(path, QColor(0, 0, 0, 64));
+
+    painter.setPen(QPen(QColor(0, 0, 0, 255 * 0.5), 1));
+    painter.setBrush(Qt::NoBrush);
+    painter.drawRoundedRect(panel.adjusted(.5, .5, -.5, -.5), kFlyoutRadius - .5, kFlyoutRadius - .5);
 }
 
 void WindowedFrame::searchText(const QString &text)

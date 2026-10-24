@@ -87,3 +87,7 @@ const QPixmap renderSVG(const QString &path, const QSize &size) {
 
     return pixmap;
 }
+
+bool isDockV23Mode() {
+    return QFile::exists(QDir::homePath() + "/.config/GXDE/gxde-dock/v23-mode");
+}

@@ -36,5 +36,6 @@ QString getThumbnailsPath();
 QString getCategoryNames(QString text);
 const QPixmap loadSvg(const QString &fileName, const int size);
 const QPixmap renderSVG(const QString &path, const QSize &size);
+bool isDockV23Mode();
 #endif // UTIL_H
 

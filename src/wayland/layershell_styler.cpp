@@ -26,6 +26,31 @@ struct SurfaceState {
 
 static QHash<QWindow *, SurfaceState> surfaceStates;
 
+QRegion roundedRegion(const QRect &rect, int radius) {
+    if (radius <= 0 || rect.isEmpty()) {
+        return QRegion(rect);
+    }
+
+    QRegion region(rect.adjusted(radius, 0, -radius, 0));
+    region += QRegion(rect.adjusted(0, radius, 0, -radius));
+
+    const int diameter = radius * 2;
+    region += QRegion(rect.x(), rect.y(), diameter, diameter, QRegion::Ellipse)
+        & QRect(rect.x(), rect.y(), radius, radius);
+    region += QRegion(rect.right() - diameter + 1, rect.y(), diameter,
+                      diameter, QRegion::Ellipse)
+        & QRect(rect.right() - radius + 1, rect.y(), radius, radius);
+    region += QRegion(rect.x(), rect.bottom() - diameter + 1, diameter,
+                      diameter, QRegion::Ellipse)
+        & QRect(rect.x(), rect.bottom() - radius + 1, radius, radius);
+    region += QRegion(rect.right() - diameter + 1,
+                      rect.bottom() - diameter + 1, diameter, diameter,
+                      QRegion::Ellipse)
+        & QRect(rect.right() - radius + 1, rect.bottom() - radius + 1,
+                radius, radius);
+    return region;
+}
+
 static void registry_global(void *data, wl_registry *registry,
         uint32_t name, const char *interface, uint32_t version) {
     auto *ctx = static_cast<BindContext *>(data);
@@ -71,7 +96,7 @@ void clear(QWindow *window) {
     }
 }
 
-void apply(QWindow *window, int radius) {
+void apply(QWindow *window, int radius, const QRegion &blurRegion) {
     if (!window || radius < 0) {
         return;
     }
@@ -85,6 +110,8 @@ void apply(QWindow *window, int radius) {
         native->nativeResourceForWindow("display", nullptr));
     auto *surface = static_cast<wl_surface *>(
         native->nativeResourceForWindow("surface", window));
+    auto *compositor = static_cast<wl_compositor *>(
+        native->nativeResourceForIntegration("compositor"));
 
     if (!display || !surface) {
         return;
@@ -137,7 +164,17 @@ void apply(QWindow *window, int radius) {
     if (state.blurManager) {
         state.blur = org_kde_kwin_blur_manager_create(state.blurManager, surface);
         if (state.blur) {
-            org_kde_kwin_blur_set_region(state.blur, nullptr);
+            wl_region *region = nullptr;
+            if (!blurRegion.isEmpty() && compositor) {
+                region = wl_compositor_create_region(compositor);
+                for (const QRect &rect : blurRegion) {
+                    wl_region_add(region, rect.x(), rect.y(), rect.width(), rect.height());
+                }
+            }
+            org_kde_kwin_blur_set_region(state.blur, region);
+            if (region) {
+                wl_region_destroy(region);
+            }
             org_kde_kwin_blur_set_strength(state.blur, 300);
             org_kde_kwin_blur_commit(state.blur);
         }
