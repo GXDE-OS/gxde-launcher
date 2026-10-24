@@ -1,3 +1,11 @@
+gxde-launcher (6.0.25) UNRELEASED; urgency=medium
+
+  * 在Dock非DDE V15模式下提供仿DTK6的窗口border
+  * 修复了Wayland下打开右键菜单后启动器背景变为纯黑的问题
+  * 新增激活动画
+
+ -- CharOfString <root@charofstring.cc>  Sat, 24 Oct 2026 03:01:11 -0500
+
 gxde-launcher (6.0.24) UNRELEASED; urgency=medium
 
   * 修复了HDPI下全屏启动器的壁纸撕裂问题
