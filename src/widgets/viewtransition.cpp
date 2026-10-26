@@ -49,7 +49,8 @@ public:
         , m_direction(direction)
         , m_animation(new QVariantAnimation(this))
     {
-        setAttribute(Qt::WA_TransparentForMouseEvents);
+        // 退场期间挡住下面的真实控件，避免点到已经"消失"的内容
+        setAttribute(Qt::WA_TransparentForMouseEvents, direction != ZoomOut);
         setGeometry(target->geometry());
 
         // 用透明度效果隐藏真实控件；控件已有透明度效果时复用它，避免把它替换掉
@@ -68,13 +69,20 @@ public:
 
         m_animation->setStartValue(0.0);
         m_animation->setEndValue(1.0);
-        m_animation->setDuration(direction == Fade ? 240 : direction == ZoomIn ? 300 : 280);
+        m_animation->setDuration(direction == Fade     ? 240
+                                 : direction == ZoomIn  ? 300
+                                 : direction == ZoomOut ? LeaveDuration
+                                                        : 280);
         m_animation->setEasingCurve(QEasingCurve::OutCubic);
         connect(m_animation, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
             m_progress = value.toReal();
             update();
         });
-        connect(m_animation, &QVariantAnimation::finished, this, [this] { finish(); });
+        // 退场结束后不还原控件，等窗口隐藏（Hide 事件）或下一次过渡时再收尾，否则隐藏前会闪一下
+        connect(m_animation, &QVariantAnimation::finished, this, [this] {
+            if (m_direction != ZoomOut)
+                finish();
+        });
 
         // 紧贴在目标控件之上，不盖住原本就在它上面的兄弟控件
         stackUnder(target);
@@ -128,14 +136,16 @@ protected:
         QPainter painter(this);
         const qreal p = m_progress;
 
-        if (m_direction == ZoomIn) {
-            const qreal scale = 0.94 + 0.06 * p;
+        if (m_direction == ZoomIn || m_direction == ZoomOut) {
+            // 退场是入场的倒放
+            const qreal t = m_direction == ZoomIn ? p : 1.0 - p;
+            const qreal scale = 0.94 + 0.06 * t;
             painter.setRenderHint(QPainter::SmoothPixmapTransform);
-            painter.setOpacity(p);
+            painter.setOpacity(t);
             painter.translate(rect().center());
             painter.scale(scale, scale);
             painter.translate(-rect().center());
-            painter.drawPixmap(0, 0, m_to);
+            painter.drawPixmap(0, 0, m_direction == ZoomIn ? m_to : m_from);
             return;
         }
 
@@ -185,9 +195,7 @@ void run(QWidget *target, Direction direction, const std::function<void()> &chan
     }
 
     // 上一次过渡还没结束时先收尾，保证截到的是真实内容
-    QObject *previous = target->property(OverlayProperty).value<QObject *>();
-    if (TransitionOverlay *overlay = dynamic_cast<TransitionOverlay *>(previous))
-        overlay->finish();
+    cancel(target);
 
     const QPixmap from = snapshot(target);
 
@@ -210,9 +218,7 @@ void enter(QWidget *target)
     if (!target || !target->isVisible() || !target->parentWidget())
         return;
 
-    QObject *previous = target->property(OverlayProperty).value<QObject *>();
-    if (TransitionOverlay *overlay = dynamic_cast<TransitionOverlay *>(previous))
-        overlay->finish();
+    cancel(target);
 
     QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
     for (QAbstractItemView *view : target->findChildren<QAbstractItemView *>()) {
@@ -222,6 +228,25 @@ void enter(QWidget *target)
     QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
     const QPixmap TMPDBG_shot = snapshot(target);
     new TransitionOverlay(target, QPixmap(), TMPDBG_shot, ZoomIn);
+}
+
+void leave(QWidget *target)
+{
+    if (!target || !target->isVisible() || !target->parentWidget())
+        return;
+
+    cancel(target);
+    new TransitionOverlay(target, snapshot(target), QPixmap(), ZoomOut);
+}
+
+void cancel(QWidget *target)
+{
+    if (!target)
+        return;
+
+    QObject *previous = target->property(OverlayProperty).value<QObject *>();
+    if (TransitionOverlay *overlay = dynamic_cast<TransitionOverlay *>(previous))
+        overlay->finish();
 }
 
 }  // namespace ViewTransition

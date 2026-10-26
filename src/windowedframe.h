@@ -90,7 +90,9 @@ private:
     void showLauncher() Q_DECL_OVERRIDE;
     void playEnterAnimation() Q_DECL_OVERRIDE;
     void hideLauncher() Q_DECL_OVERRIDE;
+    void hideLauncherNow() Q_DECL_OVERRIDE;
     bool visible() Q_DECL_OVERRIDE;
+    bool cancelLeaveAnimation();
 
     void moveCurrentSelectApp(const int key) Q_DECL_OVERRIDE;
     void appendToSearchEdit(const char ch) Q_DECL_OVERRIDE;
@@ -160,6 +162,7 @@ private:
     QLabel *m_tipsLabel;
     QTimer *m_delayHideTimer;
     QTimer *m_autoScrollTimer;
+    QTimer *m_leaveTimer;
     Appearance *m_appearanceInter;
     DisplayMode m_displayMode;
 

@@ -112,9 +112,19 @@ void BoxFrame::updateBackground()
     update();
 }
 
+void BoxFrame::setBackgroundOpacity(qreal opacity)
+{
+    if (qFuzzyCompare(m_backgroundOpacity, opacity))
+        return;
+
+    m_backgroundOpacity = opacity;
+    update();
+}
+
 void BoxFrame::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
+    painter.setOpacity(m_backgroundOpacity);
 
     const QRect tr = rect();
 

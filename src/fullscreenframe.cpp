@@ -81,6 +81,8 @@ FullScreenFrame::FullScreenFrame(QWidget *parent) :
     m_delayHideTimer(new QTimer(this)),
     m_autoScrollTimer(new QTimer(this)),
     m_clearCacheTimer(new QTimer(this)),
+    m_leaveTimer(new QTimer(this)),
+    m_backgroundFade(new QVariantAnimation(this)),
     m_navigationWidget(new NavigationWidget(this)),
     m_searchWidget(new SearchWidget(this)),
     m_appsArea(new AppListArea),
@@ -137,6 +139,9 @@ FullScreenFrame::FullScreenFrame(QWidget *parent) :
 {
     setFocusPolicy(Qt::ClickFocus);
     setAttribute(Qt::WA_InputMethodEnabled, true);
+    // 退场时背景要淡出，窗口需要 alpha 通道；Qt 6.10+ 对不透明窗口使用 XRGB 缓冲区
+    if (DApplication::isWayland())
+        setAttribute(Qt::WA_TranslucentBackground);
     m_nextFocusIndex = Applist;
     m_currentFocusIndex = m_nextFocusIndex;
 
@@ -303,6 +308,10 @@ void FullScreenFrame::hideEvent(QHideEvent *e)
 {
     BoxFrame::hideEvent(e);
 
+    // 窗口已经隐藏，恢复背景供下次显示
+    m_backgroundFade->stop();
+    setBackgroundFade(1);
+
     QTimer::singleShot(1, this, [ = ] { emit visibleChanged(false); });
 
     m_clearCacheTimer->start();
@@ -313,7 +322,7 @@ void FullScreenFrame::mouseReleaseEvent(QMouseEvent *e)
     if (e->button() == Qt::RightButton)
         return;
 
-    hide();
+    hideLauncher();
 }
 
 void FullScreenFrame::wheelEvent(QWheelEvent *e)
@@ -403,6 +412,14 @@ void FullScreenFrame::initUI()
 
     m_delayHideTimer->setInterval(500);
     m_delayHideTimer->setSingleShot(true);
+
+    m_leaveTimer->setInterval(ViewTransition::LeaveDuration);
+    m_leaveTimer->setSingleShot(true);
+
+    m_backgroundFade->setStartValue(1.0);
+    m_backgroundFade->setEndValue(0.0);
+    m_backgroundFade->setDuration(ViewTransition::LeaveDuration);
+    m_backgroundFade->setEasingCurve(QEasingCurve::OutCubic);
 
     m_autoScrollTimer->setInterval(DLauncher::APPS_AREA_AUTO_SCROLL_TIMER);
     m_autoScrollTimer->setSingleShot(false);
@@ -754,6 +771,10 @@ void FullScreenFrame::initConnection()
     connect(this, &FullScreenFrame::displayModeChanged, this, &FullScreenFrame::checkCategoryVisible);
     connect(m_searchWidget, &SearchWidget::searchTextChanged, this, &FullScreenFrame::searchTextChanged);
     connect(m_delayHideTimer, &QTimer::timeout, this, &FullScreenFrame::hide, Qt::QueuedConnection);
+    connect(m_leaveTimer, &QTimer::timeout, this, &FullScreenFrame::hide);
+    connect(m_backgroundFade, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
+        setBackgroundFade(value.toReal());
+    });
 
     connect(m_clearCacheTimer, &QTimer::timeout, m_appsManager, &AppsManager::clearCache);
 
@@ -868,6 +889,8 @@ void FullScreenFrame::initConnection()
 
 void FullScreenFrame::showLauncher()
 {
+    cancelLeaveAnimation();
+
     updateGeometry();
     updateAppViewSizes();
 
@@ -940,12 +963,50 @@ void FullScreenFrame::setTargetScreen(QScreen *screen,
 
 void FullScreenFrame::hideLauncher()
 {
+    if (!visible())
+        return;
+
+    // 先播放退场动画，结束后再真正隐藏窗口
+    ViewTransition::leave(m_searchWidget);
+    ViewTransition::leave(m_appsArea);
+    ViewTransition::leave(m_navigationWidget);
+    ViewTransition::leave(m_floatTitle);
+    if (testAttribute(Qt::WA_TranslucentBackground))
+        m_backgroundFade->start();
+    m_leaveTimer->start();
+}
+
+void FullScreenFrame::hideLauncherNow()
+{
+    m_leaveTimer->stop();
     hide();
+}
+
+void FullScreenFrame::cancelLeaveAnimation()
+{
+    if (!m_leaveTimer->isActive())
+        return;
+
+    m_leaveTimer->stop();
+    m_backgroundFade->stop();
+    setBackgroundFade(1);
+    ViewTransition::cancel(m_searchWidget);
+    ViewTransition::cancel(m_appsArea);
+    ViewTransition::cancel(m_navigationWidget);
+    ViewTransition::cancel(m_floatTitle);
+}
+
+void FullScreenFrame::setBackgroundFade(qreal opacity)
+{
+    setBackgroundOpacity(opacity);
+    m_topGradient->setOpacity(opacity);
+    m_bottomGradient->setOpacity(opacity);
 }
 
 bool FullScreenFrame::visible()
 {
-    return isVisible();
+    // 退场动画期间窗口还在，但对外已经算作隐藏，这样再次打开可以打断退场
+    return isVisible() && !m_leaveTimer->isActive();
 }
 
 void FullScreenFrame::updateGeometry()
@@ -1135,7 +1196,7 @@ void FullScreenFrame::launchCurrentApp()
                 (m_displayMode == GROUP_BY_CATEGORY && category != AppsListModel::All && category != AppsListModel::Search)) {
             m_appsManager->launchApp(index);
 
-            hide();
+            hideLauncher();
             return;
         }
     }
@@ -1146,7 +1207,7 @@ void FullScreenFrame::launchCurrentApp()
     case GROUP_BY_CATEGORY:   m_appsManager->launchApp(m_internetView->indexAt(0));    break;
     }
 
-    hide();
+    hideLauncher();
 }
 
 bool FullScreenFrame::windowDeactiveEvent()

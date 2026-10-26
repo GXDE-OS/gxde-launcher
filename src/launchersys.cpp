@@ -250,7 +250,7 @@ void LauncherSys::displayModeChanged()
     }
 
     if (lastLauncher != m_launcherInter) {
-        lastLauncher->hideLauncher();
+        lastLauncher->hideLauncherNow();
     }
 
     QTimer::singleShot(0, this, [=] {

@@ -40,6 +40,7 @@ public:
 
     void setText(const QString &);
     void setPixmap(QPixmap pixmap);
+    void setOpacity(qreal opacity);
 
     Direction direction() const;
     void setDirection(const Direction &direction);
@@ -50,6 +51,7 @@ protected:
 private:
     Direction m_direction;
     QPixmap m_pixmap;
+    qreal m_opacity = 1;
 };
 
 #endif // GRADIENTLABEL_H

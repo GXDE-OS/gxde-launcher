@@ -39,6 +39,8 @@ public:
 
     void setBackground(const QString &url);
     inline QPixmap cachePixmap() { return m_cache; }
+    // 需要窗口带 alpha 通道（WA_TranslucentBackground）才能真正透出下面的内容
+    void setBackgroundOpacity(qreal opacity);
 
     virtual void updateGradient() = 0;
 
@@ -55,6 +57,7 @@ private:
     QPixmap m_pixmap;
     QPixmap m_cache;
     BackgroundManager *m_bgManager;
+    qreal m_backgroundOpacity = 1;
 };
 
 #endif // BOXFRAME_H

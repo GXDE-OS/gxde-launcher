@@ -98,6 +98,7 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     , m_tipsLabel(new QLabel(this))
     , m_delayHideTimer(new QTimer)
     , m_autoScrollTimer(new QTimer)
+    , m_leaveTimer(new QTimer(this))
     , m_appearanceInter(new Appearance("com.deepin.daemon.Appearance", "/com/deepin/daemon/Appearance", QDBusConnection::sessionBus(), this))
     , m_displayMode(All)
     , m_focusPos(LeftTop)
@@ -135,6 +136,9 @@ WindowedFrame::WindowedFrame(QWidget *parent)
 
     m_delayHideTimer->setInterval(200);
     m_delayHideTimer->setSingleShot(true);
+
+    m_leaveTimer->setInterval(ViewTransition::LeaveDuration);
+    m_leaveTimer->setSingleShot(true);
 
     m_autoScrollTimer->setInterval(DLauncher::APPS_AREA_AUTO_SCROLL_TIMER);
     m_autoScrollTimer->setSingleShot(false);
@@ -230,6 +234,7 @@ WindowedFrame::WindowedFrame(QWidget *parent)
     connect(m_appsManager, &AppsManager::requestHideTips, this, &WindowedFrame::hideTips);
     connect(m_switchBtn, &QPushButton::clicked, this, &WindowedFrame::onSwitchBtnClicked);
     connect(m_delayHideTimer, &QTimer::timeout, this, &WindowedFrame::prepareHideLauncher, Qt::QueuedConnection);
+    connect(m_leaveTimer, &QTimer::timeout, this, &WindowedFrame::hideLauncherNow);
 
     connect(m_appearanceInter, &Appearance::OpacityChanged, this, &WindowedFrame::onOpacityChanged);
 
@@ -300,6 +305,10 @@ QRect WindowedFrame::logicalDockGeometry() const
 
 void WindowedFrame::showLauncher()
 {
+    // 退场动画中再次打开：窗口还在，恢复内容即可
+    if (cancelLeaveAnimation())
+        return;
+
     if (visible() || m_delayHideTimer->isActive())
         return;
 
@@ -349,6 +358,21 @@ void WindowedFrame::hideLauncher()
 
     m_delayHideTimer->stop();
 
+    // 先播放退场动画，结束后再真正隐藏窗口
+    ViewTransition::leave(m_leftWidget);
+    ViewTransition::leave(m_rightBar);
+    m_leaveTimer->start();
+}
+
+void WindowedFrame::hideLauncherNow()
+{
+    if (!isVisible()) {
+        return;
+    }
+
+    m_leaveTimer->stop();
+    m_delayHideTimer->stop();
+
     disconnect(m_dockInter, &DBusDock::FrontendRectChanged, this, &WindowedFrame::adjustPosition);
 
     if (DApplication::isWayland()) {
@@ -360,9 +384,21 @@ void WindowedFrame::hideLauncher()
     recoveryAll();
 }
 
+bool WindowedFrame::cancelLeaveAnimation()
+{
+    if (!m_leaveTimer->isActive())
+        return false;
+
+    m_leaveTimer->stop();
+    ViewTransition::cancel(m_leftWidget);
+    ViewTransition::cancel(m_rightBar);
+    return true;
+}
+
 bool WindowedFrame::visible()
 {
-    return isVisible();
+    // 退场动画期间窗口还在，但对外已经算作隐藏，这样再次打开可以打断退场
+    return isVisible() && !m_leaveTimer->isActive();
 }
 
 void WindowedFrame::moveCurrentSelectApp(const int key)

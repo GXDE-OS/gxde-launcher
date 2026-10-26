@@ -47,6 +47,9 @@ public:
 
     // 从另一种显示模式切换过来时播放的入场动画
     virtual void playEnterAnimation() {}
+
+    // 不播放退场动画直接隐藏，用于切换显示模式
+    virtual void hideLauncherNow() { hideLauncher(); }
 };
 
 

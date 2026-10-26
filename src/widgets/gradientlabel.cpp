@@ -80,10 +80,20 @@ void setText(const QString &)
     // do nothing !
 }
 
+void GradientLabel::setOpacity(qreal opacity)
+{
+    if (qFuzzyCompare(m_opacity, opacity))
+        return;
+
+    m_opacity = opacity;
+    update();
+}
+
 void GradientLabel::paintEvent(QPaintEvent*)
 {
     // draw the pixmap
     QPainter painter(this);
+    painter.setOpacity(m_opacity);
     painter.drawPixmap(0, 0, m_pixmap);
     painter.end();
 }

@@ -115,7 +115,10 @@ private:
     void showLauncher() Q_DECL_OVERRIDE;
     void playEnterAnimation() Q_DECL_OVERRIDE;
     void hideLauncher() Q_DECL_OVERRIDE;
+    void hideLauncherNow() Q_DECL_OVERRIDE;
     bool visible() Q_DECL_OVERRIDE;
+    void cancelLeaveAnimation();
+    void setBackgroundFade(qreal opacity);
     void moveCurrentSelectApp(const int key) Q_DECL_OVERRIDE;
     void appendToSearchEdit(const char ch) Q_DECL_OVERRIDE;
     void launchCurrentApp() Q_DECL_OVERRIDE;
@@ -173,6 +176,8 @@ private:
     QTimer *m_delayHideTimer;
     QTimer *m_autoScrollTimer;
     QTimer *m_clearCacheTimer;
+    QTimer *m_leaveTimer;
+    QVariantAnimation *m_backgroundFade;
 
     NavigationWidget *m_navigationWidget;
     SearchWidget *m_searchWidget;
