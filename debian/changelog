@@ -1,3 +1,11 @@
+gxde-launcher (6.0.26) UNRELEASED; urgency=medium
+
+  * 修复了全屏模式下启动后图标跳动的问题
+  * 修复了全屏模式下图标在不被光标hover时残留高亮的问题
+  * 新增全屏模式退场动画
+
+ -- CharOfString <root@charofstring.cc>  Mon, 26 Oct 2026 00:28:04 -0500
+
 gxde-launcher (6.0.25) UNRELEASED; urgency=medium
 
   * 在Dock非DDE V15模式下提供仿DTK6的窗口border
