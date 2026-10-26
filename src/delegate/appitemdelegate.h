@@ -63,6 +63,7 @@ private:
     QVariantAnimation *m_highlightAnimation;
     QPersistentModelIndex m_previousIndex;
     qreal m_highlightProgress = 1;
+    qreal m_previousHighlight = 1;
 
     static QModelIndex CurrentIndex;
 };

@@ -64,14 +64,19 @@ void AppItemDelegate::setCurrentIndex(const QModelIndex &index)
     if (CurrentIndex == index)
         return;
 
+    const QModelIndex droppedIndex = m_previousIndex;
     const QModelIndex previousIndex = CurrentIndex;
     CurrentIndex = index;
 
     m_previousIndex = previousIndex;
+    m_previousHighlight = m_highlightProgress;
     m_highlightAnimation->stop();
     m_highlightProgress = 0;
     m_highlightAnimation->start();
 
+    if (droppedIndex.isValid() && droppedIndex != previousIndex && droppedIndex != CurrentIndex) {
+        emit requestUpdate(droppedIndex);
+    }
     emit requestUpdate(previousIndex);
     emit requestUpdate(CurrentIndex);
 }
@@ -147,10 +152,11 @@ void AppItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
 
     // draw focus background
     qreal highlight = 0;
-    if (is_current)
+    if (is_current) {
         highlight = m_highlightProgress;
-    else if (m_previousIndex.isValid() && m_previousIndex == index)
-        highlight = 1 - m_highlightProgress;
+    } else if (m_previousIndex.isValid() && m_previousIndex == index) {
+        highlight = m_previousHighlight * (1 - m_highlightProgress);
+    }
 
    if (highlight > 0 && !(option.features & QStyleOptionViewItem::HasDisplay))
     {
