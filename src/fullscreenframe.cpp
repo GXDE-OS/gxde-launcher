@@ -987,7 +987,7 @@ void FullScreenFrame::updateAppViewSizes()
     if (!screen)
         return;
 
-    const QSize size = screen->geometry().size();
+    const QSize size(width() - LEFT_PADDING - RIGHT_PADDING, screen->geometry().height());
     const QList<AppGridView *> views {
         m_allAppsView, m_internetView, m_chatView, m_musicView,
         m_videoView, m_graphicsView, m_gameView, m_officeView,
