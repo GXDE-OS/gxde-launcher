@@ -1,10 +1,15 @@
-gxde-launcher (6.0.26) UNRELEASED; urgency=medium
+gxde-launcher (6.0.27) UNRELEASED; urgency=medium
 
+  [ CharOfString ]
   * 修复了全屏模式下启动后图标跳动的问题
   * 修复了全屏模式下图标在不被光标hover时残留高亮的问题
   * 新增全屏模式退场动画
 
- -- CharOfString <root@charofstring.cc>  Mon, 26 Oct 2026 00:28:04 -0500
+  [ gfdgd_xi ]
+  * 优化右上角图标样式
+  * fix: 修复高分屏启动器全屏模式下电源按钮按下图标异常的问题
+
+ -- gfdgd_xi <3025613752@qq.com>  Sat, 31 Oct 2026 22:55:56 +0800
 
 gxde-launcher (6.0.25) UNRELEASED; urgency=medium
 
