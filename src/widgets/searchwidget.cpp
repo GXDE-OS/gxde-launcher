@@ -51,7 +51,7 @@ SearchWidget::SearchWidget(QWidget *parent) :
     m_togglePowerBtn = new DImageButton(this);
     m_togglePowerBtn->setNormalPic(":/icons/skin/icons/poweroff_normal.png");
     m_togglePowerBtn->setHoverPic(":/icons/skin/icons/poweroff_hover.png");
-    m_togglePowerBtn->setPressPic(":/icons/skin/icons/poweroff_press@2x.png");
+    m_togglePowerBtn->setPressPic(":/icons/skin/icons/poweroff_press.png");
 
     m_toggleModeBtn = new DImageButton(this);
     m_toggleModeBtn->setNormalPic(":/icons/skin/icons/unfullscreen_normal.png");
