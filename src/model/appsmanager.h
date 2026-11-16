@@ -33,6 +33,7 @@
 #include "src/global_util/calculate_util.h"
 
 #include <QMap>
+#include <QSet>
 #include <QSettings>
 #include <QPixmap>
 #include <QTimer>
@@ -125,8 +126,7 @@ private:
     explicit AppsManager(QObject *parent = 0);
 
     void appendSearchResult(const QString &appKey);
-    void sortCategory(const AppsListModel::AppCategory category);
-    void sortByPresetOrder(ItemInfoList &processList);
+    void sortByLaunchStateAndName(ItemInfoList &processList);
     void refreshCategoryInfoList();
     void refreshUsedInfoList();
     void refreshUserInfoList();
@@ -159,6 +159,10 @@ private:
     QStringList m_newInstalledAppsList;
     ItemInfoList m_allAppInfoList;
     ItemInfoList m_usedSortedList; // FullScreen
+    // 用户手动拖动过图标后保留其自定义顺序，不再按标题重排
+    bool m_customOrder = false;
+    // 打开过的应用（来自持久化使用记录），用于全屏图标分组排序
+    QSet<QString> m_launchedApps;
     ItemInfoList m_userSortedList; // Mini
     ItemInfoList m_appSearchResultList;
     ItemInfoList m_stashList;
@@ -173,7 +177,6 @@ private:
     QTimer *m_delayRefreshTimer;
 
     static QPointer<AppsManager> INSTANCE;
-    static QGSettings LAUNCHER_SETTINGS;
     static QSet<QString> APP_AUTOSTART_CACHE;
     static QSettings APP_USER_SORTED_LIST;
     static QSettings APP_USED_SORTED_LIST;

@@ -78,6 +78,7 @@ target_link_libraries(${BIN_NAME} PRIVATE
     ${XCB_EWMH_LIBRARIES}
     DFrameworkdbusQt6::DFrameworkdbusQt6
     ${Dtk2widget_LIBRARIES}
+    Dtk6::Core
     Dtk6::Gui
     ${Qt6Widgets_LIBRARIES}
     Qt6::GuiPrivate

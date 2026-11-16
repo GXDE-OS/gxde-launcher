@@ -30,14 +30,18 @@
 #include "src/global_util/dockgeometry.h"
 
 #include <algorithm>
+#include <QCollator>
 #include <QDebug>
+#include <QHash>
+#include <QLocale>
 #include <QSvgRenderer>
 #include <QPainter>
 #include <QDataStream>
 #include <QIODevice>
 #include <QIcon>
+#include <QVector>
+#include <dpinyin.h>
 
-#include <QGSettings>
 #include <DHiDPIHelper>
 #include <private/qguiapplication_p.h>
 #include <qpa/qplatformtheme.h>
@@ -53,9 +57,42 @@
 
 DWIDGET_USE_NAMESPACE
 
+namespace {
+
+// 生成标题的 A-Z 排序键：汉字转无声调拼音，其它字符原样保留，
+// 这样中文与英文应用会混排在同一套字母顺序里。
+QString appNameSortKey(const QString &name)
+{
+    // 列表刷新会对同一批应用排序多次，缓存拼音转换结果
+    static QHash<QString, QString> cache;
+
+    const auto it = cache.constFind(name);
+    if (it != cache.constEnd())
+        return it.value();
+
+    const QStringList candidates = Dtk::Core::pinyin(name, Dtk::Core::TS_NoneTone);
+    const QString key = candidates.isEmpty() ? name : candidates.first();
+    cache.insert(name, key);
+
+    return key;
+}
+
+const QCollator &appNameCollator()
+{
+    static const QCollator collator = [] {
+        QCollator c(QLocale(QLocale::Chinese, QLocale::China));
+        c.setCaseSensitivity(Qt::CaseInsensitive);
+        c.setNumericMode(true);
+        return c;
+    }();
+
+    return collator;
+}
+
+} // namespace
+
 QPointer<AppsManager> AppsManager::INSTANCE = nullptr;
 
-QGSettings AppsManager::LAUNCHER_SETTINGS("com.deepin.dde.launcher", "", nullptr);
 QSet<QString> AppsManager::APP_AUTOSTART_CACHE;
 QSettings AppsManager::APP_USER_SORTED_LIST("deepin", "gxde-launcher-app-sorted-list", nullptr);
 QSettings AppsManager::APP_USED_SORTED_LIST("deepin", "gxde-launcher-app-used-sorted-list");
@@ -185,6 +222,9 @@ AppsManager::AppsManager(QObject *parent) :
             << QString(":/icons/skin/icons/system_normal_22px.svg")
             << QString(":/icons/skin/icons/others_normal_22px.svg");
 
+    // 用户手动调整过图标顺序时保留其自定义顺序，否则一律按标题排序
+    m_customOrder = APP_USED_SORTED_LIST.value("custom-order", false).toBool();
+
     refreshAllList();
     refreshAppAutoStartCache();
 
@@ -214,61 +254,48 @@ void AppsManager::appendSearchResult(const QString &appKey)
             return m_appSearchResultList.append(info);
 }
 
-void AppsManager::sortCategory(const AppsListModel::AppCategory category)
+/**
+ * @brief AppsManager::sortByLaunchStateAndName 先按是否打开过分组，组内按标题字母序排序
+ *
+ * 打开过的应用排在未打开的应用之前，两组内部各自按标题的字母顺序排列。
+ * 中文标题先转成无声调拼音，与英文标题一起按 A-Z 混排；排序不区分大小写，
+ * 名称中的数字按数值大小比较。拼音或名称相同的项用 desktop id 兜底，
+ * 避免顺序依赖后端返回的数据顺序。
+ */
+void AppsManager::sortByLaunchStateAndName(ItemInfoList &processList)
 {
-    switch (category)
-    {
-    case AppsListModel::Search:     sortByPresetOrder(m_appSearchResultList);      break;
-//    case AppsListModel::All:        sortByName(m_appInfoList);              break;
-    // disable sort other category
-    default: Q_ASSERT(false) ;
-    }
-}
+    struct SortEntry {
+        QString key;
+        ItemInfo info;
+        bool launched;
+    };
 
-void AppsManager::sortByPresetOrder(ItemInfoList &processList)
-{
-    const QString system_lang = QLocale::system().name();
+    QVector<SortEntry> entries;
+    entries.reserve(processList.size());
+    for (const ItemInfo &info : processList)
+        entries.append(SortEntry { appNameSortKey(info.m_name), info, m_launchedApps.contains(info.m_key) });
 
-    QString key = "appsOrder";
-    for (const auto &item : system_lang.split('_'))
-    {
-        Q_ASSERT(!item.isEmpty());
+    const QCollator &collator = appNameCollator();
+    std::stable_sort(entries.begin(), entries.end(),
+                     [this, &collator] (const SortEntry &lhs, const SortEntry &rhs) {
+        if (lhs.launched != rhs.launched)
+            return lhs.launched;
 
-        QString k = item.toLower();
-        k[0] = k[0].toUpper();
+        const int keyResult = collator.compare(lhs.key, rhs.key);
+        if (keyResult != 0)
+            return keyResult < 0;
 
-        key.append(k);
-    }
+        const int nameResult = collator.compare(lhs.info.m_name, rhs.info.m_name);
+        if (nameResult != 0)
+            return nameResult < 0;
 
-//    qDebug() << "preset order: " << key << APP_PRESET_SORTED_LIST.keys();
-    QStringList preset;
-    if (LAUNCHER_SETTINGS.keys().contains(key))
-        preset = LAUNCHER_SETTINGS.get(key).toStringList();
-    if (preset.isEmpty())
-        preset = LAUNCHER_SETTINGS.get("apps-order").toStringList();
-
-    std::sort(processList.begin(), processList.end(), [&preset] (const ItemInfo &i1, const ItemInfo &i2) {
-        int index1 = preset.indexOf(i1.m_key.toLower());
-        int index2 = preset.indexOf(i2.m_key.toLower());
-
-        if (index1 == index2) {
-            // If both of them don't exist in the preset list,
-            // fallback to comparing their name.
-            return i1.m_name < i2.m_name;
-        }
-
-        // If one of them doesn't exist in the preset list,
-        // the one exists go first.
-        if (index1 == -1) {
-            return false;
-        }
-        if (index2 == -1) {
-            return true;
-        }
-
-        // If both of them exist, then obey the preset order.
-        return index1 < index2;
+        return lhs.info.m_key.compare(rhs.info.m_key, Qt::CaseInsensitive) < 0;
     });
+
+    processList.clear();
+    processList.reserve(entries.size());
+    for (const SortEntry &entry : entries)
+        processList.append(entry.info);
 }
 
 AppsManager *AppsManager::instance()
@@ -324,8 +351,13 @@ void AppsManager::restoreItem(const QString &appKey, const int pos)
         if (m_stashList[i].m_key == appKey)
         {
             // if pos is valid
-            if (pos != -1)
+            if (pos != -1) {
                 m_usedSortedList.insert(pos, m_stashList[i]);
+
+                // 拖拽换序是用户主动指定的顺序，此后不再按标题重排
+                m_customOrder = true;
+                APP_USED_SORTED_LIST.setValue("custom-order", true);
+            }
             m_allAppInfoList.append(m_stashList[i]);
             m_stashList.removeAt(i);
 
@@ -674,6 +706,7 @@ void AppsManager::delayRefreshData()
 
     generateCategoryMap();
     saveUserSortedList();
+    saveUsedSortedList();
 
     emit newInstallListChanged();
 
@@ -817,6 +850,10 @@ void AppsManager::refreshUsedInfoList()
         updateUsedListInfo();
     }
 
+    // 缓存里可能残留旧版本的预设顺序，重新按标题排序后再保存
+    if (!m_customOrder)
+        sortByLaunchStateAndName(m_usedSortedList);
+
     saveUsedSortedList();
 }
 
@@ -881,7 +918,21 @@ void AppsManager::refreshUserInfoList()
         return (static_cast<double>(a.m_openCount) / hours_diff_a) > (static_cast<double>(b.m_openCount) / hours_diff_b);
     });
 
+    // 记录打开过的应用，供全屏图标分组排序使用
+    const QSet<QString> previousLaunchedApps = m_launchedApps;
+    m_launchedApps.clear();
+    for (const ItemInfo &info : m_userSortedList) {
+        if (info.m_openCount > 0 || info.m_firstRunTime > 0)
+            m_launchedApps.insert(info.m_key);
+    }
+
     saveUserSortedList();
+
+    // 打开状态变化后重新分组排序，并刷新全屏「所有应用」与各分类视图
+    if (previousLaunchedApps != m_launchedApps) {
+        generateCategoryMap();
+        emit dataChanged(AppsListModel::All);
+    }
 }
 
 void AppsManager::updateUsedListInfo()
@@ -901,7 +952,7 @@ void AppsManager::generateCategoryMap()
 {
     m_appInfos.clear();
     m_categoryList.clear();
-    sortByPresetOrder(m_allAppInfoList);
+    sortByLaunchStateAndName(m_allAppInfoList);
 
     for (const ItemInfo &info : m_allAppInfoList) {
         const int userIdx = m_usedSortedList.indexOf(info);
@@ -930,6 +981,14 @@ void AppsManager::generateCategoryMap()
         else
             ++it;
     }
+
+    // 全屏「所有应用」与每个分类内的图标都按标题的字母顺序排列；
+    // 只有用户手动拖动过图标时才保留其自定义顺序。
+    if (!m_customOrder)
+        sortByLaunchStateAndName(m_usedSortedList);
+
+    for (ItemInfoList &categoryApps : m_appInfos)
+        sortByLaunchStateAndName(categoryApps);
 
     std::list<qlonglong> categoryID;
     for (const ItemInfo &it : m_allAppInfoList) {
