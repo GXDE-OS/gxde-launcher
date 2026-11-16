@@ -1,4 +1,4 @@
-gxde-launcher (6.0.27) UNRELEASED; urgency=medium
+gxde-launcher (6.0.28) UNRELEASED; urgency=medium
 
   [ CharOfString ]
   * 修复了全屏模式下启动后图标跳动的问题
@@ -8,8 +8,9 @@ gxde-launcher (6.0.27) UNRELEASED; urgency=medium
   [ gfdgd_xi ]
   * 优化右上角图标样式
   * fix: 修复高分屏启动器全屏模式下电源按钮按下图标异常的问题
+  * fix: 修复GXDE Launcher全屏模式启动器顺序奇怪的问题(https://github.com/GXDE-OS/gxde-launcher/issues/1 )
 
- -- gfdgd_xi <3025613752@qq.com>  Sat, 31 Oct 2026 22:55:56 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Mon, 16 Nov 2026 20:08:55 +0800
 
 gxde-launcher (6.0.25) UNRELEASED; urgency=medium
 
