@@ -1,18 +1,19 @@
 # Maintainer: CharOfString <root@charofstring.cc>
-pkgname=gxde-launcher-git
+pkgname=gxde-launcher
 pkgver=6.0.28
 pkgrel=1
 pkgdesc='GXDE application launcher'
 arch=('x86_64' 'aarch64')
 url="https://github.com/GXDE-OS/gxde-launcher"
 license=('GPL-3.0-or-later')
-depends=('gxde-shell-tools-git' 'gxde-desktop-schemas-git' 'gxde-app-uninstaller-git' 'hicolor-icon-theme'
-         'dtk2widget-qt6-git>=6.3.7' 'dtk6gui-git' 'dtk6core-git' 'dframework-dbus-qt6-git' 'gsettings-qt6'
+depends=('gxde-shell-tools' 'gxde-desktop-schemas' 'gxde-app-uninstaller' 'hicolor-icon-theme'
+         'dtk2widget-qt6>=6.3.7' 'gxde-dtk6gui' 'gxde-dtk6core' 'dframework-dbus-qt6' 'gsettings-qt6'
          'layer-shell-qt' 'qt6-base' 'qt6-svg' 'wayland' 'libx11' 'libxcb' 'xcb-util-wm'
          'libgcc' 'libstdc++' 'glibc')
 makedepends=('git' 'cmake' 'ninja' 'qt6-tools')
-provides=('gxde-launcher' 'deepin-launcher')
-conflicts=('gxde-launcher' 'deepin-launcher')
+provides=('deepin-launcher' "gxde-launcher-git=$pkgver")
+conflicts=('deepin-launcher' 'gxde-launcher-git')
+replaces=('gxde-launcher-git')
 source=()
 sha512sums=()
 
