@@ -191,8 +191,10 @@ void LauncherSys::hideLauncher()
         return;
     }
 
-    if (m_ignoreRepeatVisibleChangeTimer->isActive())
-        return;
+    // 不忽略 show 之后 200ms 内的 Hide：显式收起（再次点击 dock 的启动器
+    // 按钮、Win 键切换等）应当立即生效，重复 Hide 在 Frame 层已经幂等；
+    // 但计时器仍需重启，以拦住紧随 Hide 的 Show（X11 下 region monitor
+    // 先收起、dock 松开时又 Show 的竞态）。
     m_ignoreRepeatVisibleChangeTimer->start();
 
     unRegisterRegion();
