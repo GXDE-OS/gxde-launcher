@@ -1,6 +1,6 @@
 # Maintainer: CharOfString <root@charofstring.cc>
 pkgname=gxde-launcher
-pkgver=6.0.28
+pkgver=6.0.29
 pkgrel=1
 pkgdesc='GXDE application launcher'
 arch=('x86_64' 'aarch64')

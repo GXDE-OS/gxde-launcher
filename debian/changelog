@@ -1,3 +1,10 @@
+gxde-launcher (6.0.29) UNRELEASED; urgency=medium
+
+  [ shenmo ]
+  * fix: 修复启动器显示后 200ms 内的隐藏请求被忽略，导致快速再次点击无法收起的问题
+
+ -- shenmo <shenmo@spark-app.store>  Sat, 21 Nov 2026 18:19:30 +0800
+
 gxde-launcher (6.0.28) UNRELEASED; urgency=medium
 
   [ CharOfString ]
